@@ -9,13 +9,13 @@
 ]>
 
 
-<rdf:RDF xmlns="http://www.semanticweb.org/bline/ontologies/2012/7/untitled-ontology-6#"
-     xml:base="http://www.semanticweb.org/bline/ontologies/2012/7/untitled-ontology-6"
+<rdf:RDF xmlns="http://www.semanticweb.org/bline/ontologies/2012/7/untitled-ontology-10#"
+     xml:base="http://www.semanticweb.org/bline/ontologies/2012/7/untitled-ontology-10"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/bline/ontologies/2012/7/untitled-ontology-6"/>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/bline/ontologies/2012/7/untitled-ontology-10"/>
     
 
 
@@ -88,16 +88,16 @@
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatEigenschaft"/>
         <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
-        <owl:equivalentProperty>
-            <rdf:Description>
-                <owl:inverseOf rdf:resource="http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatEigenschaft"/>
-            </rdf:Description>
-        </owl:equivalentProperty>
         <owl:inverseOf>
             <rdf:Description>
                 <owl:inverseOf rdf:resource="http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#istEigenschaftVon"/>
             </rdf:Description>
         </owl:inverseOf>
+        <owl:equivalentProperty>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatEigenschaft"/>
+            </rdf:Description>
+        </owl:equivalentProperty>
     </owl:ObjectProperty>
     
 

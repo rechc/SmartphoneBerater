@@ -366,7 +366,7 @@
                                 <onDatatype rdf:resource="&xsd;float"/>
                                 <withRestrictions rdf:parseType="Collection">
                                     <rdf:Description>
-                                        <xsd:minInclusive rdf:datatype="&xsd;double">4.0</xsd:minInclusive>
+                                        <xsd:minInclusive rdf:datatype="&xsd;float">4.0</xsd:minInclusive>
                                     </rdf:Description>
                                 </withRestrictions>
                             </rdfs:Datatype>
@@ -392,7 +392,7 @@
                         <onDatatype rdf:resource="&xsd;float"/>
                         <withRestrictions rdf:parseType="Collection">
                             <rdf:Description>
-                                <xsd:minExclusive rdf:datatype="&xsd;integer">5</xsd:minExclusive>
+                                <xsd:minExclusive rdf:datatype="&xsd;float">5.0</xsd:minExclusive>
                             </rdf:Description>
                         </withRestrictions>
                     </rdfs:Datatype>
@@ -436,6 +436,21 @@
         <rdfs:subClassOf rdf:resource="&untitled-ontology-5;SpieleSmartphone"/>
         <rdfs:subClassOf>
             <Restriction>
+                <onProperty rdf:resource="&untitled-ontology-5;hatMHz"/>
+                <someValuesFrom>
+                    <rdfs:Datatype>
+                        <onDatatype rdf:resource="&xsd;integer"/>
+                        <withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="&xsd;integer">1000</xsd:minInclusive>
+                            </rdf:Description>
+                        </withRestrictions>
+                    </rdfs:Datatype>
+                </someValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
                 <onProperty rdf:resource="&untitled-ontology-5;hatAuflösung"/>
                 <someValuesFrom>
                     <rdfs:Datatype>
@@ -453,21 +468,6 @@
             <Restriction>
                 <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
                 <someValuesFrom rdf:resource="&untitled-ontology-5;Spielefreak"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatMHz"/>
-                <someValuesFrom>
-                    <rdfs:Datatype>
-                        <onDatatype rdf:resource="&xsd;integer"/>
-                        <withRestrictions rdf:parseType="Collection">
-                            <rdf:Description>
-                                <xsd:minInclusive rdf:datatype="&xsd;integer">1000</xsd:minInclusive>
-                            </rdf:Description>
-                        </withRestrictions>
-                    </rdfs:Datatype>
-                </someValuesFrom>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
@@ -638,7 +638,7 @@
                                         <onDatatype rdf:resource="&xsd;float"/>
                                         <withRestrictions rdf:parseType="Collection">
                                             <rdf:Description>
-                                                <xsd:maxExclusive rdf:datatype="&xsd;double">4.0</xsd:maxExclusive>
+                                                <xsd:maxExclusive rdf:datatype="&xsd;float">4.0</xsd:maxExclusive>
                                             </rdf:Description>
                                         </withRestrictions>
                                     </rdfs:Datatype>
@@ -944,55 +944,19 @@
         <rdfs:subClassOf>
             <Restriction>
                 <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;InternetZweck"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;TelefonierenZweck"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;SMSZweck"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;BetriebsystemEigenschaft"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatDisplaygröße"/>
-                <someValuesFrom rdf:resource="&xsd;float"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatAuflösung"/>
-                <someValuesFrom rdf:resource="&xsd;integer"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
                 <someValuesFrom rdf:resource="&untitled-ontology-5;Zweck"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatPreis"/>
-                <someValuesFrom rdf:resource="&xsd;integer"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
                 <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
                 <someValuesFrom rdf:resource="&untitled-ontology-5;MarkeEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&untitled-ontology-5;hatDisplaygröße"/>
+                <someValuesFrom rdf:resource="&xsd;float"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1009,8 +973,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
+                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
+                <someValuesFrom rdf:resource="&untitled-ontology-5;InternetZweck"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
                 <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;KommunikationEigenschaft"/>
+                <someValuesFrom rdf:resource="&untitled-ontology-5;BetriebsystemEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&untitled-ontology-5;hatPreis"/>
+                <someValuesFrom rdf:resource="&xsd;integer"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1022,7 +998,31 @@
         <rdfs:subClassOf>
             <Restriction>
                 <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&untitled-ontology-5;KommunikationEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
+                <someValuesFrom rdf:resource="&untitled-ontology-5;SMSZweck"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
                 <someValuesFrom rdf:resource="&untitled-ontology-5;MaterialEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
+                <someValuesFrom rdf:resource="&untitled-ontology-5;TelefonierenZweck"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&untitled-ontology-5;hatAuflösung"/>
+                <someValuesFrom rdf:resource="&xsd;integer"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
@@ -1098,13 +1098,13 @@
         <rdfs:subClassOf>
             <Restriction>
                 <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;SpritzwasserfestEigenschaft"/>
+                <someValuesFrom rdf:resource="&untitled-ontology-5;Metall"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
                 <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;Metall"/>
+                <someValuesFrom rdf:resource="&untitled-ontology-5;SpritzwasserfestEigenschaft"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
@@ -1269,9 +1269,9 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&untitled-ontology-5;Eigenschaften"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;Kunde"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+            <rdf:Description rdf:about="&untitled-ontology-5;AndroidSmartphone"/>
+            <rdf:Description rdf:about="&untitled-ontology-5;IOSSmartphone"/>
+            <rdf:Description rdf:about="&untitled-ontology-5;WindowsSmartphone"/>
         </members>
     </rdf:Description>
     <rdf:Description>
@@ -1286,22 +1286,22 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&untitled-ontology-5;AndroidSmartphone"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;IOSSmartphone"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;WindowsSmartphone"/>
+            <rdf:Description rdf:about="&untitled-ontology-5;AndroidBetriebssystemEigenschaft"/>
+            <rdf:Description rdf:about="&untitled-ontology-5;IOSBetriebssystemeigenschaft"/>
+            <rdf:Description rdf:about="&untitled-ontology-5;WindowsBetriebssystemeigenschaft"/>
         </members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&untitled-ontology-5;AndroidBetriebssystemEigenschaft"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;IOSBetriebssystemeigenschaft"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;WindowsBetriebssystemeigenschaft"/>
+            <rdf:Description rdf:about="&untitled-ontology-5;Eigenschaften"/>
+            <rdf:Description rdf:about="&untitled-ontology-5;Kunde"/>
+            <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
         </members>
     </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
 
