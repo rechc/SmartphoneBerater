@@ -1,5 +1,14 @@
 *.class
 
+# eclipse files #
+/bin
+.classpath
+.DS_Store
+
+# protege files #
+catalog-v001.xml
+
+
 # Package Files #
 *.jar
 *.war
