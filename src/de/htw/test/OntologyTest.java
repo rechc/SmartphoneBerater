@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class OntologyTest {
 
 	public static void main(String[] args) {
-            String ns = "http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#";
+            String ns = "http://semantische-interoperabilitaet-projekt";
             String ontopath = "./onto.owl";
             
              try {

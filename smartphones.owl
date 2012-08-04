@@ -5,17 +5,16 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY untitled-ontology-5 "http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#" >
+    <!ENTITY semantische-interoperabilitaet-projekt "http://semantische-interoperabilitaet-projekt#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
      xml:base="http://www.w3.org/2002/07/owl"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:untitled-ontology-5="http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#"
+     xmlns:semantische-interoperabilitaet-projekt="http://semantische-interoperabilitaet-projekt#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <Ontology rdf:about="http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5"/>
     
 
 
@@ -41,36 +40,36 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#fürKunde -->
+    <!-- http://semantische-interoperabilitaet-projekt#fuerKunde -->
 
-    <ObjectProperty rdf:about="&untitled-ontology-5;fürKunde">
-        <rdfs:range rdf:resource="&untitled-ontology-5;Kunde"/>
-        <rdfs:domain rdf:resource="&untitled-ontology-5;Smartphone"/>
+    <ObjectProperty rdf:about="&semantische-interoperabilitaet-projekt;fuerKunde">
+        <rdfs:range rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
+        <rdfs:domain rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
     </ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatEigenschaft -->
 
-    <ObjectProperty rdf:about="&untitled-ontology-5;hatEigenschaft">
-        <rdfs:range rdf:resource="&untitled-ontology-5;Eigenschaften"/>
-        <rdfs:domain rdf:resource="&untitled-ontology-5;Smartphone"/>
+    <ObjectProperty rdf:about="&semantische-interoperabilitaet-projekt;hatEigenschaft">
+        <rdfs:range rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
+        <rdfs:domain rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
     </ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatZweck -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatZweck -->
 
-    <ObjectProperty rdf:about="&untitled-ontology-5;hatZweck"/>
+    <ObjectProperty rdf:about="&semantische-interoperabilitaet-projekt;hatZweck"/>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#istEigenschaftVon -->
+    <!-- http://semantische-interoperabilitaet-projekt#istEigenschaftVon -->
 
-    <ObjectProperty rdf:about="&untitled-ontology-5;istEigenschaftVon">
-        <rdfs:domain rdf:resource="&untitled-ontology-5;Eigenschaften"/>
-        <rdfs:range rdf:resource="&untitled-ontology-5;Smartphone"/>
-        <inverseOf rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
+    <ObjectProperty rdf:about="&semantische-interoperabilitaet-projekt;istEigenschaftVon">
+        <rdfs:domain rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
+        <rdfs:range rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
+        <inverseOf rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
     </ObjectProperty>
     
 
@@ -86,59 +85,59 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatAkkuDauer -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatAkkuDauer -->
 
-    <DatatypeProperty rdf:about="&untitled-ontology-5;hatAkkuDauer">
+    <DatatypeProperty rdf:about="&semantische-interoperabilitaet-projekt;hatAkkuDauer">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     </DatatypeProperty>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatAuflösung -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatAufloesung -->
 
-    <DatatypeProperty rdf:about="&untitled-ontology-5;hatAuflösung">
+    <DatatypeProperty rdf:about="&semantische-interoperabilitaet-projekt;hatAufloesung">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     </DatatypeProperty>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatDisplaygröße -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatDisplaygroesse -->
 
-    <DatatypeProperty rdf:about="&untitled-ontology-5;hatDisplaygröße">
+    <DatatypeProperty rdf:about="&semantische-interoperabilitaet-projekt;hatDisplaygroesse">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     </DatatypeProperty>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatMHz -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatMHz -->
 
-    <DatatypeProperty rdf:about="&untitled-ontology-5;hatMHz">
+    <DatatypeProperty rdf:about="&semantische-interoperabilitaet-projekt;hatMHz">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     </DatatypeProperty>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatMegaPixel -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatMegaPixel -->
 
-    <DatatypeProperty rdf:about="&untitled-ontology-5;hatMegaPixel"/>
+    <DatatypeProperty rdf:about="&semantische-interoperabilitaet-projekt;hatMegaPixel"/>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatPreis -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatPreis -->
 
-    <DatatypeProperty rdf:about="&untitled-ontology-5;hatPreis"/>
+    <DatatypeProperty rdf:about="&semantische-interoperabilitaet-projekt;hatPreis"/>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatRAM -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatRAM -->
 
-    <DatatypeProperty rdf:about="&untitled-ontology-5;hatRAM"/>
+    <DatatypeProperty rdf:about="&semantische-interoperabilitaet-projekt;hatRAM"/>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#hatSpeicherplatz -->
+    <!-- http://semantische-interoperabilitaet-projekt#hatSpeicherplatz -->
 
-    <DatatypeProperty rdf:about="&untitled-ontology-5;hatSpeicherplatz"/>
+    <DatatypeProperty rdf:about="&semantische-interoperabilitaet-projekt;hatSpeicherplatz"/>
     
 
 
@@ -153,40 +152,40 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#AndroidBetriebssystemEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#AndroidBetriebssystemEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;AndroidBetriebssystemEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;BetriebsystemEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#AndroidSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#AndroidSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;AndroidSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;AndroidSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Class>
                         <unionOf rdf:parseType="Collection">
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                                <someValuesFrom rdf:resource="&untitled-ontology-5;HTCMarke"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
                             </Restriction>
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                                <someValuesFrom rdf:resource="&untitled-ontology-5;SamsungMarke"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
                             </Restriction>
                         </unionOf>
                     </Class>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;AndroidBetriebssystemEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
                     </Restriction>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;AppstoreEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
                     </Restriction>
                 </intersectionOf>
             </Class>
@@ -195,20 +194,20 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#AppStoreSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#AppStoreSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;AppStoreSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;AppStoreSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
                         <someValuesFrom>
                             <Class>
                                 <unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&untitled-ontology-5;AndroidBetriebssystemEigenschaft"/>
-                                    <rdf:Description rdf:about="&untitled-ontology-5;IOSBetriebssystemeigenschaft"/>
+                                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
+                                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
                                 </unionOf>
                             </Class>
                         </someValuesFrom>
@@ -220,117 +219,117 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#AppleMarke -->
+    <!-- http://semantische-interoperabilitaet-projekt#AppleMarke -->
 
-    <Class rdf:about="&untitled-ontology-5;AppleMarke">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;MarkeEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;AppleMarke">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#AppstoreEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#AppstoreEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;AppstoreEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;SoftwareEigenschaft"/>
-        <disjointWith rdf:resource="&untitled-ontology-5;BetriebsystemEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
+        <disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#BetriebsystemEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#BetriebsystemEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;BetriebsystemEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;SoftwareEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#BilderMachenZweck -->
+    <!-- http://semantische-interoperabilitaet-projekt#BilderMachenZweck -->
 
-    <Class rdf:about="&untitled-ontology-5;BilderMachenZweck">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Zweck"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;BilderMachenZweck">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#BusinessSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#BusinessSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;BusinessSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;BusinessSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;ExchangeEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;ExchangeEigenschaft"/>
                     </Restriction>
                 </intersectionOf>
             </Class>
         </equivalentClass>
-        <disjointWith rdf:resource="&untitled-ontology-5;SportSmartphone"/>
+        <disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SportSmartphone"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#DigitaltastaturEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#DigitaltastaturEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;DigitaltastaturEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;TastaturEigenschaft"/>
-        <disjointWith rdf:resource="&untitled-ontology-5;HardwaretastaturEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;DigitaltastaturEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;TastaturEigenschaft"/>
+        <disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Eigenschaften -->
+    <!-- http://semantische-interoperabilitaet-projekt#Eigenschaften -->
 
-    <Class rdf:about="&untitled-ontology-5;Eigenschaften"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#ExchangeEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#ExchangeEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;ExchangeEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;SoftwareEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;ExchangeEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Fortgeschritten -->
+    <!-- http://semantische-interoperabilitaet-projekt#Fortgeschritten -->
 
-    <Class rdf:about="&untitled-ontology-5;Fortgeschritten">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Kunde"/>
-        <disjointWith rdf:resource="&untitled-ontology-5;Laie"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Fortgeschritten">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
+        <disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#GPSEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#GPSEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;GPSEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;KommunikationEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;GPSEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#GrosserSpeicherSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#GrosserSpeicherSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;GrosserSpeicherSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;GrosserSpeicherSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Class>
                         <unionOf rdf:parseType="Collection">
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                                <someValuesFrom rdf:resource="&untitled-ontology-5;BilderMachenZweck"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;BilderMachenZweck"/>
                             </Restriction>
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                                <someValuesFrom rdf:resource="&untitled-ontology-5;SpieleZweck"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpieleZweck"/>
                             </Restriction>
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;hatSpeicherplatz"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatSpeicherplatz"/>
                                 <someValuesFrom>
                                     <rdfs:Datatype>
                                         <onDatatype rdf:resource="&xsd;integer"/>
@@ -347,20 +346,20 @@
                 </intersectionOf>
             </Class>
         </equivalentClass>
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Smartphone"/>
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#GroßesSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#GroßesSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;GroßesSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;GroßesSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatDisplaygröße"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatDisplaygroesse"/>
                         <someValuesFrom>
                             <rdfs:Datatype>
                                 <onDatatype rdf:resource="&xsd;float"/>
@@ -375,18 +374,18 @@
                 </intersectionOf>
             </Class>
         </equivalentClass>
-        <disjointWith rdf:resource="&untitled-ontology-5;KleinesSmartphone"/>
+        <disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KleinesSmartphone"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#GuteKameraSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#GuteKameraSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;GuteKameraSmartphone">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;KameraSmartphone"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;GuteKameraSmartphone">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;KameraSmartphone"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatMegaPixel"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatMegaPixel"/>
                 <someValuesFrom>
                     <rdfs:Datatype>
                         <onDatatype rdf:resource="&xsd;float"/>
@@ -403,15 +402,15 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#GuterAkkuSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#GuterAkkuSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;GuterAkkuSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;GuterAkkuSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatAkkuDauer"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatAkkuDauer"/>
                         <someValuesFrom>
                             <rdfs:Datatype>
                                 <onDatatype rdf:resource="&xsd;float"/>
@@ -430,13 +429,13 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#GutesSpieleSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#GutesSpieleSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;GutesSpieleSmartphone">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;SpieleSmartphone"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;GutesSpieleSmartphone">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatMHz"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatMHz"/>
                 <someValuesFrom>
                     <rdfs:Datatype>
                         <onDatatype rdf:resource="&xsd;integer"/>
@@ -451,7 +450,13 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatAuflösung"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatAufloesung"/>
                 <someValuesFrom>
                     <rdfs:Datatype>
                         <onDatatype rdf:resource="&xsd;integer"/>
@@ -464,106 +469,100 @@
                 </someValuesFrom>
             </Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;Spielefreak"/>
-            </Restriction>
-        </rdfs:subClassOf>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#HTCMarke -->
+    <!-- http://semantische-interoperabilitaet-projekt#HTCMarke -->
 
-    <Class rdf:about="&untitled-ontology-5;HTCMarke">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;MarkeEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;HTCMarke">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#HardwareEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#HardwareEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;HardwareEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Eigenschaften"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;HardwareEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#HardwaretastaturEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#HardwaretastaturEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;HardwaretastaturEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;TastaturEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;TastaturEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#IOSBetriebssystemeigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#IOSBetriebssystemeigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;IOSBetriebssystemeigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;BetriebsystemEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#IOSSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#IOSSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;IOSSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;IOSSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Class>
                         <complementOf>
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                                <someValuesFrom rdf:resource="&untitled-ontology-5;HardwaretastaturEigenschaft"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
                             </Restriction>
                         </complementOf>
                     </Class>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;AppleMarke"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppleMarke"/>
                     </Restriction>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;AppstoreEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
                     </Restriction>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;IOSBetriebssystemeigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
                     </Restriction>
                 </intersectionOf>
             </Class>
         </equivalentClass>
-        <disjointWith rdf:resource="&untitled-ontology-5;TastaturSmartphone"/>
+        <disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;TastaturSmartphone"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#InternetSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#InternetSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;InternetSmartphone">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Smartphone"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;InternetSmartphone">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#InternetZweck -->
+    <!-- http://semantische-interoperabilitaet-projekt#InternetZweck -->
 
-    <Class rdf:about="&untitled-ontology-5;InternetZweck">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Zweck"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;InternetZweck">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#KameraEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#KameraEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;KameraEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;HardwareEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;KameraEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatMegaPixel"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatMegaPixel"/>
                 <someValuesFrom rdf:resource="&xsd;float"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -571,68 +570,68 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#KameraSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#KameraSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;KameraSmartphone">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;MultimediaSmartphone"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;KameraSmartphone">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;KameraEigenschaft"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;BilderMachenZweck"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;BilderMachenZweck"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KameraEigenschaft"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#KeineTastaturSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#KeineTastaturSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;KeineTastaturSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;KeineTastaturSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Class>
                         <complementOf>
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                                <someValuesFrom rdf:resource="&untitled-ontology-5;HardwaretastaturEigenschaft"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
                             </Restriction>
                         </complementOf>
                     </Class>
                 </intersectionOf>
             </Class>
         </equivalentClass>
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Smartphone"/>
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#KleinesSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#KleinesSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;KleinesSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;KleinesSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Class>
                         <intersectionOf rdf:parseType="Collection">
                             <Class>
                                 <complementOf>
                                     <Restriction>
-                                        <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                                        <someValuesFrom rdf:resource="&untitled-ontology-5;Sehbehindert"/>
+                                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
                                     </Restriction>
                                 </complementOf>
                             </Class>
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;hatDisplaygröße"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatDisplaygroesse"/>
                                 <someValuesFrom>
                                     <rdfs:Datatype>
                                         <onDatatype rdf:resource="&xsd;float"/>
@@ -653,76 +652,76 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#KommunikationEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#KommunikationEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;KommunikationEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;HardwareEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Kunde -->
+    <!-- http://semantische-interoperabilitaet-projekt#Kunde -->
 
-    <Class rdf:about="&untitled-ontology-5;Kunde"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Kunde"/>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Laie -->
+    <!-- http://semantische-interoperabilitaet-projekt#Laie -->
 
-    <Class rdf:about="&untitled-ontology-5;Laie">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Kunde"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Laie">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#MarkeEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#MarkeEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;MarkeEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Eigenschaften"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;MarkeEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#MaterialEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#MaterialEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;MaterialEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Eigenschaften"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;MaterialEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Metall -->
+    <!-- http://semantische-interoperabilitaet-projekt#Metall -->
 
-    <Class rdf:about="&untitled-ontology-5;Metall">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;MaterialEigenschaft"/>
-        <disjointWith rdf:resource="&untitled-ontology-5;Plastik"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Metall">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
+        <disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#MobilfunknetzEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#MobilfunknetzEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;MobilfunknetzEigenschaft">
-        <equivalentClass rdf:resource="&untitled-ontology-5;Telefoniereigenschaft"/>
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;KommunikationEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft">
+        <equivalentClass rdf:resource="&semantische-interoperabilitaet-projekt;Telefoniereigenschaft"/>
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#MultimediaSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#MultimediaSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;MultimediaSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;MultimediaSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
                         <someValuesFrom>
                             <Class>
                                 <unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&untitled-ontology-5;AndroidBetriebssystemEigenschaft"/>
-                                    <rdf:Description rdf:about="&untitled-ontology-5;IOSBetriebssystemeigenschaft"/>
+                                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
+                                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
                                 </unionOf>
                             </Class>
                         </someValuesFrom>
@@ -734,30 +733,30 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#NaviSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#NaviSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;NaviSmartphone">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;GuterAkkuSmartphone"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;NaviSmartphone">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;GuterAkkuSmartphone"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;NavigationEigenschaft"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Class>
                 <unionOf rdf:parseType="Collection">
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;Reisender"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
                     </Restriction>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;Sportler"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
                     </Restriction>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;Wanderer"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Wanderer"/>
                     </Restriction>
                 </unionOf>
             </Class>
@@ -766,74 +765,74 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#NavigationEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#NavigationEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;NavigationEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;GPSEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;NavigationEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;GPSEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#NokiaMarke -->
+    <!-- http://semantische-interoperabilitaet-projekt#NokiaMarke -->
 
-    <Class rdf:about="&untitled-ontology-5;NokiaMarke">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;MarkeEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;NokiaMarke">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Normal -->
+    <!-- http://semantische-interoperabilitaet-projekt#Normal -->
 
-    <Class rdf:about="&untitled-ontology-5;Normal">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Laie"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Normal">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#NormalesSpieleSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#NormalesSpieleSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;NormalesSpieleSmartphone">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;SpieleSmartphone"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;Sudokuhengst"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sudokuhengst"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#OutdoorEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#OutdoorEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;OutdoorEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Eigenschaften"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#OutdoorSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#OutdoorSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;OutdoorSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;OutdoorSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Class>
                         <unionOf rdf:parseType="Collection">
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                                <someValuesFrom rdf:resource="&untitled-ontology-5;Sportler"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
                             </Restriction>
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                                <someValuesFrom rdf:resource="&untitled-ontology-5;Wanderer"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Wanderer"/>
                             </Restriction>
                         </unionOf>
                     </Class>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;OutdoorEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
                     </Restriction>
                 </intersectionOf>
             </Class>
@@ -842,22 +841,22 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Plastik -->
+    <!-- http://semantische-interoperabilitaet-projekt#Plastik -->
 
-    <Class rdf:about="&untitled-ontology-5;Plastik">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;MaterialEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Plastik">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#ProfiSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#ProfiSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;ProfiSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;ProfiSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatMHz"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatMHz"/>
                         <someValuesFrom>
                             <rdfs:Datatype>
                                 <onDatatype rdf:resource="&xsd;integer"/>
@@ -870,7 +869,7 @@
                         </someValuesFrom>
                     </Restriction>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatRAM"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatRAM"/>
                         <someValuesFrom>
                             <rdfs:Datatype>
                                 <onDatatype rdf:resource="&xsd;integer"/>
@@ -885,182 +884,182 @@
                 </intersectionOf>
             </Class>
         </equivalentClass>
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Smartphone"/>
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Reisender -->
+    <!-- http://semantische-interoperabilitaet-projekt#Reisender -->
 
-    <Class rdf:about="&untitled-ontology-5;Reisender">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Kunde"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Reisender">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#RouteAufzeichnenEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#RouteAufzeichnenEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;RouteAufzeichnenEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Eigenschaften"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#RoutenaufzeichnungEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#RoutenaufzeichnungEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;RoutenaufzeichnungEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;GPSEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;GPSEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#SMSZweck -->
+    <!-- http://semantische-interoperabilitaet-projekt#SMSZweck -->
 
-    <Class rdf:about="&untitled-ontology-5;SMSZweck">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Zweck"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;SMSZweck">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#SamsungMarke -->
+    <!-- http://semantische-interoperabilitaet-projekt#SamsungMarke -->
 
-    <Class rdf:about="&untitled-ontology-5;SamsungMarke">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;MarkeEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;SamsungMarke">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Sehbehindert -->
+    <!-- http://semantische-interoperabilitaet-projekt#Sehbehindert -->
 
-    <Class rdf:about="&untitled-ontology-5;Sehbehindert">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Kunde"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Sehbehindert">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Smartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#Smartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;Smartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Smartphone">
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;Zweck"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TelefonierenZweck"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;MarkeEigenschaft"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatDisplaygröße"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatAufloesung"/>
+                <someValuesFrom rdf:resource="&xsd;integer"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TastaturEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SMSZweck"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatPreis"/>
+                <someValuesFrom rdf:resource="&xsd;integer"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;InternetZweck"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatDisplaygroesse"/>
                 <someValuesFrom rdf:resource="&xsd;float"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;TastaturEigenschaft"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;MobilfunknetzEigenschaft"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;InternetZweck"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;BetriebsystemEigenschaft"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatPreis"/>
-                <someValuesFrom rdf:resource="&xsd;integer"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;Kunde"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;KommunikationEigenschaft"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;SMSZweck"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;MaterialEigenschaft"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;TelefonierenZweck"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatAuflösung"/>
-                <someValuesFrom rdf:resource="&xsd;integer"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#SoftwareEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#SoftwareEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;SoftwareEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Eigenschaften"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#SpieleSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#SpieleSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;SpieleSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;SpieleSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;MultimediaSmartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
                     <Class>
                         <unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&untitled-ontology-5;GutesSpieleSmartphone"/>
-                            <rdf:Description rdf:about="&untitled-ontology-5;NormalesSpieleSmartphone"/>
+                            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;GutesSpieleSmartphone"/>
+                            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
                         </unionOf>
                     </Class>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;AppstoreEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
                     </Restriction>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;WLANEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
                     </Restriction>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatZweck"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;SpieleZweck"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpieleZweck"/>
                     </Restriction>
                 </intersectionOf>
             </Class>
@@ -1069,98 +1068,98 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#SpieleZweck -->
+    <!-- http://semantische-interoperabilitaet-projekt#SpieleZweck -->
 
-    <Class rdf:about="&untitled-ontology-5;SpieleZweck">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Zweck"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;SpieleZweck">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Spielefreak -->
+    <!-- http://semantische-interoperabilitaet-projekt#Spielefreak -->
 
-    <Class rdf:about="&untitled-ontology-5;Spielefreak">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Laie"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Spielefreak">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#SportSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#SportSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;SportSmartphone">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Smartphone"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;SportSmartphone">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;Sportler"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpritzwasserfestEigenschaft"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;Metall"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&untitled-ontology-5;SpritzwasserfestEigenschaft"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Sportler -->
+    <!-- http://semantische-interoperabilitaet-projekt#Sportler -->
 
-    <Class rdf:about="&untitled-ontology-5;Sportler">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Kunde"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Sportler">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#SpritzwasserfestEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#SpritzwasserfestEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;SpritzwasserfestEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;OutdoorEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;SpritzwasserfestEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Sudokuhengst -->
+    <!-- http://semantische-interoperabilitaet-projekt#Sudokuhengst -->
 
-    <Class rdf:about="&untitled-ontology-5;Sudokuhengst">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Laie"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Sudokuhengst">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#TastaturEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#TastaturEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;TastaturEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;HardwareEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;TastaturEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#TastaturSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#TastaturSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;TastaturSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;TastaturSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Class>
                         <complementOf>
                             <Restriction>
-                                <onProperty rdf:resource="&untitled-ontology-5;fürKunde"/>
-                                <someValuesFrom rdf:resource="&untitled-ontology-5;Sehbehindert"/>
+                                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
                             </Restriction>
                         </complementOf>
                     </Class>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;HardwaretastaturEigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
                     </Restriction>
                 </intersectionOf>
             </Class>
@@ -1169,60 +1168,60 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Telefoniereigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#Telefoniereigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;Telefoniereigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Eigenschaften"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Telefoniereigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#TelefonierenZweck -->
+    <!-- http://semantische-interoperabilitaet-projekt#TelefonierenZweck -->
 
-    <Class rdf:about="&untitled-ontology-5;TelefonierenZweck">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Zweck"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;TelefonierenZweck">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#WLANEigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#WLANEigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;WLANEigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;KommunikationEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;WLANEigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Wanderer -->
+    <!-- http://semantische-interoperabilitaet-projekt#Wanderer -->
 
-    <Class rdf:about="&untitled-ontology-5;Wanderer">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;Kunde"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Wanderer">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#WindowsBetriebssystemeigenschaft -->
+    <!-- http://semantische-interoperabilitaet-projekt#WindowsBetriebssystemeigenschaft -->
 
-    <Class rdf:about="&untitled-ontology-5;WindowsBetriebssystemeigenschaft">
-        <rdfs:subClassOf rdf:resource="&untitled-ontology-5;BetriebsystemEigenschaft"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft">
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
     </Class>
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#WindowsSmartphone -->
+    <!-- http://semantische-interoperabilitaet-projekt#WindowsSmartphone -->
 
-    <Class rdf:about="&untitled-ontology-5;WindowsSmartphone">
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;WindowsSmartphone">
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+                    <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;NokiaMarke"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
                     </Restriction>
                     <Restriction>
-                        <onProperty rdf:resource="&untitled-ontology-5;hatEigenschaft"/>
-                        <someValuesFrom rdf:resource="&untitled-ontology-5;WindowsBetriebssystemeigenschaft"/>
+                        <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                        <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
                     </Restriction>
                 </intersectionOf>
             </Class>
@@ -1231,9 +1230,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Zweck -->
+    <!-- http://semantische-interoperabilitaet-projekt#Zweck -->
 
-    <Class rdf:about="&untitled-ontology-5;Zweck"/>
+    <Class rdf:about="&semantische-interoperabilitaet-projekt;Zweck"/>
     
 
 
@@ -1248,12 +1247,12 @@
     
 
 
-    <!-- http://www.semanticweb.org/bline_asus/ontologies/2012/5/untitled-ontology-5#Galaxy_Nexus -->
+    <!-- http://semantische-interoperabilitaet-projekt#Galaxy_Nexus -->
 
-    <NamedIndividual rdf:about="&untitled-ontology-5;Galaxy_Nexus">
-        <rdf:type rdf:resource="&untitled-ontology-5;AndroidSmartphone"/>
-        <untitled-ontology-5:hatAkkuDauer rdf:datatype="&xsd;float">24.0</untitled-ontology-5:hatAkkuDauer>
-        <untitled-ontology-5:hatDisplaygröße rdf:datatype="&xsd;float">5.0</untitled-ontology-5:hatDisplaygröße>
+    <NamedIndividual rdf:about="&semantische-interoperabilitaet-projekt;Galaxy_Nexus">
+        <rdf:type rdf:resource="&semantische-interoperabilitaet-projekt;AndroidSmartphone"/>
+        <semantische-interoperabilitaet-projekt:hatAkkuDauer rdf:datatype="&xsd;float">24.0</semantische-interoperabilitaet-projekt:hatAkkuDauer>
+        <semantische-interoperabilitaet-projekt:hatDisplaygroesse rdf:datatype="&xsd;float">5.0</semantische-interoperabilitaet-projekt:hatDisplaygroesse>
     </NamedIndividual>
     
 
@@ -1269,39 +1268,39 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&untitled-ontology-5;AndroidSmartphone"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;IOSSmartphone"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;WindowsSmartphone"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AppleMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;HTCMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         </members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&untitled-ontology-5;AppleMarke"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;HTCMarke"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;NokiaMarke"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;SamsungMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidSmartphone"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSSmartphone"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
         </members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&untitled-ontology-5;AndroidBetriebssystemEigenschaft"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;IOSBetriebssystemeigenschaft"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;WindowsBetriebssystemeigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Kunde"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;Smartphone"/>
         </members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&untitled-ontology-5;Eigenschaften"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;Kunde"/>
-            <rdf:Description rdf:about="&untitled-ontology-5;Smartphone"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
         </members>
     </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.2.5.1928) http://owlapi.sourceforge.net -->
 
