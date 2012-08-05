@@ -60,7 +60,10 @@
 
     <!-- http://semantische-interoperabilitaet-projekt#hatZweck -->
 
-    <ObjectProperty rdf:about="&semantische-interoperabilitaet-projekt;hatZweck"/>
+    <ObjectProperty rdf:about="&semantische-interoperabilitaet-projekt;hatZweck">
+        <rdfs:domain rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
+        <rdfs:range rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
+    </ObjectProperty>
     
 
 
@@ -435,13 +438,13 @@
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatMHz"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatAufloesung"/>
                 <someValuesFrom>
                     <rdfs:Datatype>
                         <onDatatype rdf:resource="&xsd;integer"/>
                         <withRestrictions rdf:parseType="Collection">
                             <rdf:Description>
-                                <xsd:minInclusive rdf:datatype="&xsd;integer">1000</xsd:minInclusive>
+                                <xsd:minExclusive rdf:datatype="&xsd;integer">240</xsd:minExclusive>
                             </rdf:Description>
                         </withRestrictions>
                     </rdfs:Datatype>
@@ -456,13 +459,13 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatAufloesung"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatMHz"/>
                 <someValuesFrom>
                     <rdfs:Datatype>
                         <onDatatype rdf:resource="&xsd;integer"/>
                         <withRestrictions rdf:parseType="Collection">
                             <rdf:Description>
-                                <xsd:minExclusive rdf:datatype="&xsd;integer">240</xsd:minExclusive>
+                                <xsd:minInclusive rdf:datatype="&xsd;integer">1000</xsd:minInclusive>
                             </rdf:Description>
                         </withRestrictions>
                     </rdfs:Datatype>
@@ -738,12 +741,6 @@
     <Class rdf:about="&semantische-interoperabilitaet-projekt;NaviSmartphone">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;GuterAkkuSmartphone"/>
         <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
             <Class>
                 <unionOf rdf:parseType="Collection">
                     <Restriction>
@@ -760,6 +757,12 @@
                     </Restriction>
                 </unionOf>
             </Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
+            </Restriction>
         </rdfs:subClassOf>
     </Class>
     
@@ -942,8 +945,26 @@
     <Class rdf:about="&semantische-interoperabilitaet-projekt;Smartphone">
         <rdfs:subClassOf>
             <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
                 <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
                 <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TelefonierenZweck"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SMSZweck"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -954,14 +975,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatAufloesung"/>
-                <someValuesFrom rdf:resource="&xsd;integer"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TastaturEigenschaft"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;InternetZweck"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -973,37 +988,13 @@
         <rdfs:subClassOf>
             <Restriction>
                 <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SMSZweck"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatPreis"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatAufloesung"/>
                 <someValuesFrom rdf:resource="&xsd;integer"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;InternetZweck"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1014,14 +1005,26 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TastaturEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
                 <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatDisplaygroesse"/>
                 <someValuesFrom rdf:resource="&xsd;float"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatPreis"/>
+                <someValuesFrom rdf:resource="&xsd;integer"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
@@ -1096,14 +1099,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+                <onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                <someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
@@ -1268,18 +1271,17 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AppleMarke"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;HTCMarke"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidSmartphone"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSSmartphone"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
         </members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidSmartphone"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSSmartphone"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
         </members>
     </rdf:Description>
     <rdf:Description>
@@ -1293,9 +1295,10 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AppleMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;HTCMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         </members>
     </rdf:Description>
 </rdf:RDF>
