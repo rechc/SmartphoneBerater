@@ -70,7 +70,7 @@ public class StaticFactory {
 			}
 			
 			@Override
-			public boolean exprectsKeywordAnswer() {
+			public boolean expectsKeywordAnswer() {
 				// TODO Auto-generated method stub
 				return false;
 			}

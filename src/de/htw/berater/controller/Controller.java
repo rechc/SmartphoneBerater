@@ -40,7 +40,7 @@ public class Controller {
 	}
 	
 	public void answer(boolean yes) throws FalseAnswerException {
-		if (berater.exprectsKeywordAnswer()) {
+		if (berater.expectsKeywordAnswer()) {
 			throw new FalseAnswerException(Answer.KEYWORD_EXPECTED);
 		}
 		String newQuestion = berater.evaluateAndAskNewQuestion(yes);

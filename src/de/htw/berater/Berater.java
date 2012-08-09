@@ -16,7 +16,7 @@ public interface Berater {
 
 	boolean expectsYesNoAnswer();
 
-	boolean exprectsKeywordAnswer();
+	boolean expectsKeywordAnswer();
 
 	String askFirstQuestionZweck(); //Szenario1
 	
