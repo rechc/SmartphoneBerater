@@ -1,6 +1,7 @@
 package de.htw.berater.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import de.htw.berater.Berater;
 import de.htw.berater.db.ResultData;
@@ -51,7 +52,7 @@ public class Controller {
 	}
 	
 	private void informUI(String newQuestion) {
-		List<SQLConstraint> sqlConstraints = berater.getCurrentSQLConstraintsList();
+		Set<SQLConstraint> sqlConstraints = berater.getCurrentSQLConstraintsList();
 		List<ResultData> resultData = SQLClient.getInstance().getResultData(sqlConstraints);
 		beraterUI.onNewData(resultData);
 		beraterUI.onNewQuestion(newQuestion);

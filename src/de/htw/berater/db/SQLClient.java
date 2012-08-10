@@ -1,6 +1,7 @@
 package de.htw.berater.db;
 
 import java.util.List;
+import java.util.Set;
 
 public class SQLClient {
 	public static SQLClient instance;
@@ -16,7 +17,7 @@ public class SQLClient {
 		}
 	}
 	
-	public List<ResultData> getResultData(List<SQLConstraint> sqlConstraints) {
+	public List<ResultData> getResultData(Set<SQLConstraint> sqlConstraints) {
 		//TODO
 		return null;
 	}
