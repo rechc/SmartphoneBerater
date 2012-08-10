@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.Restriction;
 
 import de.htw.berater.controller.Answer;
 import de.htw.berater.db.SQLConstraint;
@@ -25,22 +26,33 @@ public abstract class Berater {
 
 	public abstract String evaluateAndAskNewQuestion(boolean yes);
 
-	public void reset() {
+	public final void reset() {
 	
 	}
 
-	public List<SQLConstraint> getCurrentSQLConstraintsList() {
+	public final List<SQLConstraint> getCurrentSQLConstraintsList() {
 		return null;
 	}
 
-	public boolean expectsYesNoAnswer() {
+	public final boolean expectsYesNoAnswer() {
 		return nextAnswer == Answer.YESNO;
 	}
 
-	public boolean expectsKeywordAnswer() {
+	public final boolean expectsKeywordAnswer() {
 		return nextAnswer == Answer.KEYWORD;
 	}
 
+	/*real super classes, no properties*/
+	public final List<OntClass> getSuperclasses() {
+		return null;
+	}
+	
+	/*hatEigenschaft some AppstoreEigenscahft*/
+	public final List<Restriction> getRestrictions(OntClass ontClass) {
+		return null;
+	}
+	
+	/* noch mehr allgemeine Methoden ??*/
 	public abstract String askFirstQuestionZweck(); //Szenario1
 	
 	public abstract String askFirstQuestionGeneral(); //Szenario2
