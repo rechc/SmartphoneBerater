@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hp.hpl.jena.ontology.OntClass;
 
+import de.htw.berater.controller.Answer;
 import de.htw.berater.db.SQLConstraint;
 
 public abstract class Berater {
@@ -12,6 +13,8 @@ public abstract class Berater {
 	String rdfPath;
 	String ns;
 	List<OntClass> smartphonesDone = new LinkedList<OntClass>();
+	int context; //irgendwie den kontext beachten um sinnvoll die naechste frage zu stellen
+	Answer nextAnswer;
 	
 	public Berater(String rdfPath, String ns) {
 		this.rdfPath = rdfPath;
@@ -22,13 +25,21 @@ public abstract class Berater {
 
 	public abstract String evaluateAndAskNewQuestion(boolean yes);
 
-	public abstract void reset();
+	public void reset() {
+	
+	}
 
-	public abstract List<SQLConstraint> getCurrentSQLConstraintsList();
+	public List<SQLConstraint> getCurrentSQLConstraintsList() {
+		return null;
+	}
 
-	public abstract boolean expectsYesNoAnswer();
+	public boolean expectsYesNoAnswer() {
+		return nextAnswer == Answer.YESNO;
+	}
 
-	public abstract boolean expectsKeywordAnswer();
+	public boolean expectsKeywordAnswer() {
+		return nextAnswer == Answer.KEYWORD;
+	}
 
 	public abstract String askFirstQuestionZweck(); //Szenario1
 	

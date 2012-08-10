@@ -36,7 +36,7 @@ public class Controller {
 	
 	public void answer(String keyWord) throws FalseAnswerException {
 		if (berater.expectsYesNoAnswer()) {
-			throw new FalseAnswerException(Answer.YESNO_EXPECTED);
+			throw new FalseAnswerException(Answer.YESNO);
 		}
 		String newQuestion = berater.evaluateAndAskNewQuestion(keyWord);
 		informUI(newQuestion);
@@ -44,7 +44,7 @@ public class Controller {
 	
 	public void answer(boolean yes) throws FalseAnswerException {
 		if (berater.expectsKeywordAnswer()) {
-			throw new FalseAnswerException(Answer.KEYWORD_EXPECTED);
+			throw new FalseAnswerException(Answer.KEYWORD);
 		}
 		String newQuestion = berater.evaluateAndAskNewQuestion(yes);
 		informUI(newQuestion);
