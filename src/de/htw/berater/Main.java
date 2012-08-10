@@ -7,10 +7,11 @@ public class Main {
 	public static void main(String[] args) {
 		String rdfPath = "inferredSmartphones.rdf";
 		String namespace = "http://semantische-interoperabilitaet-projekt#";
-		Berater berater = StaticFactory.getNewBerater(rdfPath, namespace);
-		BeraterUI beraterUI = StaticFactory.getNewBeraterUI();
+		Berater berater1 = StaticFactory.getNewBerater1(rdfPath, namespace); 
+		Berater berater2 = StaticFactory.getNewBerater2(rdfPath, namespace);
+		BeraterUI beraterUI = StaticFactory.getNewBeraterUI(berater1, berater2);
 		beraterUI.show();
-		Controller controller = new Controller(berater, beraterUI);
+		Controller controller = new Controller(beraterUI);
 		beraterUI.setController(controller);
 	}
 }

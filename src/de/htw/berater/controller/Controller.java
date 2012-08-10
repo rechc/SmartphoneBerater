@@ -12,9 +12,12 @@ public class Controller {
 	private Berater berater;
 	private BeraterUI beraterUI;
 	
-	public Controller(Berater berater, BeraterUI beraterUI) {
-		this.berater = berater;
+	public Controller(BeraterUI beraterUI) {
 		this.beraterUI = beraterUI;
+	}
+	
+	public void setBerater(Berater berater) {
+		this.berater = berater;
 	}
 	
 	public void finish() {
@@ -26,7 +29,7 @@ public class Controller {
 		if (szenario1) {
 			newQuestion = berater.askFirstQuestionZweck(); //init für Szenario1
 		} else {
-			newQuestion = berater.askFirstQuestionGeneral(); //init für Szenario1
+			newQuestion = berater.askFirstQuestionGeneral(); //init für Szenario2
 		}
 		informUI(newQuestion);
 	}
