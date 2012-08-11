@@ -16,33 +16,38 @@ public class Berater1Test extends TestCase {
 	}
 	
 	public void testZweck() {
-		System.out.println("Frage 1: ");
 		System.out.println(berater.askFirstQuestionZweck());
-		System.out.println(berater.evaluateAndAskNewQuestion("spiele"));
+		String question = berater.evaluateAndAskNewQuestion("spiele");
 		Set<SQLConstraint> list = berater.getCurrentSQLConstraintsList();
+		System.out.println("============Ergebnisse soweit============");
 		for (SQLConstraint constraint : list) {
 			System.out.println(constraint);
 		}
+		
 		System.out.println();
 		System.out.println();
 		System.out.println();
-
-		System.out.println("Frage 2A:");
-		System.out.println(berater.evaluateAndAskNewQuestion("normales"));
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("normales");
 		list = berater.getCurrentSQLConstraintsList();
+		System.out.println("============Ergebnisse soweit============");
 		for (SQLConstraint constraint : list) {
 			System.out.println(constraint);
 		}
+		
 		System.out.println();
 		System.out.println();
 		System.out.println();
+		System.out.println(question);
 
 //		System.out.println("Frage 2B:");
-//		System.out.println(berater.evaluateAndAskNewQuestion("gutes"));
-//		Set<SQLConstraint> list = berater.getCurrentSQLConstraintsList();
+//		question = berater.evaluateAndAskNewQuestion("gutes");
+//		list = berater.getCurrentSQLConstraintsList();
+//		System.out.println("============Ergebnisse soweit============");
 //		for (SQLConstraint constraint : list) {
 //			System.out.println(constraint);
 //		}
+//		System.out.println(question);
 //		System.out.println();
 //		System.out.println();
 //		System.out.println();
