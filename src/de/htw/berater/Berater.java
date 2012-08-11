@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.ontology.UnionClass;
 import com.hp.hpl.jena.rdf.model.Literal;
@@ -204,6 +205,20 @@ public abstract class Berater {
 		return sqlConstraints;
 	}
 	
+	protected List<OntClass> getCoveringAxiomClasses(List<OntClass> classes) {
+		List<OntClass> coveringAxiomClasses = new LinkedList<OntClass>();
+		for (int i = 0; i < classes.size(); i++) {
+			if (isCoveringAxiom(classes.get(i))) {
+				OntClass abstractClass = classes.get(i);
+				ExtendedIterator<OntClass> ri = abstractClass.listSubClasses();
+				while (ri.hasNext()) {
+					coveringAxiomClasses.add(ri.next());
+				}
+				coveringAxiomClasses.addAll(getCoveringAxiomClasses(coveringAxiomClasses));
+			}
+		}
+		return coveringAxiomClasses;
+	}
 	
 	/* noch mehr allgemeine Methoden ??*/
 	public abstract String askFirstQuestionZweck(); //Szenario1
