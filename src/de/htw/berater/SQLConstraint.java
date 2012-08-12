@@ -1,6 +1,7 @@
-package de.htw.berater.db;
+package de.htw.berater;
 
 public class SQLConstraint {
+	
 	private String key;
 	private String value;
 	public String getKey() {

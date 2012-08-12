@@ -1,6 +1,5 @@
 package de.htw.berater.controller;
 
 public enum Answer {
-	KEYWORD,
-	YESNO;
+	KEYWORD, YESNO, FINISHED;
 }

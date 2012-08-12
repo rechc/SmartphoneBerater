@@ -10,7 +10,6 @@ import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import de.htw.berater.controller.Answer;
-import de.htw.berater.db.SQLConstraint;
 
 public class Berater1 extends Berater {
 
@@ -28,27 +27,16 @@ public class Berater1 extends Berater {
 		case 2:
 			return spiele(string);
 		case 3:
-			System.out
-					.println("Frage 3: Wie groß soll das Display des Gerätes sein?");
 			return display(string);
 		case 4:
-			System.out
-					.println("Frage 4: Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?");
 			return touch(string);
 		case 5:
-			System.out
-					.println("Frage 5: Nutzen Sie das Gerät eher für geschäftliche Zwecke oder in ihrer Freizeit?");
 			return outdoor(string);
 		case 6:
-			System.out
-					.println("Frage 6: Möchten Sie das Smartphone zur Navigation oder zur Aufzeichnung ihrer sportlichen Aktivitäten verwenden?");
 			return navigation(string);
 		case 7:
-			System.out
-					.println("Frage 7: Nutzen Sie das Smartphone auch als Kamera?");
 			return kamera(string);
 		case 8:
-			System.out.println("Frage 8: Bevorzugen Sie eine bestimmte Marke?");
 			return marke(string);
 		}
 		throw new RuntimeException("wrong context");
@@ -115,14 +103,9 @@ public class Berater1 extends Berater {
 			// dieser fall ist nicht in der ontologie enthalten
 		}
 
-		List<SQLConstraint> sqlConstraintsAll = new LinkedList<SQLConstraint>();
 		for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
-			List<SQLConstraint> sqlConstraints = getSQLConstraints(classesCoveringAxiomsResolved
-					.get(i));
-			sqlConstraintsAll.addAll(sqlConstraints);
+			setCurrentProperties(classesCoveringAxiomsResolved.get(i));
 		}
-		currentSQLConstraints.addAll(sqlConstraintsAll);
-
 		return question;
 	}
 
@@ -130,19 +113,12 @@ public class Berater1 extends Berater {
 		for (int i = 0; i < rememberList.size(); i++) {
 			if (!rememberList.get(i).getLocalName().toLowerCase()
 					.contains(spiele.toLowerCase())) {
-				rememberList.remove(i);
-				i--;
+				removeSQLConstraints(rememberList.get(i));
 			}
 		}
-		List<SQLConstraint> sqlConstraintsAll = new LinkedList<SQLConstraint>();
-		for (int i = 0; i < rememberList.size(); i++) {
-			List<SQLConstraint> sqlConstraints = getSQLConstraints(rememberList
-					.get(i));
-			sqlConstraintsAll.addAll(sqlConstraints);
-		}
-		currentSQLConstraints.clear();
-		currentSQLConstraints.addAll(sqlConstraintsAll);
+
 		rememberList.clear();
+		setCustomerInfo();
 		String question = "Wie groﬂ soll das Display des Ger‰ts sein?";
 		nextAnswer = Answer.KEYWORD;
 		context = 3;
@@ -150,17 +126,34 @@ public class Berater1 extends Berater {
 	}
 
 	private String display(String display) {
-		currentSQLConstraints.clear();
-		context = 4;
-		nextAnswer = Answer.KEYWORD;
-		return "";
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
+		List<OntClass> displaySmartphones = new ArrayList<OntClass>();
+		while (ri.hasNext()) {
+			OntClass subClass = ri.next();
+			if (subClass.getLocalName().toLowerCase().contains(display)) {
+				displaySmartphones.add(subClass);
+			}
+		}
+		for (int i = 0; i < displaySmartphones.size(); i++) {
+			setCurrentProperties(displaySmartphones.get(i));
+		}
+		if (!customer.isCustomer(Customer.SEHBEHINDERT)) {
+			context = 4;
+			nextAnswer = Answer.KEYWORD;
+			return "Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?";
+		} else {
+			System.out.println("es wird eine Frage ¸bersprungen: Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?");
+			context = 5;
+			nextAnswer = Answer.KEYWORD;
+			return "Nutzen Sie das Ger‰t eher f¸r gesch‰ftliche Zwecke oder in ihrer Freizeit f¸r Outdooraktivit‰ten.";
+		}
 	}
 
 	private String touch(String touch) {
-		currentSQLConstraints.clear();
 		context = 5;
 		nextAnswer = Answer.KEYWORD;
-		return "";
+		return "Nutzen Sie das Gerät eher für geschäftliche Zwecke oder in ihrer Freizeit?";
 	}
 
 	private String outdoor(String outdoor) {
@@ -170,32 +163,17 @@ public class Berater1 extends Berater {
 		while (ri.hasNext()) {
 			OntClass subClass = ri.next();
 			if (subClass.getLocalName().toLowerCase().contains(outdoor)) {
-				List<Restriction> restrictions = getRestrictions(subClass);
-				for (Restriction restriction : restrictions) {
-					if (restriction.getOnProperty().getLocalName()
-							.contains("hatEigenschaft")) {
-						// some
-						if (restriction.isSomeValuesFromRestriction()) {
-							outdoorSmartphones.add(subClass);
-						}
-					}
-				}
+				outdoorSmartphones.add(subClass);
 			}
 		}
 
-		List<OntClass> classesCoveringAxiomsResolved = getCoveringAxiomClasses(outdoorSmartphones);
-		List<SQLConstraint> sqlConstraintsAll = new LinkedList<SQLConstraint>();
-		for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
-			List<SQLConstraint> sqlConstraints = getSQLConstraints(classesCoveringAxiomsResolved
-					.get(i));
-			sqlConstraintsAll.addAll(sqlConstraints);
+		for (int i = 0; i < outdoorSmartphones.size(); i++) {
+			setCurrentProperties(outdoorSmartphones.get(i));
 		}
-		currentSQLConstraints.clear();
-		currentSQLConstraints.addAll(sqlConstraintsAll);
 
 		context = 6;
 		nextAnswer = Answer.KEYWORD;
-		return "";
+		return "Möchten Sie das Smartphone zur Navigation oder zur Aufzeichnung ihrer sportlichen Aktivitäten verwenden?";
 	}
 
 	private String navigation(String navigation) {
@@ -205,45 +183,29 @@ public class Berater1 extends Berater {
 		while (ri.hasNext()) {
 			OntClass subClass = ri.next();
 			if (subClass.getLocalName().toLowerCase().contains(navigation)) {
-				List<Restriction> restrictions = getRestrictions(subClass);
-				for (Restriction restriction : restrictions) {
-					if (restriction.getOnProperty().getLocalName()
-							.contains("hatEigenschaft")) {
-						// some
-						if (restriction.isSomeValuesFromRestriction()) {
-							naviSmartphones.add(subClass);
-						}
-					}
-				}
+				naviSmartphones.add(subClass);
 			}
 		}
 
-		List<SQLConstraint> sqlConstraintsAll = new LinkedList<SQLConstraint>();
 		for (int i = 0; i < naviSmartphones.size(); i++) {
-			List<SQLConstraint> sqlConstraints = getSQLConstraints(naviSmartphones
-					.get(i));
-			sqlConstraintsAll.addAll(sqlConstraints);
+			setCurrentProperties(naviSmartphones.get(i));
 		}
-		currentSQLConstraints.clear();
-		currentSQLConstraints.addAll(sqlConstraintsAll);
 
 		context = 7;
 		nextAnswer = Answer.KEYWORD;
-		return "";
+		return "Nutzen Sie das Smartphone auch als Kamera?";
 	}
 
 	private String kamera(String kamera) {
-		currentSQLConstraints.clear();
 		context = 8;
 		nextAnswer = Answer.KEYWORD;
-		return "";
+		return "Bevorzugen Sie eine bestimmte Marke?";
 	}
 
 	private String marke(String marke) {
-		currentSQLConstraints.clear();
 		context = 9;
-		nextAnswer = Answer.KEYWORD;
-		return "";
+		nextAnswer = Answer.FINISHED;
+		return "Tsch¸ss";
 	}
 
 	@Override
