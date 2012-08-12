@@ -247,6 +247,18 @@
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
                     <owl:Restriction>
@@ -259,18 +271,6 @@
                     </owl:Restriction>
                 </owl:unionOf>
             </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
-            </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;AppleMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
@@ -1025,6 +1025,21 @@
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatMHz"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="&xsd;integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="&xsd;integer">1000</xsd:minInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatAufloesung"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -1042,21 +1057,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatMHz"/>
-                <owl:someValuesFrom>
-                    <rdfs:Datatype>
-                        <owl:onDatatype rdf:resource="&xsd;integer"/>
-                        <owl:withRestrictions rdf:parseType="Collection">
-                            <rdf:Description>
-                                <xsd:minInclusive rdf:datatype="&xsd;integer">1000</xsd:minInclusive>
-                            </rdf:Description>
-                        </owl:withRestrictions>
-                    </rdfs:Datatype>
-                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
@@ -1241,29 +1241,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
             </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:complementOf>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                        <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
-                    </owl:Restriction>
-                </owl:complementOf>
-            </owl:Class>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppleMarke"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KameraEigenschaft"/>
@@ -1437,7 +1421,7 @@
     <!-- http://semantische-interoperabilitaet-projekt#KeineTastaturSmartphone -->
 
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;KeineTastaturSmartphone">
-        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
+        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:complementOf>
@@ -1798,6 +1782,12 @@
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;NaviSmartphone">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;GuterAkkuSmartphone"/>
         <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
                     <owl:Restriction>
@@ -1814,12 +1804,6 @@
                     </owl:Restriction>
                 </owl:unionOf>
             </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-            </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
@@ -1982,12 +1966,6 @@
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;OutdoorSmartphone">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
                     <owl:Restriction>
@@ -2000,6 +1978,12 @@
                     </owl:Restriction>
                 </owl:unionOf>
             </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
+            </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
@@ -2213,7 +2197,61 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;InternetZweck"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TelefonierenZweck"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatDisplaygroesse"/>
+                <owl:someValuesFrom rdf:resource="&xsd;float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SMSZweck"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2231,67 +2269,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;InternetZweck"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TastaturEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatDisplaygroesse"/>
-                <owl:someValuesFrom rdf:resource="&xsd;float"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TelefonierenZweck"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
@@ -2335,13 +2319,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2405,14 +2389,14 @@
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpritzwasserfestEigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpritzwasserfestEigenschaft"/>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2495,12 +2479,6 @@
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;TastaturSmartphone">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
             <owl:Class>
                 <owl:complementOf>
                     <owl:Restriction>
@@ -2509,6 +2487,12 @@
                     </owl:Restriction>
                 </owl:complementOf>
             </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
+            </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Telefoniereigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
@@ -2650,18 +2634,18 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AppleMarke"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;HTCMarke"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AppleMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;HTCMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>

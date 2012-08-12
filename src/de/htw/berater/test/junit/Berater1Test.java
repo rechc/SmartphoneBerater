@@ -46,13 +46,14 @@ public class Berater1Test extends TestCase {
 		berater.addCustomerInfo(Customer.SEHBEHINDERT);
 		question = berater.evaluateAndAskNewQuestion("groﬂes");
 		System.out.println(berater.getSQLString());
+		if (berater.getContext() == 4) {
+			// Frage 4 
+			printLeerzeilen();
+			System.out.println(question);
+			question = berater.evaluateAndAskNewQuestion("keinetastatur");
+			System.out.println(berater.getSQLString());
+		} 
 		
-		// Frage 4 
-		printLeerzeilen();
-		System.out.println(question);
-		question = berater.evaluateAndAskNewQuestion("???");
-		System.out.println(berater.getSQLString());
-				
 		// Frage 5
 		printLeerzeilen();
 		System.out.println(question);
@@ -74,19 +75,8 @@ public class Berater1Test extends TestCase {
 		// Frage 8
 		printLeerzeilen();
 		System.out.println(question);
-		if (!berater.expectsKeywordAnswer() && !berater.expectsYesNoAnswer()) {
-			System.out.println("Berater ist schon fertig, weil wohl eine Frage weggefallen ist");
-		} else {
-			question = berater.evaluateAndAskNewQuestion("???");
-			System.out.println(berater.getSQLString());
-		}
-	}
-	
-	private static void printCurrentSQLConstraints(Set<SQLConstraint> list) {
-		System.out.println("============Ergebnisse soweit============");
-		for (SQLConstraint constraint : list) {
-			System.out.println(constraint);
-		}
+		question = berater.evaluateAndAskNewQuestion("???");
+		System.out.println(berater.getSQLString());
 	}
 	
 	private static void printLeerzeilen() {

@@ -27,73 +27,82 @@ import com.hp.hpl.jena.vocabulary.XSD;
 import de.htw.berater.controller.Answer;
 
 public abstract class Berater {
-	
+
 	protected String rdfPath;
 	protected String ns;
 	protected Set<OntClass> properties = new LinkedHashSet<OntClass>();
-	protected int context; //irgendwie den kontext beachten um sinnvoll die naechste frage zu stellen
+	protected int context; // irgendwie den kontext beachten um sinnvoll die
+							// naechste frage zu stellen
 	protected Answer nextAnswer;
 	protected Customer customer = new Customer();
-	protected OntModel  model;
-	
+	protected OntModel model;
+
 	public Berater(String rdfPath, String ns) {
 		this.rdfPath = rdfPath;
 		this.ns = ns;
-	
-		if ( System.getProperty("log4j.configuration") == null )	{
-			System.setProperty("log4j.configuration", "jena-log4j.properties") ;    		
+
+		if (System.getProperty("log4j.configuration") == null) {
+			System.setProperty("log4j.configuration", "jena-log4j.properties");
 		}
-            	   
+
 		model = ModelFactory.createOntologyModel();
-		
+
 		model.read("file:" + rdfPath);
 	}
-	
+
+	public int getContext() {
+		return context;
+	}
+
 	public void addCustomerInfo(int info) {
 		customer.addCustomerInfo(info);
 	}
-	
+
 	public abstract String evaluateAndAskNewQuestion(String string);
 
 	public abstract String evaluateAndAskNewQuestion(boolean yes);
 
 	public final void reset() {
-	
+
 	}
 
 	public final Set<OntClass> getProperties() {
 		return properties;
 	}
-	
+
 	public final boolean expectsYesNoAnswer() {
 		return nextAnswer == Answer.YESNO;
 	}
-	
+
 	protected final List<Restriction> getRestrictions(OntClass ontClass) {
 		List<Restriction> restrictions = new LinkedList<Restriction>();
-		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers.hasNext(); ) {
-		            OntClass superClass = supers.next();
-		            if (superClass.isRestriction()) {
-		             Restriction restriction = superClass.asRestriction();
-		                restrictions.add(restriction);
-		            }
+		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
+				.hasNext();) {
+			OntClass superClass = supers.next();
+			if (superClass.isRestriction()) {
+				Restriction restriction = superClass.asRestriction();
+				restrictions.add(restriction);
+			}
 		}
 		return restrictions;
 	}
-	
-	/*is covering axiom(abstract class)?*/
+
+	/* is covering axiom(abstract class)? */
 	protected boolean isCoveringAxiom(OntClass ontClass) {
 		boolean isCoveringAxiom = false;
-		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers.hasNext(); ) {
+		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
+				.hasNext();) {
 			OntClass superClass = supers.next();
 			if (superClass.isUnionClass()) {
 				isCoveringAxiom = true;
-				for (Iterator<?> it = superClass.asUnionClass().listOperands(); it.hasNext(); ) {
+				for (Iterator<?> it = superClass.asUnionClass().listOperands(); it
+						.hasNext();) {
 					OntClass op = (OntClass) it.next();
 
 					if (!op.isRestriction()) {
 						boolean found = false;
-						ExtendedIterator<OntClass> it2 = ontClass.listSubClasses();
+						ExtendedIterator<OntClass> it2 = ontClass
+								.listSubClasses();
 						while (it2.hasNext()) {
 							if (it2.next().equals(op)) {
 								found = true;
@@ -116,10 +125,11 @@ public abstract class Berater {
 		return nextAnswer == Answer.KEYWORD;
 	}
 
-	/*real super classes, no properties*/
+	/* real super classes, no properties */
 	protected final List<OntClass> getSuperclasses(OntClass ontClass) {
 		List<OntClass> superClasses = new LinkedList<OntClass>();
-		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers.hasNext(); ) {
+		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
+				.hasNext();) {
 			OntClass superClass = supers.next();
 			if (!superClass.isAnon()) {
 				superClasses.add(superClass);
@@ -127,23 +137,23 @@ public abstract class Berater {
 		}
 		return superClasses;
 	}
-	
-	/*get properties of a certain class*/
+
+	/* get properties of a certain class */
 	protected final List<OntClass> getProperties(OntClass ontClass) {
 		List<OntClass> tmpProperties = new LinkedList<OntClass>();
-		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers.hasNext(); ) {
-            OntClass superClass = supers.next();
-            if (superClass.isRestriction() ||
-            		superClass.isUnionClass() ||
-            		superClass.isIntersectionClass() ||
-            		superClass.isComplementClass()) {
-                tmpProperties.add(superClass);
-            } 
+		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
+				.hasNext();) {
+			OntClass superClass = supers.next();
+			if (superClass.isRestriction() || superClass.isUnionClass()
+					|| superClass.isIntersectionClass()
+					|| superClass.isComplementClass()) {
+				tmpProperties.add(superClass);
+			}
 		}
 		return tmpProperties;
 	}
-	
-	/*add all properties of a cerain class*/
+
+	/* add all properties of a cerain class */
 	protected final void setCurrentProperties(OntClass ontClass) {
 		if (ontClass.getLocalName().equals("Smartphone")) {
 			return;
@@ -156,15 +166,13 @@ public abstract class Berater {
 		List<OntClass> tmpProperties = getProperties(ontClass);
 		properties.addAll(tmpProperties);
 	}
-	
 
-	/*remove all properties of a certain class*/
+	/* remove all properties of a certain class */
 	protected final void removeSQLConstraints(OntClass ontClass) {
 		List<OntClass> tmpProperties = getProperties(ontClass);
 		properties.removeAll(tmpProperties);
 	}
-	
-	
+
 	public String getSQLString() {
 		String s = "select * from TABLE where ";
 		for (OntClass property : properties) {
@@ -172,10 +180,11 @@ public abstract class Berater {
 		}
 		return s.substring(0, s.length() - 5);
 	}
-	
+
 	private String processPropertyToSQL(OntClass property) {
 		if (property.isRestriction()) {
-			SQLConstraint constraint = getSQLConstraintFromRestriction(property.asRestriction());
+			SQLConstraint constraint = getSQLConstraintFromRestriction(property
+					.asRestriction());
 			if (constraint.getKey().equals("hatEigenschaft")) {
 				return constraint.getValue() + " = 1 ";
 			} else {
@@ -190,28 +199,31 @@ public abstract class Berater {
 		} else {
 			if (property.isIntersectionClass()) {
 				String s = "";
-				for (Iterator<?> it = property.asIntersectionClass().listOperands(); it.hasNext(); ) {
+				for (Iterator<?> it = property.asIntersectionClass()
+						.listOperands(); it.hasNext();) {
 					OntClass op = (OntClass) it.next();
 					s += processPropertyToSQL(op) + " and ";
-				} 
+				}
 				s = s.substring(0, s.length() - 5);
 				return "(" + s + ")";
 			} else {
 				if (property.isUnionClass()) {
 					String s = "";
-					for (Iterator<?> it = property.asUnionClass().listOperands(); it.hasNext(); ) {
+					for (Iterator<?> it = property.asUnionClass()
+							.listOperands(); it.hasNext();) {
 						OntClass op = (OntClass) it.next();
 						s += processPropertyToSQL(op) + " or ";
-					} 
+					}
 					s = s.substring(0, s.length() - 4);
 					return "(" + s + ")";
 				} else {
 					if (property.isComplementClass()) {
 						String s = "";
-						for (Iterator<?> it = property.asComplementClass().listOperands(); it.hasNext(); ) {
+						for (Iterator<?> it = property.asComplementClass()
+								.listOperands(); it.hasNext();) {
 							OntClass op = (OntClass) it.next();
 							s = "not(" + processPropertyToSQL(op) + ")";
-						} 
+						}
 						return "(" + s + ")";
 					}
 				}
@@ -223,42 +235,51 @@ public abstract class Berater {
 	protected void setCustomerInfo() {
 		for (OntClass property : properties) {
 			if (property.isRestriction()) {
-				SQLConstraint sqlConstraint = getSQLConstraintFromRestriction(property.asRestriction());
+				SQLConstraint sqlConstraint = getSQLConstraintFromRestriction(property
+						.asRestriction());
 				if (sqlConstraint.getKey().equals("fuerKunde")) {
-					if (sqlConstraint.getValue().toLowerCase().equals("sudokuhengst")) {
+					if (sqlConstraint.getValue().toLowerCase()
+							.equals("sudokuhengst")) {
 						this.customer.addCustomerInfo(Customer.SUDOKUHENGST);
-					} else if (sqlConstraint.getValue().toLowerCase().equals("spielefreak")) {
+					} else if (sqlConstraint.getValue().toLowerCase()
+							.equals("spielefreak")) {
 						this.customer.addCustomerInfo(Customer.SPIELEFREAK);
-					} 
+					}
 				}
 			}
 		}
 	}
 
-	private SQLConstraint getSQLConstraintFromRestriction(Restriction restriction) {
+	private SQLConstraint getSQLConstraintFromRestriction(
+			Restriction restriction) {
 		Resource res = null;
 		if (restriction.isSomeValuesFromRestriction()) {
 			res = restriction.asSomeValuesFromRestriction().getSomeValuesFrom();
 		}
-		
+
 		SQLConstraint sqlConstraint = new SQLConstraint();
 		sqlConstraint.setKey(restriction.getOnProperty().getLocalName());
-		if (res.hasProperty( RDF.type, RDFS.Datatype )) {
-			Property owlWithRestrictions = ResourceFactory.createProperty( OWL.getURI(), "withRestrictions" );
-			Property minInclusive = ResourceFactory.createProperty( XSD.getURI(), "minInclusive" ); // >= x
-			Property minExclusive = ResourceFactory.createProperty( XSD.getURI(), "minExclusive" ); // > x
-			Property maxInclusive = ResourceFactory.createProperty( XSD.getURI(), "maxInclusive" ); // <= x
-			Property maxExclusive = ResourceFactory.createProperty( XSD.getURI(), "maxExclusive" ); // < x
-			
+		if (res.hasProperty(RDF.type, RDFS.Datatype)) {
+			Property owlWithRestrictions = ResourceFactory.createProperty(
+					OWL.getURI(), "withRestrictions");
+			Property minInclusive = ResourceFactory.createProperty(
+					XSD.getURI(), "minInclusive"); // >= x
+			Property minExclusive = ResourceFactory.createProperty(
+					XSD.getURI(), "minExclusive"); // > x
+			Property maxInclusive = ResourceFactory.createProperty(
+					XSD.getURI(), "maxInclusive"); // <= x
+			Property maxExclusive = ResourceFactory.createProperty(
+					XSD.getURI(), "maxExclusive"); // < x
+
 			// the datatype restrictions are represented as a list
 			// we make some assumptions about the content of the list; this code
 			// could be more defensive about testing for expected values
-			Resource wr = res.getProperty( owlWithRestrictions ).getResource();
-			RDFList wrl = wr.as( RDFList.class );
-			
-			for (Iterator<RDFNode> k = wrl.iterator(); k.hasNext(); ) {
+			Resource wr = res.getProperty(owlWithRestrictions).getResource();
+			RDFList wrl = wr.as(RDFList.class);
+
+			for (Iterator<RDFNode> k = wrl.iterator(); k.hasNext();) {
 				Resource wrClause = (Resource) k.next();
-				Statement stmt = wrClause.getProperty( minInclusive );
+				Statement stmt = wrClause.getProperty(minInclusive);
 				String str = ">=";
 				if (stmt == null) {
 					stmt = wrClause.getProperty(minExclusive);
@@ -279,9 +300,10 @@ public abstract class Berater {
 			if (res.canAs(UnionClass.class)) {
 				String unionStr = "";
 				UnionClass union = res.as(UnionClass.class);
-				for (Iterator<?> it = union.listOperands(); it.hasNext(); ) {
+				for (Iterator<?> it = union.listOperands(); it.hasNext();) {
 					OntClass op = (OntClass) it.next();
-					unionStr += op.getLocalName() + (it.hasNext() ? " = 1 or " : "");
+					unionStr += op.getLocalName()
+							+ (it.hasNext() ? " = 1 or " : "");
 				}
 				sqlConstraint.setValue(unionStr);
 			} else {
@@ -290,7 +312,6 @@ public abstract class Berater {
 		}
 		return sqlConstraint;
 	}
-	
 
 	protected List<OntClass> getCoveringAxiomClasses(List<OntClass> classes) {
 		List<OntClass> coveringAxiomClasses = new LinkedList<OntClass>();
@@ -301,14 +322,15 @@ public abstract class Berater {
 				while (ri.hasNext()) {
 					coveringAxiomClasses.add(ri.next());
 				}
-				coveringAxiomClasses.addAll(getCoveringAxiomClasses(coveringAxiomClasses));
+				coveringAxiomClasses
+						.addAll(getCoveringAxiomClasses(coveringAxiomClasses));
 			}
 		}
 		return coveringAxiomClasses;
 	}
-	
-	/* noch mehr allgemeine Methoden ??*/
-	public abstract String askFirstQuestionZweck(); //Szenario1
-	
-	public abstract String askFirstQuestionGeneral(); //Szenario2
+
+	/* noch mehr allgemeine Methoden ?? */
+	public abstract String askFirstQuestionZweck(); // Szenario1
+
+	public abstract String askFirstQuestionGeneral(); // Szenario2
 }

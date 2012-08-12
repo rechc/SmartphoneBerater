@@ -151,6 +151,15 @@ public class Berater1 extends Berater {
 	}
 
 	private String touch(String touch) {
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass subClassOfInterest = null;
+		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+			OntClass subClass = (OntClass) i.next();
+			if (subClass.getLocalName().toLowerCase().contains(touch.toLowerCase())) {
+				subClassOfInterest = subClass;
+			}
+		}
+		setCurrentProperties(subClassOfInterest);
 		context = 5;
 		nextAnswer = Answer.KEYWORD;
 		return "Nutzen Sie das Gerät eher für geschäftliche Zwecke oder in ihrer Freizeit?";
