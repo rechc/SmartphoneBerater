@@ -16,49 +16,77 @@ public class Berater1Test extends TestCase {
 	}
 	
 	public void testZweck() {
+		// Frage 1
 		System.out.println(berater.askFirstQuestionZweck());
 		String question = berater.evaluateAndAskNewQuestion("spiele");
-		Set<SQLConstraint> list = berater.getCurrentSQLConstraintsList();
-		System.out.println("============Ergebnisse soweit============");
-		for (SQLConstraint constraint : list) {
-			System.out.println(constraint);
-		}
+		printCurrentSQLConstraints(berater.getCurrentSQLConstraintsList());
 		
-		System.out.println();
-		System.out.println();
-		System.out.println();
+		// Frage 2a
+		printLeerzeilen();
 		System.out.println(question);
 		question = berater.evaluateAndAskNewQuestion("normales");
-		list = berater.getCurrentSQLConstraintsList();
+		printCurrentSQLConstraints(berater.getCurrentSQLConstraintsList());
+		
+		// Frage 2b
+		/*printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("gutes");
+		printCurrentSQLConstraints(berater.getCurrentSQLConstraintsList());*/
+		
+		// Frage 3
+		printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("???");
+		printCurrentSQLConstraints(berater.getCurrentSQLConstraintsList());
+		
+		// Frage 4 
+		printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("???");
+		printCurrentSQLConstraints(berater.getCurrentSQLConstraintsList());
+				
+		// Frage 5
+		printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("outdoor");
+		printCurrentSQLConstraints(berater.getCurrentSQLConstraintsList());
+		
+		// Frage 6
+		printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("navi");
+		printCurrentSQLConstraints(berater.getCurrentSQLConstraintsList());
+		
+		// Frage 7
+		printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("???");
+		printCurrentSQLConstraints(berater.getCurrentSQLConstraintsList());
+		
+		// Frage 8
+		printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("???");
+		printCurrentSQLConstraints(berater.getCurrentSQLConstraintsList());
+	}
+	
+	private static void printCurrentSQLConstraints(Set<SQLConstraint> list) {
 		System.out.println("============Ergebnisse soweit============");
 		for (SQLConstraint constraint : list) {
 			System.out.println(constraint);
 		}
-		
+	}
+	
+	private static void printLeerzeilen() {
 		System.out.println();
 		System.out.println();
 		System.out.println();
-		System.out.println(question);
-
-//		System.out.println("Frage 2B:");
-//		question = berater.evaluateAndAskNewQuestion("gutes");
-//		list = berater.getCurrentSQLConstraintsList();
-//		System.out.println("============Ergebnisse soweit============");
-//		for (SQLConstraint constraint : list) {
-//			System.out.println(constraint);
-//		}
-//		System.out.println(question);
-//		System.out.println();
-//		System.out.println();
-//		System.out.println();
 	}
 	
 	public void testFrage2A() {
 
 	}
-	
 
-	
 	public static void main(String[] args) {
 		junit.swingui.TestRunner.run(Berater1Test.class);
 	}
