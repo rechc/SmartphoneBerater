@@ -247,18 +247,10 @@
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <rdfs:subClassOf>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                        <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                        <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
-                    </owl:Restriction>
-                </owl:unionOf>
-            </owl:Class>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
+            </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -266,13 +258,6 @@
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;AppleMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;DigitaltastaturEigenschaft"/>
@@ -280,7 +265,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ExchangeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Fortgeschritten"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GPSEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
@@ -289,19 +273,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -336,7 +317,6 @@
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;AppleMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;BetriebsystemEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;DigitaltastaturEigenschaft"/>
@@ -344,7 +324,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ExchangeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Fortgeschritten"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GPSEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
@@ -352,19 +331,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -376,49 +352,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Wanderer"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
-        <owl:disjointWith rdf:resource="&owl;Nothing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://semantische-interoperabilitaet-projekt#AppleMarke -->
-
-    <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;AppleMarke">
-        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;BusinessSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Fortgeschritten"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GrosserSpeicherSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GroßesSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GuteKameraSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GuterAkkuSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GutesSpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;InternetSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KameraSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KeineTastaturSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KleinesSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SportSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sudokuhengst"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;TastaturSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Wanderer"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
         <owl:disjointWith rdf:resource="&owl;Nothing"/>
     </owl:Class>
     
@@ -531,7 +464,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ExchangeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Fortgeschritten"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GPSEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
@@ -539,19 +471,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -697,7 +626,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GuteKameraSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GuterAkkuSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;GutesSpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
@@ -709,14 +637,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KleinesSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
@@ -725,7 +651,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
@@ -813,7 +738,6 @@
                 </owl:unionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
@@ -821,19 +745,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -869,7 +790,6 @@
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
@@ -878,19 +798,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -926,7 +843,6 @@
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
@@ -934,19 +850,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -982,7 +895,6 @@
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
@@ -990,19 +902,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1059,7 +968,6 @@
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HTCMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
@@ -1067,19 +975,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1091,41 +996,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Wanderer"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
-        <owl:disjointWith rdf:resource="&owl;Nothing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://semantische-interoperabilitaet-projekt#HTCMarke -->
-
-    <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;HTCMarke">
-        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;IOSSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;InternetSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KameraSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KeineTastaturSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KleinesSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SportSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sudokuhengst"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;TastaturSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Wanderer"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
         <owl:disjointWith rdf:resource="&owl;Nothing"/>
     </owl:Class>
     
@@ -1244,29 +1114,20 @@
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppleMarke"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KameraEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1293,19 +1154,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1376,32 +1234,29 @@
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KameraEigenschaft"/>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;BilderMachenZweck"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;BilderMachenZweck"/>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KameraEigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1435,19 +1290,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1499,19 +1351,16 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1560,14 +1409,12 @@
 
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;Kunde">
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
@@ -1575,7 +1422,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
@@ -1596,14 +1442,12 @@
 
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;Laie">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
@@ -1611,7 +1455,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
@@ -1622,32 +1465,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Telefoniereigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
-        <owl:disjointWith rdf:resource="&owl;Nothing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://semantische-interoperabilitaet-projekt#MarkeEigenschaft -->
-
-    <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;MarkeEigenschaft">
-        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Eigenschaften"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SportSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sudokuhengst"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;TastaturSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Wanderer"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
         <owl:disjointWith rdf:resource="&owl;Nothing"/>
     </owl:Class>
@@ -1753,14 +1570,12 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1806,14 +1621,12 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1854,31 +1667,6 @@
     
 
 
-    <!-- http://semantische-interoperabilitaet-projekt#NokiaMarke -->
-
-    <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;NokiaMarke">
-        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SportSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sudokuhengst"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;TastaturSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Wanderer"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
-        <owl:disjointWith rdf:resource="&owl;Nothing"/>
-    </owl:Class>
-    
-
-
     <!-- http://semantische-interoperabilitaet-projekt#Normal -->
 
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;Normal">
@@ -1890,7 +1678,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
@@ -1922,7 +1709,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -1966,6 +1752,12 @@
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;OutdoorSmartphone">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
                     <owl:Restriction>
@@ -1979,17 +1771,10 @@
                 </owl:unionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -2064,7 +1849,6 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -2087,7 +1871,6 @@
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
@@ -2151,25 +1934,6 @@
     
 
 
-    <!-- http://semantische-interoperabilitaet-projekt#SamsungMarke -->
-
-    <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;SamsungMarke">
-        <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SpieleSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SportSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sudokuhengst"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;TastaturSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Wanderer"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
-        <owl:disjointWith rdf:resource="&owl;Nothing"/>
-    </owl:Class>
-    
-
-
     <!-- http://semantische-interoperabilitaet-projekt#Sehbehindert -->
 
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;Sehbehindert">
@@ -2202,6 +1966,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;InternetZweck"/>
             </owl:Restriction>
@@ -2209,13 +1979,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TastaturEigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatPreis"/>
-                <owl:someValuesFrom rdf:resource="&xsd;integer"/>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SMSZweck"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatDisplaygroesse"/>
+                <owl:someValuesFrom rdf:resource="&xsd;float"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2227,7 +2003,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TastaturEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2238,8 +2014,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TelefonierenZweck"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatPreis"/>
+                <owl:someValuesFrom rdf:resource="&xsd;integer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2251,31 +2033,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;TelefonierenZweck"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MarkeEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SMSZweck"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Zweck"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatDisplaygroesse"/>
-                <owl:someValuesFrom rdf:resource="&xsd;float"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;SoftwareEigenschaft"/>
@@ -2317,18 +2075,6 @@
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;GrosserSpeicherSmartphone"/>
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpieleZweck"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;GutesSpieleSmartphone"/>
@@ -2338,8 +2084,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatZweck"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpieleZweck"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;AppstoreEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Spielefreak"/>
@@ -2389,12 +2147,6 @@
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
             </owl:Restriction>
@@ -2403,6 +2155,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpritzwasserfestEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sportler"/>
@@ -2479,6 +2237,12 @@
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;TastaturSmartphone">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
         <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:complementOf>
                     <owl:Restriction>
@@ -2487,12 +2251,6 @@
                     </owl:Restriction>
                 </owl:complementOf>
             </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;HardwaretastaturEigenschaft"/>
-            </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Telefoniereigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;WLANEigenschaft"/>
@@ -2563,12 +2321,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
                 <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2595,37 +2347,6 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://semantische-interoperabilitaet-projekt#Galaxy_Nexus -->
-
-    <owl:Thing rdf:about="&semantische-interoperabilitaet-projekt;Galaxy_Nexus">
-        <rdf:type rdf:resource="&semantische-interoperabilitaet-projekt;AndroidSmartphone"/>
-        <rdf:type rdf:resource="&semantische-interoperabilitaet-projekt;AppStoreSmartphone"/>
-        <rdf:type rdf:resource="&semantische-interoperabilitaet-projekt;GroßesSmartphone"/>
-        <rdf:type rdf:resource="&semantische-interoperabilitaet-projekt;GuterAkkuSmartphone"/>
-        <rdf:type rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
-        <rdf:type rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <hatAkkuDauer rdf:datatype="&xsd;float">24.0</hatAkkuDauer>
-        <hatDisplaygroesse rdf:datatype="&xsd;float">5.0</hatDisplaygroesse>
-        <hatEigenschaft rdf:resource="&semantische-interoperabilitaet-projekt;Galaxy_Nexus"/>
-        <istEigenschaftVon rdf:resource="&semantische-interoperabilitaet-projekt;Galaxy_Nexus"/>
-        <fuerKunde rdf:resource="&semantische-interoperabilitaet-projekt;Galaxy_Nexus"/>
-        <hatZweck rdf:resource="&semantische-interoperabilitaet-projekt;Galaxy_Nexus"/>
-    </owl:Thing>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
     // General axioms
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -2634,10 +2355,9 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AppleMarke"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;HTCMarke"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;NokiaMarke"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;SamsungMarke"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
+            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -2656,17 +2376,9 @@
             <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsSmartphone"/>
         </owl:members>
     </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;AndroidBetriebssystemEigenschaft"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;IOSBetriebssystemeigenschaft"/>
-            <rdf:Description rdf:about="&semantische-interoperabilitaet-projekt;WindowsBetriebssystemeigenschaft"/>
-        </owl:members>
-    </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.2.5.1928) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
 
