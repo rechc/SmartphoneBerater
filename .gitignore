@@ -13,3 +13,6 @@ catalog-v001.xml
 *.jar
 *.war
 *.ear
+
+# DB Config #
+SQLClientDB.properties
