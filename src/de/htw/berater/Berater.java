@@ -183,7 +183,7 @@ public abstract class Berater {
 
 	private String processPropertyToSQL(OntClass property) {
 		if (property.isRestriction()) {
-			SQLConstraint constraint = getSQLConstraintFromRestriction(property
+			ReadableProperty constraint = getReadablePropertyFromRestriction(property
 					.asRestriction());
 			if (constraint.getKey().equals("hatEigenschaft")) {
 				return constraint.getValue() + " = 1 ";
@@ -235,7 +235,7 @@ public abstract class Berater {
 	protected void setCustomerInfo() {
 		for (OntClass property : properties) {
 			if (property.isRestriction()) {
-				SQLConstraint sqlConstraint = getSQLConstraintFromRestriction(property
+				ReadableProperty sqlConstraint = getReadablePropertyFromRestriction(property
 						.asRestriction());
 				if (sqlConstraint.getKey().equals("fuerKunde")) {
 					if (sqlConstraint.getValue().toLowerCase()
@@ -250,14 +250,14 @@ public abstract class Berater {
 		}
 	}
 
-	private SQLConstraint getSQLConstraintFromRestriction(
+	private ReadableProperty getReadablePropertyFromRestriction(
 			Restriction restriction) {
 		Resource res = null;
 		if (restriction.isSomeValuesFromRestriction()) {
 			res = restriction.asSomeValuesFromRestriction().getSomeValuesFrom();
 		}
 
-		SQLConstraint sqlConstraint = new SQLConstraint();
+		ReadableProperty sqlConstraint = new ReadableProperty();
 		sqlConstraint.setKey(restriction.getOnProperty().getLocalName());
 		if (res.hasProperty(RDF.type, RDFS.Datatype)) {
 			Property owlWithRestrictions = ResourceFactory.createProperty(

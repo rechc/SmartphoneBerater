@@ -5,7 +5,6 @@ import java.util.Set;
 import junit.framework.TestCase;
 import de.htw.berater.Berater;
 import de.htw.berater.Customer;
-import de.htw.berater.SQLConstraint;
 import de.htw.berater.StaticFactory;
 
 public class Berater1Test extends TestCase {
