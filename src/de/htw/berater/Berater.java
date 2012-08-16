@@ -28,6 +28,9 @@ import de.htw.berater.controller.Answer;
 
 public abstract class Berater {
 
+	public static final int BERATER_1 = 0;
+	public static final int BERATER_2 = 1;
+	
 	protected String rdfPath;
 	protected String ns;
 	protected Set<OntClass> properties = new LinkedHashSet<OntClass>();
@@ -174,11 +177,14 @@ public abstract class Berater {
 	}
 
 	public String getSQLString() {
-		String s = "select * from TABLE where ";
+		String s = "select * from Smartphones where ";
 		for (OntClass property : properties) {
 			s += "(" + processPropertyToSQL(property) + ")" + " and ";
 		}
-		return s.substring(0, s.length() - 5);
+		if (s.equals("select * from Smartphones where ")) {
+			return "select * from Smartphones";
+		}
+		return s.substring(0, s.length() - 5); //wegen " and "
 	}
 
 	private String processPropertyToSQL(OntClass property) {

@@ -1,14 +1,11 @@
 package de.htw.berater;
 
-import java.util.List;
-
-import de.htw.berater.controller.Controller;
-import de.htw.berater.db.ResultData;
 import de.htw.berater.ui.BeraterUI;
+import de.htw.berater.ui.BeraterUIJFrame;
 
 public class StaticFactory {
-	public static BeraterUI getNewBeraterUI(Berater berater1, Berater berater2) {
-		return new BeraterUI(berater1, berater2);
+	public static BeraterUI getNewBeraterUI() {
+		return new BeraterUIJFrame();
 	}		
 
 
