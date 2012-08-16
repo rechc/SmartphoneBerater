@@ -71,15 +71,12 @@ public class SQLClient {
 		}
 	}
 
-	private Statement getConnection() throws DBException {
+	private Connection getConnection() throws DBException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			
-			Connection con = (Connection) DriverManager.getConnection(serverUrl
-					+ dbName, serverUserName, serverUserPw);
 
-			return con.createStatement(ResultSet.TYPE_FORWARD_ONLY,
-					ResultSet.CONCUR_READ_ONLY);
+			return (Connection) DriverManager.getConnection(serverUrl + dbName,
+					serverUserName, serverUserPw);
 
 		} catch (ClassNotFoundException e) {
 			throw new DBException(
@@ -93,18 +90,21 @@ public class SQLClient {
 	/**
 	 * 
 	 * @param sql erwartet select Befehl auf Smartphones
-	 * @return List<ResultData> 
+	 * @return List<ResultData>
 	 */
 	public List<ResultData> getResultData(String sql) {
 		LinkedList<ResultData> rdl = new LinkedList<ResultData>();
 		try {
-			Statement stmnt = getConnection();
+			Connection con = getConnection();
+			Statement stmnt = con.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
 			if (stmnt.execute(sql)) {
 				ResultSet rs = stmnt.getResultSet();
-				rdl =  parseResultData(rdl, rs);
+				rdl = parseResultData(rdl, rs);
 				rs.close();
 			}
 			stmnt.close();
+			con.close();
 		} catch (DBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,49 +113,47 @@ public class SQLClient {
 			e.printStackTrace();
 		}
 
-		return rdl; // TODO automatischer cast ?
+		return rdl;
 	}
-	
-	private LinkedList<ResultData> parseResultData(LinkedList<ResultData> rdl ,ResultSet rs) throws SQLException{
-		if (!rs.next()){
-            return new LinkedList<ResultData>();
-        }
+
+	private LinkedList<ResultData> parseResultData(LinkedList<ResultData> rdl,
+			ResultSet rs) throws SQLException {
+		if (!rs.next()) {
+			return new LinkedList<ResultData>();
+		}
 		ResultData temprd;
 
-        do{
-            temprd = new ResultData();
+		do {
+			temprd = new ResultData();
 
-            temprd.setID( rs.getInt("Smartphone_id"));
-            temprd.setName(rs.getString("Name"));
-            temprd.setBrand(rs.getString("Marke"));
-            temprd.setPrice(rs.getDouble("Preis"));
-            temprd.setWeight(rs.getDouble("Gewicht"));
-            temprd.setColor(rs.getString("Farbe"));
-            temprd.setMaterial(rs.getString("Material"));
-            temprd.setBatteryRuntime(rs.getDouble("Akkulaufzeit"));
-            temprd.setDisplaysize(rs.getDouble("Displaygroesse"));
-            temprd.setResolution(rs.getString("Aufloesung"));
-            temprd.setInternalMemory(rs.getInt("Interner Speicher"));
-            temprd.setRam(rs.getInt("RAM"));
-            temprd.setOs(rs.getString("Os"));
-            temprd.setMegapixel(rs.getDouble("Megapixel"));
-            temprd.setWlan(rs.getBoolean("WLAN"));
-            temprd.setBluetooth(rs.getBoolean("Bluetooth"));
-            temprd.setMsexchange(rs.getBoolean("MSExchange"));
-            temprd.setSplashWaterProof(rs.getBoolean("Spritzwassergeschuetzt"));
-            temprd.setHardwarekeyboard(rs.getBoolean("Hardwaretastatur"));          
-            temprd.setMhz( rs.getInt("Mhz"));
-            temprd.setCores( rs.getInt("cores"));
-            temprd.setGps(rs.getBoolean("GPS"));
+			temprd.setID(rs.getInt("Smartphone_id"));
+			temprd.setName(rs.getString("Name"));
+			temprd.setBrand(rs.getString("Marke"));
+			temprd.setPrice(rs.getDouble("Preis"));
+			temprd.setWeight(rs.getDouble("Gewicht"));
+			temprd.setColor(rs.getString("Farbe"));
+			temprd.setMaterial(rs.getString("Material"));
+			temprd.setBatteryRuntime(rs.getDouble("Akkulaufzeit"));
+			temprd.setDisplaysize(rs.getDouble("Displaygroesse"));
+			temprd.setResolution(rs.getString("Aufloesung"));
+			temprd.setInternalMemory(rs.getInt("Interner Speicher"));
+			temprd.setRam(rs.getInt("RAM"));
+			temprd.setOs(rs.getString("Os"));
+			temprd.setMegapixel(rs.getDouble("Megapixel"));
+			temprd.setWlan(rs.getBoolean("WLAN"));
+			temprd.setBluetooth(rs.getBoolean("Bluetooth"));
+			temprd.setMsexchange(rs.getBoolean("MSExchange"));
+			temprd.setSplashWaterProof(rs.getBoolean("Spritzwassergeschuetzt"));
+			temprd.setHardwarekeyboard(rs.getBoolean("Hardwaretastatur"));
+			temprd.setMhz(rs.getInt("Mhz"));
+			temprd.setCores(rs.getInt("cores"));
+			temprd.setGps(rs.getBoolean("GPS"));
 
-            rdl.add( temprd );
+			rdl.add(temprd);
 
-        }while( rs.next() );
-		
-		
-		return rdl;		
+		} while (rs.next());
+
+		return rdl;
 	}
-	
-	
-	
+
 }

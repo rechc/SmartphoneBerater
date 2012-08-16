@@ -1,6 +1,6 @@
 package de.htw.berater;
 
-public class SQLConstraint {
+public class ReadableProperty {
 	
 	private String key;
 	private String value;
@@ -24,9 +24,9 @@ public class SQLConstraint {
 	
 	@Override
 	public boolean equals(Object other) {
-		if (other instanceof SQLConstraint)
+		if (other instanceof ReadableProperty)
 		
-		if (((SQLConstraint)other).key.equals(key) && ((SQLConstraint)other).value.equals(value)) {
+		if (((ReadableProperty)other).key.equals(key) && ((ReadableProperty)other).value.equals(value)) {
 			return true;
 		}
 		return false;
