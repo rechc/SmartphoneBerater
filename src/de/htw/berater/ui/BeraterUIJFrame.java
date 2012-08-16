@@ -33,7 +33,6 @@ import de.htw.berater.db.ResultData;
 
 public class BeraterUIJFrame extends BeraterUI{
 
-	
 	private JFrame frame = new JFrame();
 	
 	private static final long serialVersionUID = 1L;
@@ -277,46 +276,98 @@ public class BeraterUIJFrame extends BeraterUI{
 
 		JCheckBox chkbxTelefonieren = new JCheckBox("Telefonieren", true);
 		chkbxTelefonieren.setName("telefonieren");
+		chkbxTelefonieren.setSelected(true);
+		chkbxTelefonieren.setEnabled(false);
 		tmpPanel.add(chkbxTelefonieren);
 		
 		JCheckBox chkbxSms = new JCheckBox("SMS", true);
 		chkbxSms.setName("sms");
+		chkbxSms.setSelected(true);
+		chkbxSms.setEnabled(false);
 		tmpPanel.add(chkbxSms);
 		
 		JCheckBox chkbxInternet = new JCheckBox("Internet", true);
 		chkbxInternet.setName("internet");
+		chkbxInternet.setName("sms");
+		chkbxInternet.setSelected(true);
+		chkbxInternet.setEnabled(false);
 		tmpPanel.add(chkbxInternet);
 		
+		// email
 		JCheckBox chkbxEmail = new JCheckBox("E-Mail", true);
 		chkbxEmail.setName("email");
+		chkbxEmail.setSelected(true);
+		chkbxEmail.setEnabled(false);
 		tmpPanel.add(chkbxEmail);
 		
+		// Outdoor Checkbox
+		JCheckBox chkbxOutdoor = new JCheckBox("Outdoor-Handy");
+		chkbxOutdoor.setName("outdoor");
+		tmpPanel.add(chkbxOutdoor);
+		
+		// Navi Checkbox
+		JCheckBox chkbxNavi = new JCheckBox("Navigation");
+		chkbxNavi.setName("navi");
+		tmpPanel.add(chkbxNavi);
+		
+		// Spiele Checkbox
 		JCheckBox chkbxSpiele = new JCheckBox("Spiele");
 		chkbxSpiele.setName("spiele");
 		tmpPanel.add(chkbxSpiele);
+
+		// Spiele-Auswahl Combobox
+		JPanel spielePanel = new JPanel();
+		spielePanel.add(new JLabel("Spiele-Auswahl:"));
 		
-		JCheckBox chkbxKamera = new JCheckBox("Kamera");
-		chkbxKamera.setName("kamera");
-		tmpPanel.add(chkbxKamera);
-		
-		JCheckBox chkbxGps = new JCheckBox("GPS");
-		chkbxGps.setName("gps");
-		tmpPanel.add(chkbxGps);
-		
-		JCheckBox chkbxRobust = new JCheckBox("Robust");
-		chkbxRobust.setName("robust");
-		tmpPanel.add(chkbxRobust);
+		JComboBox comboSpiele = new JComboBox();
+		ComboboxData[] spieleData = new ComboboxData[3];
+		spieleData[0] = new ComboboxData("", "");
+		spieleData[1] = new ComboboxData("normale Spiele", "normales");
+		spieleData[2] = new ComboboxData("gute Spiele", "gutes");
+		comboSpiele.setModel(new DefaultComboBoxModel(spieleData));
+		spielePanel.add(comboSpiele);
+		tmpPanel.add(spielePanel);
 		
 		//Displaygroesse
 		JPanel panelDisplaygroesse = new JPanel();
-		panelDisplaygroesse.add(new JLabel("<html>Displaygr&ouml;sse</html>"));
+		panelDisplaygroesse.add(new JLabel("Displaygroesse"));
 
-		JTextField txtDisplaygroesse = new JTextField();
-		txtDisplaygroesse.setName("displaygroesse");
-		txtDisplaygroesse.setColumns(10);
-		panelDisplaygroesse.add(txtDisplaygroesse);
+		ComboboxData[] displaygroesseData = new ComboboxData[3];
+		displaygroesseData[0] = new ComboboxData("", "");
+		displaygroesseData[1] = new ComboboxData("klein", "kleines");
+		displaygroesseData[2] = new ComboboxData("<html>gro&szlig;</html>", "grosses");
+		JComboBox comboDisplaygroesse = new JComboBox();
+		comboDisplaygroesse.setModel(new DefaultComboBoxModel(displaygroesseData));
+		panelDisplaygroesse.add(comboDisplaygroesse);
 		tmpPanel.add(panelDisplaygroesse);
 
+		//Hardwaretastatur
+		JPanel panelHardwaretastatur = new JPanel();
+		panelHardwaretastatur.add(new JLabel("Hardwaretastatur"));
+
+		ComboboxData[] hardwaretastaturData = new ComboboxData[3];
+		hardwaretastaturData[0] = new ComboboxData("", "");
+		hardwaretastaturData[1] = new ComboboxData("ja", "hardwaretastaur");
+		hardwaretastaturData[2] = new ComboboxData("nein", "keinetastatur");
+		JComboBox comboHardwaretastatur = new JComboBox();
+		comboHardwaretastatur.setModel(new DefaultComboBoxModel(hardwaretastaturData));
+		panelHardwaretastatur.add(comboHardwaretastatur);
+		tmpPanel.add(panelHardwaretastatur);
+
+		//Kamera
+		JPanel panelKamera = new JPanel();
+		panelKamera.add(new JLabel("Kamera"));
+
+		ComboboxData[] kameraData = new ComboboxData[3];
+		kameraData[0] = new ComboboxData("", "");
+		kameraData[1] = new ComboboxData("normale Kamera", "kamera");
+		kameraData[2] = new ComboboxData("gute Kamera", "gutekamera");
+		JComboBox comboKamera = new JComboBox();
+		comboKamera.setModel(new DefaultComboBoxModel(kameraData));
+		panelKamera.add(comboKamera);
+		tmpPanel.add(panelKamera);
+
+		/**
 		//Aufloesung
 		JPanel panelAufloesung = new JPanel();
 		panelAufloesung.add(new JLabel("<html>Aufl&ouml;sung</html>"));
@@ -326,6 +377,23 @@ public class BeraterUIJFrame extends BeraterUI{
 		txtAufloesung.setColumns(10);
 		panelAufloesung.add(txtAufloesung);
 		tmpPanel.add(panelAufloesung);
+		 **/
+		
+		//Betriebssystem
+		JPanel panelBetriebssystem = new JPanel();
+		panelBetriebssystem.add(new JLabel("Betriebssystem"));
+
+		ComboboxData[] betriebssystemData = new ComboboxData[6];
+		betriebssystemData[0] = new ComboboxData("", "");
+		betriebssystemData[1] = new ComboboxData("Android", "android");
+		betriebssystemData[2] = new ComboboxData("IOS", "ios");
+		betriebssystemData[3] = new ComboboxData("Bada", "bada");
+		betriebssystemData[4] = new ComboboxData("Symbian", "symbian");
+		betriebssystemData[5] = new ComboboxData("Anderes", "other");
+		JComboBox comboBetriebssystem = new JComboBox();
+		comboBetriebssystem.setModel(new DefaultComboBoxModel(betriebssystemData));
+		panelBetriebssystem.add(comboBetriebssystem);
+		tmpPanel.add(panelBetriebssystem);
 
 		//Marke
 		JPanel panelMarke = new JPanel();
@@ -348,15 +416,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		
 		tmpPanel.add(panelName);
 		
-		// OS
-		JPanel panelOS = new JPanel();
-		panelOS.add(new JLabel("Betriebssystem"));
 		
-		JTextField txtOS = new JTextField();
-		txtOS.setName("os_txt");
-		txtOS.setColumns(10);
-		panelOS.add(txtOS);
-		tmpPanel.add(panelOS);
 		
 		return tmpPanel;
 	}
@@ -448,9 +508,8 @@ public class BeraterUIJFrame extends BeraterUI{
 	
 	@Override
 	public void onNewData(List<ResultData> resultData) {
-		System.out.println("werde aufgerufen");
+		//System.out.println("werde aufgerufen");
 		if (resultData != null){
-			System.out.println("nicht null");
 			//JPanel tmpPanel = new JPanel();
 			for (ResultData r: resultData){
 				//tmpPanel.add(new JLabel(r.toString()));
@@ -535,4 +594,26 @@ public class BeraterUIJFrame extends BeraterUI{
 			}
 		});
 	}
+	
+
+	public class ComboboxData{
+		private String text;
+		private String name;
+		
+		public ComboboxData(String text, String name){
+			this.text = text;
+			this.name = name;
+		}
+		
+		public String getText(){
+			return text;
+		}
+		public String getName(){
+			return name;
+		}
+		
+		public String toString(){
+			return text;
+		}
+}
 }

@@ -4,12 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import de.htw.berater.Berater;
 import de.htw.berater.controller.FalseAnswerException;
 import de.htw.berater.db.SQLClient;
+import de.htw.berater.ui.BeraterUIJFrame.ComboboxData;
 
 public class UIActions implements ActionListener {
 
@@ -46,16 +48,11 @@ public class UIActions implements ActionListener {
 			//View tmpView = siGui.getView();
 			int actualAnswerPanel = frame.getTabbedPane().getSelectedIndex();
 			
-			String answer = null;
+			String answer = "";
 			
 			switch (actualAnswerPanel){
 				case 0: // Direkteingabe-View ist aktiv
 						answer = frame.getTxtAnswer();
-						try {
-							frame.getController().answer(answer);
-						} catch (FalseAnswerException e) {
-							e.printStackTrace();
-						}
 						break;
 						
 				case 1: // Direktauswahl-View ist aktiv
@@ -71,7 +68,10 @@ public class UIActions implements ActionListener {
 							if (o instanceof JCheckBox){
 								JCheckBox tmpChkBox = (JCheckBox)o;
 								if (tmpChkBox.isSelected()){
-									addToAnswer(answer, tmpChkBox.getName());
+									if (tmpChkBox.isEnabled()){
+										answer = tmpChkBox.getName();
+										tmpChkBox.setEnabled(false);
+									}
 								}
 							}
 							// aktuelles Objekt == JPanel?
@@ -86,8 +86,21 @@ public class UIActions implements ActionListener {
 									// Inhalt nur in Antwort aufnehmen wenn es nicht leer ist
 									if (tmpTextField != null){
 										if (!tmpTextField.getText().equals("")){
-											
-											addToAnswer(answer, tmpTextField.getText());
+											if (tmpTextField.isEnabled()){
+												answer = tmpTextField.getText();
+												tmpTextField.setEnabled(false);
+											}
+										}
+									}
+									
+								} 
+								// aktuelles Objekt == JComboBox?
+								if (tmpPanel.getComponent(tmpPanel.getComponentCount() -1) instanceof JComboBox){
+									JComboBox tmpComboBox = (JComboBox) tmpPanel.getComponent(tmpPanel.getComponentCount() -1);
+									if (!((ComboboxData)tmpComboBox.getSelectedItem()).getName().equals("")){
+										if (tmpComboBox.isEnabled()){
+											answer = ((ComboboxData)tmpComboBox.getSelectedItem()).getName();
+											tmpComboBox.setEnabled(false);
 										}
 									}
 									
@@ -99,7 +112,12 @@ public class UIActions implements ActionListener {
 					break;
 			
 			}
-			
+			// Antwort an Controller uebergeben
+			try {
+				frame.getController().answer(answer);
+			} catch (FalseAnswerException e) {
+				e.printStackTrace();
+			}
 			
 		} 
 		// Radiobutton fuer Szenario 1 gewaehlt
@@ -113,16 +131,4 @@ public class UIActions implements ActionListener {
 		
 	}
 
-	/** Funktion zum sauberen hinzufuegen von Attributen
-	 * 
-	 * @param oldString
-	 * @param newString
-	 */
-	private void addToAnswer(String oldString, String newString){
-		if (oldString == null){
-			oldString = newString;
-		} else {
-			oldString = oldString + ", " + newString;
-		}
-	}
 }
