@@ -1,5 +1,9 @@
 package de.htw.berater;
 
+import java.util.Iterator;
+
+import com.hp.hpl.jena.ontology.OntClass;
+
 import de.htw.berater.controller.Answer;
 
 public class Berater2 extends Berater {
@@ -53,18 +57,47 @@ public class Berater2 extends Berater {
 	}
 	
 	public String proSmartphone(String proPhone){
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass subClassOfInterest = null;
+		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+			OntClass subClass = (OntClass) i.next();
+			if (subClass.getLocalName().toLowerCase().contains(proPhone.toLowerCase())) {
+				subClassOfInterest = subClass;
+			}
+		}
+		setCurrentProperties(subClassOfInterest);
 		context = 2;
 		nextAnswer = Answer.KEYWORD;
 		return "Sie besitzen also schon eines. Was stšrt sie an ihrem alten Smartphone insbesondere?";
 	}
 	
 	public String largeMemorySmartphone(String memory){
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass subClassOfInterest = null;
+		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+			OntClass subClass = (OntClass) i.next();
+			if (subClass.getLocalName().toLowerCase().contains(memory.toLowerCase())) {
+				subClassOfInterest = subClass;
+			}
+		}
+		setCurrentProperties(subClassOfInterest);
 		context = 3;
 		nextAnswer = Answer.YESNO;
 		return "Liegt die schlechte Bedienbarkeit am Betriebssystem?";
 	}
 	
 	public String usabilityOs(String os){
+		if(!os.contains("nein")){
+			OntClass smartphone = model.getOntClass(ns + "Smartphone");
+			OntClass subClassOfInterest = null;
+			for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+				OntClass subClass = (OntClass) i.next();
+				if (subClass.getLocalName().toLowerCase().contains(os.toLowerCase())) {
+					subClassOfInterest = subClass;
+				}
+			}
+			setCurrentProperties(subClassOfInterest);
+		}
 		context = 4;
 		nextAnswer = Answer.KEYWORD;
 		//TODO evaluate expected yes/no answer
@@ -72,6 +105,15 @@ public class Berater2 extends Berater {
 	}
 	
 	public String noKeyboardSmartphone(String keyboard){
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass subClassOfInterest = null;
+		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+			OntClass subClass = (OntClass) i.next();
+			if (subClass.getLocalName().toLowerCase().contains(keyboard.toLowerCase())) {
+				subClassOfInterest = subClass;
+			}
+		}
+		setCurrentProperties(subClassOfInterest);
 		context = 5;
 		nextAnswer = Answer.YESNO;
 		return "Soll das Smartphone Multimedia-FŠhigkeiten haben?";
