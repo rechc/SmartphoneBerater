@@ -1,31 +1,575 @@
 package de.htw.berater.ui;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Rectangle;
 import java.util.List;
+
+import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import de.htw.berater.Berater;
 import de.htw.berater.controller.Controller;
 import de.htw.berater.db.ResultData;
 
-public abstract class BeraterUI {
+public class BeraterUI extends JFrame{
 
-	Berater berater1;
-	Berater berater2;
+	private static Berater berater1;
+	private static Berater berater2;
+	private static Berater berater;
+	private static Controller controller;
 	
-	public BeraterUI(Berater berater1, Berater berater2) {
-		this.berater1 = berater1;
-		this.berater2 = berater2;
+	private static final long serialVersionUID = 1L;
+
+	// Antwortmoeglichkeit 1 Textfeld
+	private static JTextField txtAnswer;
+
+	// Antwortmoeglichkeit 2 drop down
+	private static JComboBox answerBox;
+
+	// Antwortmoeglichkeit 3 container mit Elementen
+	private static JPanel answer_panel_a3;
+	
+	// Enthaelt alle 3 Tabs
+	private static JTabbedPane tabbedPane;
+
+	// aktuelle Frage
+	private static JLabel labelQuestion;
+
+	// Antwortmoeglichkeiten (für Antwortmoeglichkeit 2)
+	private static String[] answer;
+
+	// Panel fuer die Weiter - Taste
+	private static JPanel commit_panel;
+	
+	// Splitpanel mit den Antworten
+	private static JSplitPane answer_splitPane;
+	
+	// Radio Button Szenario 1
+	private static JRadioButton radioButtonScenario1;
+	
+	// Radio Button Szenario 2
+	private static JRadioButton radioButtonScenario2;
+	
+	// Panel für Übrige Handys
+	private static JPanel available_smartphones_panel;
+	
+	/** Standardkonstruktor
+	 * 
+	 */
+	public BeraterUI(){
+		this.setBounds(100, 100, 1024, 786);
+		this.setTitle("Smartphone Berater");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// initialisiere GUI Komponenten
+		initialize();
+	}
+	
+	/** Konstruktor mit Werte, initialisiert die UI
+	 * 
+	 * @param berater01
+	 * @param berater02
+	 */
+	public BeraterUI(Berater berater01, Berater berater02) {
+		this();
+		berater1 = berater01;
+		berater2 = berater02;
+		
+		}
+	
+	/** Initialisiert die Komponenten der View
+	 * 
+	 */
+	private void initialize() {
+
+		answer = new String[] {"Telefonieren, SMS, Internet, E-Mail, Spiele"};
+		
+		JPanel szenario_mainpanel = new JPanel();
+		this.getContentPane().add(szenario_mainpanel, BorderLayout.NORTH);
+		
+		JPanel szenario_panel1 = new JPanel();
+		szenario_mainpanel.add(szenario_panel1);
+		szenario_panel1.setBounds(new Rectangle(10, 10, 10, 10));
+		FlowLayout fl_szenario_panel1 = new FlowLayout(FlowLayout.CENTER, 10, 13);
+		szenario_panel1.setLayout(fl_szenario_panel1);
+		
+		JLabel labelChooseScenario = new JLabel("Szenario ausw\u00E4hlen");
+		labelChooseScenario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		szenario_panel1.add(labelChooseScenario);
+		
+		JPanel szenario_panel2 = new JPanel();
+		szenario_mainpanel.add(szenario_panel2);
+		szenario_panel2.setLayout(new BorderLayout(0, 0));
+		
+		radioButtonScenario1 = new JRadioButton("Szenario 1 (Kunde hat keine Ahnung)");
+		radioButtonScenario1.setSelected(true);
+		radioButtonScenario1.setActionCommand("radioButtonScenario1");
+		radioButtonScenario1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		radioButtonScenario1.addActionListener(new UIActions());
+		szenario_panel2.add(radioButtonScenario1, BorderLayout.NORTH);
+		
+		radioButtonScenario2 = new JRadioButton("Szenario 2 (Update auf leistungsst\u00E4rkeres Ger\u00E4t)");
+		radioButtonScenario2.setActionCommand("radioButtonScenario2");
+		radioButtonScenario2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		radioButtonScenario2.addActionListener(new UIActions());
+		szenario_panel2.add(radioButtonScenario2, BorderLayout.SOUTH);
+		
+		JPanel szenario_panel3 = new JPanel();
+		szenario_mainpanel.add(szenario_panel3);
+		szenario_panel3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		FlowLayout fl_szenario_panel3 = (FlowLayout) szenario_panel3.getLayout();
+		fl_szenario_panel3.setVgap(13);
+		fl_szenario_panel3.setHgap(20);
+		fl_szenario_panel3.setAlignment(FlowLayout.LEFT);
+		
+		JButton buttonStartScenario = new JButton("Starten");
+		buttonStartScenario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		buttonStartScenario.setActionCommand("start");
+		buttonStartScenario.addActionListener(new UIActions());
+		szenario_panel3.add(buttonStartScenario);
+		
+		JPanel mainPanel = new JPanel();
+		this.getContentPane().add(mainPanel, BorderLayout.CENTER);
+		mainPanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel question_panel = new JPanel();
+		question_panel.setMinimumSize(new Dimension(350, 10));
+		FlowLayout fl_question_panel = (FlowLayout) question_panel.getLayout();
+		fl_question_panel.setVgap(20);
+		mainPanel.add(question_panel, BorderLayout.NORTH);
+		
+		labelQuestion = new JLabel("<html>W&uuml;hlen Sie bitte das Szenario aus und klicken Sie anschlie&szlig;end auf Starten</hmtl>");
+		question_panel.add(labelQuestion);
+		labelQuestion.setBounds(new Rectangle(10, 10, 10, 10));
+		labelQuestion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		
+		commit_panel = new JPanel();
+		commit_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		FlowLayout fl_commit_panel = (FlowLayout) commit_panel.getLayout();
+		fl_commit_panel.setVgap(20);
+		fl_commit_panel.setHgap(20);
+		fl_commit_panel.setAlignment(FlowLayout.LEFT);
+		mainPanel.add(commit_panel, BorderLayout.SOUTH);
+		commit_panel.setVisible(false);
+		
+		JButton buttonGo = new JButton("Weiter");
+		buttonGo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		buttonGo.setActionCommand("weiter");
+		buttonGo.addActionListener(new UIActions());
+		commit_panel.add(buttonGo);
+		
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		available_smartphones_panel = new JPanel();
+		JScrollPane scrollLeft = new JScrollPane(tabbedPane);
+		
+		JScrollPane scrollRight = new JScrollPane(available_smartphones_panel);
+		
+		answer_splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollLeft, scrollRight);
+		mainPanel.add(answer_splitPane, BorderLayout.CENTER);
+		answer_splitPane.setOneTouchExpandable(true);
+		answer_splitPane.setMinimumSize(new Dimension(500, 500));
+		answer_splitPane.setVisible(false);
+
+		
+		JPanel answer_type1 = new JPanel();
+		tabbedPane.addTab("Direkteingabe", null, answer_type1, null);
+		answer_type1.setAlignmentX(Component.LEFT_ALIGNMENT);
+		answer_type1.setMinimumSize(new Dimension(250, 10));
+		answer_type1.setLayout(new BoxLayout(answer_type1, BoxLayout.PAGE_AXIS));
+		
+		JLabel L1 = new JLabel("Geben Sie hier die Antwort des Kunden ein");
+		L1.setAlignmentX(Component.CENTER_ALIGNMENT);
+		answer_type1.add(L1);
+		L1.setHorizontalTextPosition(SwingConstants.LEFT);
+		L1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		L1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JSeparator separator = new JSeparator();
+		separator.setMaximumSize(new Dimension(32767, 20));
+		answer_type1.add(separator);
+		
+		//Direkt-Eingabe der Antwort
+		txtAnswer = new JTextField();
+		txtAnswer.setMaximumSize(new Dimension(250, 25));
+		txtAnswer.setMinimumSize(new Dimension(250, 25));
+		txtAnswer.setPreferredSize(new Dimension(250, 25));
+		txtAnswer.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txtAnswer.setText("");
+		answer_type1.add(txtAnswer);
+		txtAnswer.setColumns(1);
+		
+		
+		//Direkt-Auswahl der Antwort
+		JPanel answer_type2 = new JPanel();
+		tabbedPane.addTab("Direkt-Auswahl", null, answer_type2, null);
+		answer_type2.setLayout(new BoxLayout(answer_type2, BoxLayout.Y_AXIS));
+		
+		JLabel L2 = new JLabel("<html>W&auml;hlen Sie bitte die passende Antwort aus</html>");
+		L2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		answer_type2.add(L2);
+		L2.setBorder(null);
+		L2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setMaximumSize(new Dimension(32767, 20));
+		answer_type2.add(separator_1);
+		
+		answerBox = new JComboBox();
+		answerBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		answerBox.setMaximumSize(new Dimension(321, 30));
+		answerBox.setModel(new DefaultComboBoxModel(answer));
+		answerBox.setPreferredSize(new Dimension(250, 30));
+		answer_type2.add(answerBox);
+		
+		JPanel answer_type3 = new JPanel();
+		tabbedPane.addTab("Detail-Auswahl", null, answer_type3, null);
+		answer_type3.setLayout(new BoxLayout(answer_type3, BoxLayout.PAGE_AXIS));
+		
+		JLabel L3 = new JLabel("W\u00E4hlen Sie die passenden Eigenschaften aus");
+		answer_type3.add(L3);
+		L3.setAlignmentX(Component.CENTER_ALIGNMENT);
+		L3.setHorizontalTextPosition(SwingConstants.LEFT);
+		L3.setHorizontalAlignment(SwingConstants.LEFT);
+		L3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setPreferredSize(new Dimension(0, 20));
+		separator_2.setMinimumSize(new Dimension(0, 20));
+		separator_2.setMaximumSize(new Dimension(32767, 20));
+		answer_type3.add(separator_2);
+		
+		answer_panel_a3 = getPropertyPanel();
+		answer_type3.add(answer_panel_a3);
+		
+		available_smartphones_panel.setLayout(new BoxLayout(available_smartphones_panel, BoxLayout.PAGE_AXIS));
+	
+		
+		JLabel labelAvailableSmartphones = new JLabel("Verf\u00FCgbare Smartphones");
+		labelAvailableSmartphones.setAlignmentX(Component.CENTER_ALIGNMENT);
+		labelAvailableSmartphones.setHorizontalTextPosition(SwingConstants.CENTER);
+		labelAvailableSmartphones.setHorizontalAlignment(SwingConstants.CENTER);
+		labelAvailableSmartphones.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		available_smartphones_panel.add(labelAvailableSmartphones);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setMaximumSize(new Dimension(32767, 20));
+		separator_3.setPreferredSize(new Dimension(0, 20));
+		available_smartphones_panel.add(separator_3);
+		
+	}
+	
+	/* erstellt ein JPanel mit allen Propertys der Antwortmöglickeit 3
+	 * 
+	 */
+	private JPanel getPropertyPanel(){
+		JPanel tmpPanel = new JPanel();
+		tmpPanel.setPreferredSize(new Dimension(300, 450));
+		tmpPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		JCheckBox chkbxTelefonieren = new JCheckBox("Telefonieren", true);
+		chkbxTelefonieren.setName("telefonieren");
+		tmpPanel.add(chkbxTelefonieren);
+		
+		JCheckBox chkbxSms = new JCheckBox("SMS", true);
+		chkbxSms.setName("sms");
+		tmpPanel.add(chkbxSms);
+		
+		JCheckBox chkbxInternet = new JCheckBox("Internet", true);
+		chkbxInternet.setName("internet");
+		tmpPanel.add(chkbxInternet);
+		
+		JCheckBox chkbxEmail = new JCheckBox("E-Mail", true);
+		chkbxEmail.setName("email");
+		tmpPanel.add(chkbxEmail);
+		
+		JCheckBox chkbxSpiele = new JCheckBox("Spiele");
+		chkbxSpiele.setName("spiele");
+		tmpPanel.add(chkbxSpiele);
+		
+		JCheckBox chkbxKamera = new JCheckBox("Kamera");
+		chkbxKamera.setName("kamera");
+		tmpPanel.add(chkbxKamera);
+		
+		JCheckBox chkbxGps = new JCheckBox("GPS");
+		chkbxGps.setName("gps");
+		tmpPanel.add(chkbxGps);
+		
+		JCheckBox chkbxRobust = new JCheckBox("Robust");
+		chkbxRobust.setName("robust");
+		tmpPanel.add(chkbxRobust);
+		
+		//Displaygroesse
+		JPanel panelDisplaygroesse = new JPanel();
+		panelDisplaygroesse.add(new JLabel("<html>Displaygr&ouml;sse</html>"));
+
+		JTextField txtDisplaygroesse = new JTextField();
+		txtDisplaygroesse.setName("displaygroesse");
+		txtDisplaygroesse.setColumns(10);
+		panelDisplaygroesse.add(txtDisplaygroesse);
+		tmpPanel.add(panelDisplaygroesse);
+
+		//Aufloesung
+		JPanel panelAufloesung = new JPanel();
+		panelAufloesung.add(new JLabel("<html>Aufl&ouml;sung</html>"));
+
+		JTextField txtAufloesung = new JTextField();
+		txtAufloesung.setName("aufloesung");
+		txtAufloesung.setColumns(10);
+		panelAufloesung.add(txtAufloesung);
+		tmpPanel.add(panelAufloesung);
+
+		//Marke
+		JPanel panelMarke = new JPanel();
+		panelMarke.add(new JLabel("Marke"));
+
+		JTextField txtMarke = new JTextField();
+		txtMarke.setName("marke");
+		txtMarke.setColumns(10);
+		panelMarke.add(txtMarke);
+		tmpPanel.add(panelMarke);
+
+		// Name
+		JPanel panelName = new JPanel();
+		panelName.add(new JLabel("Name"));
+				
+		JTextField txtName = new JTextField();
+		txtName.setName("name");
+		txtName.setColumns(10);
+		panelName.add(txtName);
+		
+		tmpPanel.add(panelName);
+		
+		// OS
+		JPanel panelOS = new JPanel();
+		panelOS.add(new JLabel("Betriebssystem"));
+		
+		JTextField txtOS = new JTextField();
+		txtOS.setName("os_txt");
+		txtOS.setColumns(10);
+		panelOS.add(txtOS);
+		tmpPanel.add(panelOS);
+		
+		return tmpPanel;
+	}
+	
+	/** Setzt eine neue Frage
+	 * 
+	 * @param newQuestion
+	 */
+	public static void setNewQuestion(String newQuestion){
+		labelQuestion.setText(newQuestion);
+	}
+	
+	/** Setzt EINE neue Antwort
+	 *  
+	 * @param newAnswer
+	 */
+	public static void setNewAnswer(String newAnswer){
+		answer = new String[1];
+		answer[0] = newAnswer;
+		answerBox.setModel(new DefaultComboBoxModel(answer));
+	}
+	
+	/** Setzt mehrere neue Antworten
+	 * 
+	 * @param newAnswer
+	 */
+	public static void setNewAnswer(String[] newAnswer){
+		answer = newAnswer;
+		answerBox.setModel(new DefaultComboBoxModel(answer));
 	}
 
-	public abstract void onFalseQuestion(String string);
+	/** gibt das Pane mit den Tabs zurueck
+	 * 
+	 * @return
+	 */
+	public static JTabbedPane getTabbedPane(){
+		return tabbedPane;
+	}
+	
+	/** Gibt die Antwort zurueck, falls Antwortmoeglichkeit 1 ausgewaehlt
+	 * 
+	 * @return
+	 */
+	public static String getTxtAnswer(){
+		return txtAnswer.getText();
+	}
+	
+	/** Gibt die Comboboy mit Antworten zurueck, falls Antwortmoeglichkeit 2 ausgewaehlt
+	 * 
+	 * @return
+	 */
+	public static JComboBox getAnswerBox(){
+		return answerBox;
+	}
+	
+	/** Gibt das Panel mit allen Eigenschaften zurueck, falls Antwortmoeglichkeit 3 ausgewaehlt
+	 * 
+	 * @return
+	 */
+	public static JPanel getAnswer_panel_a3(){
+		return answer_panel_a3;
+	}
+	
+	public static void initializeAnswers(){
+		commit_panel.setVisible(true);
+		answer_splitPane.setVisible(true);
+	}
 
-	public abstract void onNewQuestion(String newQuestion);
+	public static void onFalseQuestion(String string){
+		JOptionPane.showMessageDialog(null, string, "Fehlerhafte Eingabe", JOptionPane.ERROR_MESSAGE);
+	}
 
-	public abstract void show(List<ResultData> resultData);
+	public static void onNewQuestion(String newQuestion){
+		BeraterUI.setNewQuestion(newQuestion);
+	}
 
-	public abstract void show();
+	public static void show(List<ResultData> resultData) {
+		if (resultData != null){
+			JPanel tmpPanel = new JPanel();
+			for (ResultData r: resultData){
+				tmpPanel.add(new JLabel(r.toString()));
+			}
+			BeraterUI.setAvailable_smartphones_panel(tmpPanel);
+		}
+	}
 
-	public abstract void onNewData(List<ResultData> resultData);
+	public static void onNewData(List<ResultData> resultData) {
+		System.out.println("werde aufgerufen");
+		if (resultData != null){
+			System.out.println("nicht null");
+			JPanel tmpPanel = new JPanel();
+			for (ResultData r: resultData){
+				tmpPanel.add(new JLabel(r.toString()));
+			}
+			BeraterUI.setAvailable_smartphones_panel(tmpPanel);
+		}
+	}
 
-	public abstract void setController(Controller controller);
+	/** Funktion zum setzen des Controllers
+	 * 
+	 * @param controller
+	 */
+	public static void setController(Controller controller) {
+		BeraterUI.controller = controller;
+	}
+	
+	/** Funktion zum uebergeben des Controllers
+	 * 
+	 * @return
+	 */
+	public static Controller getController(){
+		return controller;
+	}
+
+	public static JPanel getCommit_panel(){
+		return commit_panel;
+	}
+
+	
+	/**
+	 * @return the berater1
+	 */
+	public static Berater getBerater1() {
+		return berater1;
+	}
+
+	/**
+	 * @param berater1 the berater1 to set
+	 */
+	public static void setBerater1(Berater berater1) {
+		BeraterUI.berater1 = berater1;
+	}
+
+	/**
+	 * @return the berater2
+	 */
+	public static Berater getBerater2() {
+		return berater2;
+	}
+
+	/**
+	 * @param berater2 the berater2 to set
+	 */
+	public static void setBerater2(Berater berater2) {
+		BeraterUI.berater2 = berater2;
+	}
+
+	/**
+	 * @return the berater
+	 */
+	public static Berater getBerater() {
+		return berater;
+	}
+
+	/**
+	 * @param berater the berater to set
+	 */
+	public static void setBerater(Berater berater) {
+		BeraterUI.berater = berater;
+	}
+
+	/**
+	 * @return the radioButtonScenario1
+	 */
+	public static JRadioButton getRadioButtonScenario1() {
+		return radioButtonScenario1;
+	}
+
+	/**
+	 * @param radioButtonScenario1 the radioButtonScenario1 to set
+	 */
+	public static void setRadioButtonScenario1(JRadioButton radioButtonScenario1) {
+		BeraterUI.radioButtonScenario1 = radioButtonScenario1;
+	}
+
+	/**
+	 * @return the radioButtonScenario2
+	 */
+	public static JRadioButton getRadioButtonScenario2() {
+		return radioButtonScenario2;
+	}
+
+	/**
+	 * @param radioButtonScenario2 the radioButtonScenario2 to set
+	 */
+	public static void setRadioButtonScenario2(JRadioButton radioButtonScenario2) {
+		BeraterUI.radioButtonScenario2 = radioButtonScenario2;
+	}
+
+	/**
+	 * @return the available_smartphones_panel
+	 */
+	public static JPanel getAvailable_smartphones_panel() {
+		return available_smartphones_panel;
+	}
+
+	/**
+	 * @param available_smartphones_panel the available_smartphones_panel to set
+	 */
+	public static void setAvailable_smartphones_panel(
+			JPanel available_smartphones_panel) {
+		BeraterUI.available_smartphones_panel = available_smartphones_panel;
+	}
+	
 	
 }

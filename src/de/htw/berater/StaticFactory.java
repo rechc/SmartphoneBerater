@@ -8,46 +8,8 @@ import de.htw.berater.ui.BeraterUI;
 
 public class StaticFactory {
 	public static BeraterUI getNewBeraterUI(Berater berater1, Berater berater2) {
-		return new BeraterUI(berater1, berater2){
-
-			@Override
-			public void onFalseQuestion(String string) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onNewQuestion(String newQuestion) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void show(List<ResultData> resultData) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void show() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onNewData(List<ResultData> resultData) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void setController(Controller controller) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		};
-	}
+		return new BeraterUI(berater1, berater2);
+	}		
 
 
 	public static Berater getNewBerater1(String rdfPath, String namespace) {
