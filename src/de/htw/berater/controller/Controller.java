@@ -26,9 +26,9 @@ public class Controller {
 	public void getFirstQuestion(boolean szenario1) {
 		String newQuestion = null;
 		if (szenario1) {
-			newQuestion = berater.askFirstQuestionZweck(); //init für Szenario1
+			newQuestion = berater.askFirstQuestionZweck(); //init fï¿½r Szenario1
 		} else {
-			newQuestion = berater.askFirstQuestionGeneral(); //init für Szenario2
+			newQuestion = berater.askFirstQuestionGeneral(); //init fï¿½r Szenario2
 		}
 		informUI(newQuestion);
 	}
@@ -52,7 +52,7 @@ public class Controller {
 	private void informUI(String newQuestion) {
 		String sql = berater.getSQLString();
 		List<ResultData> resultData = SQLClient.getInstance().getResultData(sql);
-		beraterUI.onNewData(resultData);
-		beraterUI.onNewQuestion(newQuestion);
+		BeraterUI.onNewData(resultData);
+		BeraterUI.onNewQuestion(newQuestion);
 	}
 }
