@@ -23,21 +23,21 @@ public class Berater1 extends Berater {
 	public String evaluateAndAskNewQuestion(String string) {
 		switch (context) {
 		case 1:
-			return zweck(string);
+			return smartphoneZweck(string);
 		case 2:
-			return spiele(string);
+			return spieleSmartphone(string);
 		case 3:
-			return display(string);
+			return displaySmartphone(string);
 		case 4:
-			return touch(string);
+			return touchBedinung(string);
 		case 5:
-			return outdoor(string);
+			return outdoorSmartphone(string);
 		case 6:
-			return navigation(string);
+			return navigationSmartphone(string);
 		case 7:
-			return kamera(string);
+			return kameraSmartphone(string);
 		case 8:
-			return marke(string);
+			return smartphoneMarke(string);
 		}
 		throw new RuntimeException("wrong context");
 	}
@@ -49,7 +49,7 @@ public class Berater1 extends Berater {
 		throw new RuntimeException("wrong context");
 	}
 
-	private String zweck(String zweck) {
+	private String smartphoneZweck(String zweck) {
 		OntClass zweckClass = model.getOntClass(ns + "Zweck");
 		OntClass zweckSubClass = null;
 		for (Iterator<OntClass> i = zweckClass.listSubClasses(); i.hasNext();) {
@@ -109,7 +109,7 @@ public class Berater1 extends Berater {
 		return question;
 	}
 
-	private String spiele(String spiele) {
+	private String spieleSmartphone(String spiele) {
 		for (int i = 0; i < rememberList.size(); i++) {
 			if (!rememberList.get(i).getLocalName().toLowerCase()
 					.contains(spiele.toLowerCase())) {
@@ -125,7 +125,7 @@ public class Berater1 extends Berater {
 		return question;
 	}
 
-	private String display(String display) {
+	private String displaySmartphone(String display) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
 		List<OntClass> displaySmartphones = new ArrayList<OntClass>();
@@ -150,7 +150,7 @@ public class Berater1 extends Berater {
 		}
 	}
 
-	private String touch(String touch) {
+	private String touchBedinung(String touch) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
@@ -165,7 +165,7 @@ public class Berater1 extends Berater {
 		return "Nutzen Sie das Gerät eher für geschäftliche Zwecke oder in ihrer Freizeit?";
 	}
 
-	private String outdoor(String outdoor) {
+	private String outdoorSmartphone(String outdoor) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
 		List<OntClass> outdoorSmartphones = new ArrayList<OntClass>();
@@ -185,7 +185,7 @@ public class Berater1 extends Berater {
 		return "Möchten Sie das Smartphone zur Navigation oder zur Aufzeichnung ihrer sportlichen Aktivitäten verwenden?";
 	}
 
-	private String navigation(String navigation) {
+	private String navigationSmartphone(String navigation) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
 		List<OntClass> naviSmartphones = new ArrayList<OntClass>();
@@ -205,13 +205,13 @@ public class Berater1 extends Berater {
 		return "Nutzen Sie das Smartphone auch als Kamera?";
 	}
 
-	private String kamera(String kamera) {
+	private String kameraSmartphone(String kamera) {
 		context = 8;
 		nextAnswer = Answer.KEYWORD;
 		return "Bevorzugen Sie eine bestimmte Marke?";
 	}
 
-	private String marke(String marke) {
+	private String smartphoneMarke(String marke) {
 		context = 9;
 		nextAnswer = Answer.FINISHED;
 		return "Tsch¸ss";
