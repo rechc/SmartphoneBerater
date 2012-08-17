@@ -1,7 +1,5 @@
 package de.htw.berater.test.junit;
 
-import java.util.Set;
-
 import junit.framework.TestCase;
 import de.htw.berater.Berater;
 import de.htw.berater.Customer;
@@ -18,7 +16,7 @@ public class Berater1Test extends TestCase {
 	public void testZweck() {
 		// Frage 1
 		System.out.println(berater.askFirstQuestionZweck());
-		String question = berater.evaluateAndAskNewQuestion("spiele");
+		String question = berater.evaluateAndAskNewQuestion("bilder");
 		System.out.println(berater.getSQLString());
 		
 		// Frage 2a

@@ -330,6 +330,8 @@ public abstract class Berater {
 				}
 				coveringAxiomClasses
 						.addAll(getCoveringAxiomClasses(coveringAxiomClasses));
+			} else {
+				coveringAxiomClasses.add(classes.get(i));
 			}
 		}
 		return coveringAxiomClasses;

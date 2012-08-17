@@ -61,7 +61,7 @@ public class Berater1 extends Berater {
 
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
-		List<OntClass> spielesmartphones = new ArrayList<OntClass>();
+		List<OntClass> smartphones = new ArrayList<OntClass>();
 		while (ri.hasNext()) {
 			OntClass subClass = ri.next();
 			List<Restriction> restrictions = getRestrictions(subClass);
@@ -74,17 +74,17 @@ public class Berater1 extends Berater {
 								.asSomeValuesFromRestriction()
 								.getSomeValuesFrom().as(OntClass.class);
 						if (range.equals(zweckSubClass)) {
-							spielesmartphones.add(subClass);
+							smartphones.add(subClass);
 						}
 					}
 				}
 			}
 		}
-		List<OntClass> classesCoveringAxiomsResolved = getCoveringAxiomClasses(spielesmartphones);
+		List<OntClass> classesCoveringAxiomsResolved = getCoveringAxiomClasses(smartphones);
 
 		String question = "";
 		// gab es ein covering axiom (abstrakte klasse)?
-		if (!classesCoveringAxiomsResolved.equals(spielesmartphones)) {
+		if (!classesCoveringAxiomsResolved.equals(smartphones)) {
 			question = "Moechten sie ";
 			for (OntClass smphone : classesCoveringAxiomsResolved) {
 				question += smphone.getLocalName() + ", ";
@@ -95,17 +95,23 @@ public class Berater1 extends Berater {
 			nextAnswer = Answer.KEYWORD;
 			rememberList.clear();
 			for (OntClass clazz : classesCoveringAxiomsResolved) {
-				if (!spielesmartphones.contains(clazz)) {
+				if (!smartphones.contains(clazz)) {
 					rememberList.add(clazz);
 				}
 			}
+			for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
+				setCurrentProperties(classesCoveringAxiomsResolved.get(i));
+			}
 		} else {
-			// dieser fall ist nicht in der ontologie enthalten
+			// dieser fall ist nicht in der ontologie enthalten, aber egal. Funktioniert auch für BilderMachenZweck
+			for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
+				setCurrentProperties(smartphones.get(i));
+			}
+			context = 3;
+			nextAnswer = Answer.KEYWORD;
+			question = "Wie groß soll das Display des Geräts sein?";
 		}
 
-		for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
-			setCurrentProperties(classesCoveringAxiomsResolved.get(i));
-		}
 		return question;
 	}
 
