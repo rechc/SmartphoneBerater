@@ -43,6 +43,38 @@ public class Berater2Test extends TestCase {
 		// Frage 5
 		printLeerzeilen();
 		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("MultimediaSmartphone");
+		System.out.println(berater.getSQLString());
+		
+		// Frage 6
+		printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("GuteKameraSmartphone");
+		System.out.println(berater.getSQLString());
+		
+		// Frage 7
+		printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("AndroidSmartphone");
+		System.out.println(berater.getSQLString());
+		
+		// Frage 8
+		printLeerzeilen();
+		System.out.println(question);
+		question = berater.evaluateAndAskNewQuestion("NaviSmartphone");
+		System.out.println(berater.getSQLString());
+		
+		// Frage 9
+//		printLeerzeilen();
+//		System.out.println(question);
+//		question = berater.evaluateAndAskNewQuestion("???");
+//		System.out.println(berater.getSQLString());
+		
+		// Frage 10
+//		printLeerzeilen();
+//		System.out.println(question);
+//		question = berater.evaluateAndAskNewQuestion("NaviSmartphone");
+//		System.out.println(berater.getSQLString());
 	}
 		
 

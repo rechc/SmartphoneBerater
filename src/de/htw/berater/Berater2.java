@@ -120,30 +120,75 @@ public class Berater2 extends Berater {
 	}
 	
 	public String multimediaSmartphone(String media){
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass subClassOfInterest = null;
+		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+			OntClass subClass = (OntClass) i.next();
+			if (subClass.getLocalName().toLowerCase().contains(media.toLowerCase())) {
+				subClassOfInterest = subClass;
+			}
+		}
+		setCurrentProperties(subClassOfInterest);
 		context = 6;
 		nextAnswer = Answer.YESNO;
 		return "Soll das Smartphone eine gute Kamera haben, damit Sie Bilder und Videos in hoher Qualität aufnehmen können?";
 	}
 	
 	public String cameraSmartphone(String camera){
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass subClassOfInterest = null;
+		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+			OntClass subClass = (OntClass) i.next();
+			if (subClass.getLocalName().toLowerCase().contains(camera.toLowerCase())) {
+				subClassOfInterest = subClass;
+			}
+		}
+		setCurrentProperties(subClassOfInterest);
 		context = 7;
 		nextAnswer = Answer.KEYWORD;
 		return "Wenn Sie schon ein Smartphone besitzen, haben sie wahrscheinlich schon Apps gekauft? Soll das neue Gerät das gleiche Betriebssystem haben, damit Sie ihre Anwendungen weiterverwenden können?";
 	}
 	
 	public String sameOsSmartphone(String os){
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass subClassOfInterest = null;
+		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+			OntClass subClass = (OntClass) i.next();
+			if (subClass.getLocalName().toLowerCase().contains(os.toLowerCase())) {
+				subClassOfInterest = subClass;
+			}
+		}
+		setCurrentProperties(subClassOfInterest);
 		context = 8;
 		nextAnswer = Answer.YESNO;
 		return "Möchten Sie das Smartphone auch als Navigationsgerät nutzen";
 	}
 	
 	public String navigationSmartphone(String navigation){
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass subClassOfInterest = null;
+		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+			OntClass subClass = (OntClass) i.next();
+			if (subClass.getLocalName().toLowerCase().contains(navigation.toLowerCase())) {
+				subClassOfInterest = subClass;
+			}
+		}
+		setCurrentProperties(subClassOfInterest);
 		context = 9;
 		nextAnswer = Answer.KEYWORD;
 		return "Bevorzugen Sie einen bestimmten Hersteller?";
 	}
 	
 	public String smarphoneBrand(String brand){
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass subClassOfInterest = null;
+		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
+			OntClass subClass = (OntClass) i.next();
+			if (subClass.getLocalName().toLowerCase().contains(brand.toLowerCase())) {
+				subClassOfInterest = subClass;
+			}
+		}
+		setCurrentProperties(subClassOfInterest);
 		context = 10;
 		nextAnswer = Answer.FINISHED;
 		return "Welchen Preisrahmen haben Sie sich vorgestellt?";
