@@ -123,28 +123,29 @@ public class SQLClient {
 		do {
 			temprd = new Smartphone();
 
-			temprd.setID(rs.getInt("Smartphone_id"));
-			temprd.setName(rs.getString("Name"));
-			temprd.setBrand(rs.getString("Marke"));
-			temprd.setPrice(rs.getDouble("Preis"));
-			temprd.setWeight(rs.getDouble("Gewicht"));
-			temprd.setColor(rs.getString("Farbe"));
-			temprd.setMaterial(rs.getString("Material"));
-			temprd.setBatteryRuntime(rs.getDouble("Akkulaufzeit"));
-			temprd.setDisplaysize(rs.getDouble("Displaygroesse"));
-			temprd.setResolution(rs.getString("Aufloesung"));
-			temprd.setInternalMemory(rs.getInt("Interner Speicher"));
-			temprd.setRam(rs.getInt("RAM"));
-			temprd.setOs(rs.getString("Os"));
-			temprd.setMegapixel(rs.getDouble("Megapixel"));
-			temprd.setWlan(rs.getBoolean("WLAN"));
-			temprd.setBluetooth(rs.getBoolean("Bluetooth"));
-			temprd.setMsexchange(rs.getBoolean("MSExchange"));
-			temprd.setSplashWaterProof(rs.getBoolean("Spritzwassergeschuetzt"));
-			temprd.setHardwarekeyboard(rs.getBoolean("Hardwaretastatur"));
-			temprd.setMhz(rs.getInt("Mhz"));
-			temprd.setCores(rs.getInt("cores"));
-			temprd.setGps(rs.getBoolean("GPS"));
+			temprd.setID(rs.getInt(1));
+			temprd.setName(rs.getString(2));
+			temprd.setBrand(rs.getString(3));
+			temprd.setPrice(rs.getDouble(4));
+			temprd.setWeight(rs.getDouble(5));
+			temprd.setColor(rs.getString(6));
+			temprd.setMaterial(rs.getString(7));
+			temprd.setBatteryRuntime(rs.getDouble(8));
+			temprd.setDisplaysize(rs.getDouble(9));
+			temprd.setResolution(rs.getString(10));
+			temprd.setInternalMemory(rs.getInt(11));
+			temprd.setRam(rs.getInt(12));
+			temprd.setOs(rs.getString(13));
+			temprd.setMegapixel(rs.getDouble(14));
+			temprd.setWlan(rs.getBoolean(15));
+			temprd.setBluetooth(rs.getBoolean(16));
+			temprd.setMsexchange(rs.getBoolean(17));
+			temprd.setSplashWaterProof(rs.getBoolean(18));
+			temprd.setHardwarekeyboard(rs.getBoolean(19));
+			temprd.setMhz(rs.getInt(20));
+			temprd.setCores(rs.getInt(21));
+			temprd.setGps(rs.getBoolean(22));
+			temprd.setHatKameraEigenschaft(rs.getBoolean(23));
 
 			rdl.add(temprd);
 

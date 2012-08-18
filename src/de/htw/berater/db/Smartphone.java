@@ -23,12 +23,21 @@ public class Smartphone {
 	private boolean gps;
 	private int mhz;
 	private int cores;
+	private boolean hatKameraEigenschaft;
 
 	// private boolean outDoor;
 	// private int aufloesung;
 	// private boolean appStore;
 
 	// ----- Getter + Setter -----
+
+	public boolean isHatKameraEigenschaft() {
+		return hatKameraEigenschaft;
+	}
+
+	public void setHatKameraEigenschaft(boolean hatKameraEigenschaft) {
+		this.hatKameraEigenschaft = hatKameraEigenschaft;
+	}
 
 	public int getID() {
 		return ID;
@@ -208,7 +217,7 @@ public class Smartphone {
 
 	@Override
 	public String toString() {
-		return "ResultData [ID=" + ID + ", name=" + name + ", brand=" + brand
+		return "Smartphone [ID=" + ID + ", name=" + name + ", brand=" + brand
 				+ ", price=" + price + ", weight=" + weight + ", color="
 				+ color + ", material=" + material + ", batteryRuntime="
 				+ batteryRuntime + ", displaysize=" + displaysize
@@ -218,6 +227,9 @@ public class Smartphone {
 				+ ", bluetooth=" + bluetooth + ", msexchange=" + msexchange
 				+ ", splashWaterProof=" + splashWaterProof
 				+ ", hardwarekeyboard=" + hardwarekeyboard + ", gps=" + gps
-				+ ", mhz=" + mhz + ", cores=" + cores + "]";
+				+ ", mhz=" + mhz + ", cores=" + cores
+				+ ", hatKameraEigenschaft=" + hatKameraEigenschaft + "]";
 	}
+
+	
 }
