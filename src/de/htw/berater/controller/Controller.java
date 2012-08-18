@@ -4,7 +4,8 @@ import java.util.List;
 
 import de.htw.berater.Berater;
 import de.htw.berater.StaticFactory;
-import de.htw.berater.db.ResultData;
+import de.htw.berater.db.DBException;
+import de.htw.berater.db.Smartphone;
 import de.htw.berater.db.SQLClient;
 import de.htw.berater.ui.BeraterUI;
 import de.htw.berater.ui.BeraterUIJFrame;
@@ -57,8 +58,15 @@ public class Controller {
 	
 	private void informUI(String newQuestion) {
 		String sql = berater.getSQLString();
-		List<ResultData> resultData = SQLClient.getInstance().getResultData(sql);
-		beraterUI.onNewData(resultData);
-		beraterUI.onNewQuestion(newQuestion);
+		List<Smartphone> resultData;
+		try {
+			resultData = SQLClient.getInstance().getSmartphones(sql);
+			beraterUI.onNewData(resultData);
+			beraterUI.onNewQuestion(newQuestion);
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

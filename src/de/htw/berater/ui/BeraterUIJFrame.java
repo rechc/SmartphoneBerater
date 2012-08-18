@@ -29,7 +29,7 @@ import javax.swing.SwingUtilities;
 
 import de.htw.berater.Berater;
 import de.htw.berater.controller.Controller;
-import de.htw.berater.db.ResultData;
+import de.htw.berater.db.Smartphone;
 
 public class BeraterUIJFrame extends BeraterUI{
 
@@ -496,10 +496,10 @@ public class BeraterUIJFrame extends BeraterUI{
 	}
 	
 	@Override
-	public void show(List<ResultData> resultData) {
+	public void show(List<Smartphone> resultData) {
 		if (resultData != null){
 			JPanel tmpPanel = new JPanel();
-			for (ResultData r: resultData){
+			for (Smartphone r: resultData){
 				tmpPanel.add(new JLabel(r.toString()));
 			}
 			this.setAvailable_smartphones_panel(tmpPanel);
@@ -507,11 +507,11 @@ public class BeraterUIJFrame extends BeraterUI{
 	}
 	
 	@Override
-	public void onNewData(List<ResultData> resultData) {
+	public void onNewData(List<Smartphone> resultData) {
 		//System.out.println("werde aufgerufen");
 		if (resultData != null){
 			//JPanel tmpPanel = new JPanel();
-			for (ResultData r: resultData){
+			for (Smartphone r: resultData){
 				//tmpPanel.add(new JLabel(r.toString()));
 				available_smartphones_panel.add(new JLabel(r.toString()));
 			}

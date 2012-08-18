@@ -1,6 +1,6 @@
 package de.htw.berater.db;
 
-public class ResultData {
+public class Smartphone {
 	private int ID;
 	private String name;
 	private String brand;

@@ -91,9 +91,10 @@ public class SQLClient {
 	 * 
 	 * @param sql erwartet select Befehl auf Smartphones
 	 * @return List<ResultData>
+	 * @throws DBException 
 	 */
-	public List<ResultData> getResultData(String sql) {
-		LinkedList<ResultData> rdl = new LinkedList<ResultData>();
+	public List<Smartphone> getSmartphones(String sql) throws DBException {
+		LinkedList<Smartphone> rdl = new LinkedList<Smartphone>();
 		try {
 			Connection con = getConnection();
 			Statement stmnt = con.createStatement(ResultSet.TYPE_FORWARD_ONLY,
@@ -105,26 +106,22 @@ public class SQLClient {
 			}
 			stmnt.close();
 			con.close();
-		} catch (DBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DBException("DB Exception: "+e);
 		}
 
 		return rdl;
 	}
 
-	private LinkedList<ResultData> parseResultData(LinkedList<ResultData> rdl,
+	private LinkedList<Smartphone> parseResultData(LinkedList<Smartphone> rdl,
 			ResultSet rs) throws SQLException {
 		if (!rs.next()) {
-			return new LinkedList<ResultData>();
+			return new LinkedList<Smartphone>();
 		}
-		ResultData temprd;
+		Smartphone temprd;
 
 		do {
-			temprd = new ResultData();
+			temprd = new Smartphone();
 
 			temprd.setID(rs.getInt("Smartphone_id"));
 			temprd.setName(rs.getString("Name"));
