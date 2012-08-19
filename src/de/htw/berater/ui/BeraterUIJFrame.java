@@ -98,7 +98,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		FlowLayout fl_szenario_panel1 = new FlowLayout(FlowLayout.CENTER, 10, 13);
 		szenario_panel1.setLayout(fl_szenario_panel1);
 		
-		JLabel labelChooseScenario = new JLabel("Szenario ausw\u00E4hlen");
+		JLabel labelChooseScenario = new JLabel("Szenario auswählen");
 		labelChooseScenario.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		szenario_panel1.add(labelChooseScenario);
 		
@@ -113,7 +113,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		radioButtonScenario1.addActionListener(uiActions);
 		szenario_panel2.add(radioButtonScenario1, BorderLayout.NORTH);
 		
-		radioButtonScenario2 = new JRadioButton("Szenario 2 (Update auf leistungsst\u00E4rkeres Ger\u00E4t)");
+		radioButtonScenario2 = new JRadioButton("Szenario 2 (Update auf leistungsstärkeres Gerät)");
 		radioButtonScenario2.setActionCommand("radioButtonScenario2");
 		radioButtonScenario2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		radioButtonScenario2.addActionListener(uiActions);
@@ -143,7 +143,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		fl_question_panel.setVgap(20);
 		mainPanel.add(question_panel, BorderLayout.NORTH);
 		
-		labelQuestion = new JLabel("<html>W&uuml;hlen Sie bitte das Szenario aus und klicken Sie anschlie&szlig;end auf Starten</hmtl>");
+		labelQuestion = new JLabel("Wählen Sie bitte das Szenario aus und klicken Sie anschließend auf Starten");
 		question_panel.add(labelQuestion);
 		labelQuestion.setBounds(new Rectangle(10, 10, 10, 10));
 		labelQuestion.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -209,7 +209,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		tabbedPane.addTab("Direkt-Auswahl", null, answer_type2, null);
 		answer_type2.setLayout(new BoxLayout(answer_type2, BoxLayout.Y_AXIS));
 		
-		JLabel L2 = new JLabel("<html>W&auml;hlen Sie bitte die passende Antwort aus</html>");
+		JLabel L2 = new JLabel("Wählen Sie bitte die passende Antwort aus");
 		L2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		answer_type2.add(L2);
 		L2.setBorder(null);
@@ -230,7 +230,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		tabbedPane.addTab("Detail-Auswahl", null, answer_type3, null);
 		answer_type3.setLayout(new BoxLayout(answer_type3, BoxLayout.PAGE_AXIS));
 		
-		JLabel L3 = new JLabel("W\u00E4hlen Sie die passenden Eigenschaften aus");
+		JLabel L3 = new JLabel("Wählen Sie die passenden Eigenschaften aus");
 		answer_type3.add(L3);
 		L3.setAlignmentX(Component.CENTER_ALIGNMENT);
 		L3.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -249,7 +249,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		available_smartphones_panel.setLayout(new BoxLayout(available_smartphones_panel, BoxLayout.PAGE_AXIS));
 	
 		
-		JLabel labelAvailableSmartphones = new JLabel("Verf\u00FCgbare Smartphones");
+		JLabel labelAvailableSmartphones = new JLabel("Verfügbare Smartphones");
 		labelAvailableSmartphones.setAlignmentX(Component.CENTER_ALIGNMENT);
 		labelAvailableSmartphones.setHorizontalTextPosition(SwingConstants.CENTER);
 		labelAvailableSmartphones.setHorizontalAlignment(SwingConstants.CENTER);
@@ -319,20 +319,20 @@ public class BeraterUIJFrame extends BeraterUI{
 		JComboBox comboSpiele = new JComboBox();
 		ComboboxData[] spieleData = new ComboboxData[3];
 		spieleData[0] = new ComboboxData("", "");
-		spieleData[1] = new ComboboxData("normale Spiele", "normales");
-		spieleData[2] = new ComboboxData("gute Spiele", "gutes");
+		spieleData[1] = new ComboboxData("Normale Spiele", "normales");
+		spieleData[2] = new ComboboxData("Grafisch anspruchsvolle Spiele", "gutes");
 		comboSpiele.setModel(new DefaultComboBoxModel(spieleData));
 		spielePanel.add(comboSpiele);
 		tmpPanel.add(spielePanel);
 		
 		//Displaygroesse
 		JPanel panelDisplaygroesse = new JPanel();
-		panelDisplaygroesse.add(new JLabel("Displaygroesse"));
+		panelDisplaygroesse.add(new JLabel("Displaygröße"));
 
 		ComboboxData[] displaygroesseData = new ComboboxData[3];
 		displaygroesseData[0] = new ComboboxData("", "");
-		displaygroesseData[1] = new ComboboxData("klein", "kleines");
-		displaygroesseData[2] = new ComboboxData("<html>gro&szlig;</html>", "grosses");
+		displaygroesseData[1] = new ComboboxData("Klein", "kleines");
+		displaygroesseData[2] = new ComboboxData("Groß", "grosses");
 		JComboBox comboDisplaygroesse = new JComboBox();
 		comboDisplaygroesse.setModel(new DefaultComboBoxModel(displaygroesseData));
 		panelDisplaygroesse.add(comboDisplaygroesse);
@@ -344,8 +344,8 @@ public class BeraterUIJFrame extends BeraterUI{
 
 		ComboboxData[] hardwaretastaturData = new ComboboxData[3];
 		hardwaretastaturData[0] = new ComboboxData("", "");
-		hardwaretastaturData[1] = new ComboboxData("ja", "hardwaretastaur");
-		hardwaretastaturData[2] = new ComboboxData("nein", "keinetastatur");
+		hardwaretastaturData[1] = new ComboboxData("Ja", "hardwaretastaur");
+		hardwaretastaturData[2] = new ComboboxData("Nein", "keinetastatur");
 		JComboBox comboHardwaretastatur = new JComboBox();
 		comboHardwaretastatur.setModel(new DefaultComboBoxModel(hardwaretastaturData));
 		panelHardwaretastatur.add(comboHardwaretastatur);
@@ -357,8 +357,8 @@ public class BeraterUIJFrame extends BeraterUI{
 
 		ComboboxData[] kameraData = new ComboboxData[3];
 		kameraData[0] = new ComboboxData("", "");
-		kameraData[1] = new ComboboxData("normale Kamera", "kamera");
-		kameraData[2] = new ComboboxData("gute Kamera", "gutekamera");
+		kameraData[1] = new ComboboxData("Normale Kamera", "kamera");
+		kameraData[2] = new ComboboxData("Gute Kamera", "gutekamera");
 		JComboBox comboKamera = new JComboBox();
 		comboKamera.setModel(new DefaultComboBoxModel(kameraData));
 		panelKamera.add(comboKamera);
@@ -367,7 +367,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		/**
 		//Aufloesung
 		JPanel panelAufloesung = new JPanel();
-		panelAufloesung.add(new JLabel("<html>Aufl&ouml;sung</html>"));
+		panelAufloesung.add(new JLabel("Auflösung"));
 
 		JTextField txtAufloesung = new JTextField();
 		txtAufloesung.setName("aufloesung");
@@ -383,7 +383,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		ComboboxData[] betriebssystemData = new ComboboxData[6];
 		betriebssystemData[0] = new ComboboxData("", "");
 		betriebssystemData[1] = new ComboboxData("Android", "android");
-		betriebssystemData[2] = new ComboboxData("IOS", "ios");
+		betriebssystemData[2] = new ComboboxData("iOS (Apple)", "ios");
 		betriebssystemData[3] = new ComboboxData("Bada", "bada");
 		betriebssystemData[4] = new ComboboxData("Symbian", "symbian");
 		betriebssystemData[5] = new ComboboxData("Anderes", "other");
