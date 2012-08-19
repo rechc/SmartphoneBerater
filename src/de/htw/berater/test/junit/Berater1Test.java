@@ -41,7 +41,7 @@ public class Berater1Test extends TestCase {
 		printLeerzeilen();
 		System.out.println(question);
 		berater.addCustomerInfo(Customer.SEHBEHINDERT);
-		question = berater.evaluateAndAskNewQuestion("groﬂes");
+		question = berater.evaluateAndAskNewQuestion("gro√ües");
 		System.out.println(berater.getSQLString());
 		if (berater.getContext() == 4) {
 			// Frage 4 

@@ -103,13 +103,13 @@ public class Berater1 extends Berater {
 				setCurrentProperties(classesCoveringAxiomsResolved.get(i));
 			}
 		} else {
-			// dieser fall ist nicht in der ontologie enthalten, aber egal. Funktioniert auch für BilderMachenZweck
+			// dieser fall ist nicht in der ontologie enthalten, aber egal. Funktioniert auch fÃ¼r BilderMachenZweck
 			for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
 				setCurrentProperties(smartphones.get(i));
 			}
 			context = 3;
 			nextAnswer = Answer.KEYWORD;
-			question = "Wie groß soll das Display des Geräts sein?";
+			question = "Wie groÃŸ soll das Display des GerÃ¤ts sein?";
 		}
 
 		return question;
@@ -125,7 +125,7 @@ public class Berater1 extends Berater {
 
 		rememberList.clear();
 		setCustomerInfo();
-		String question = "Wie groß soll das Display des Geräts sein?";
+		String question = "Wie groÃŸ soll das Display des GerÃ¤ts sein?";
 		nextAnswer = Answer.KEYWORD;
 		context = 3;
 		return question;
@@ -147,12 +147,12 @@ public class Berater1 extends Berater {
 		if (!customer.isCustomer(Customer.SEHBEHINDERT)) {
 			context = 4;
 			nextAnswer = Answer.KEYWORD;
-			return "Mšchten Sie ein reines Touchdisplay oder eine zusŠtzliche Hardwaretastatur?";
+			return "MÃ¶chten Sie ein reines Touchdisplay oder eine zusÃ¤tzliche Hardwaretastatur?";
 		} else {
-			System.out.println("es wird eine Frage übersprungen: Mšchten Sie ein reines Touchdisplay oder eine zusŠtzliche Hardwaretastatur?");
+			System.out.println("es wird eine Frage Ã¼bersprungen: MÃ¶chten Sie ein reines Touchdisplay oder eine zusÃ¤tzliche Hardwaretastatur?");
 			context = 5;
 			nextAnswer = Answer.KEYWORD;
-			return "Nutzen Sie das Gerät eher für geschäftliche Zwecke oder in ihrer Freizeit für Outdooraktivitäten.";
+			return "Nutzen Sie das GerÃ¤t eher fÃ¼r geschÃ¤ftliche Zwecke oder in ihrer Freizeit fÃ¼r OutdooraktivitÃ¤ten.";
 		}
 	}
 
@@ -168,7 +168,7 @@ public class Berater1 extends Berater {
 		setCurrentProperties(subClassOfInterest);
 		context = 5;
 		nextAnswer = Answer.KEYWORD;
-		return "Nutzen Sie das GerŠt eher fŸr geschŠftliche Zwecke oder in ihrer Freizeit?";
+		return "Nutzen Sie das GerÃ¤t eher fÃ¼r geschÃ¤ftliche Zwecke oder in ihrer Freizeit?";
 	}
 
 	private String outdoorSmartphone(String outdoor) {
@@ -188,7 +188,7 @@ public class Berater1 extends Berater {
 
 		context = 6;
 		nextAnswer = Answer.KEYWORD;
-		return "Mšchten Sie das Smartphone zur Navigation oder zur Aufzeichnung ihrer sportlichen AktivitŠten verwenden?";
+		return "MÃ¶chten Sie das Smartphone zur Navigation oder zur Aufzeichnung ihrer sportlichen AktivitÃ¤ten verwenden?";
 	}
 
 	private String navigationSmartphone(String navigation) {
@@ -220,7 +220,7 @@ public class Berater1 extends Berater {
 	private String smartphoneMarke(String marke) {
 		context = 9;
 		nextAnswer = Answer.FINISHED;
-		return "Tschüss";
+		return "TschÃ¼ss";
 	}
 
 	@Override

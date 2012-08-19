@@ -31,7 +31,7 @@ public class Berater2Test extends TestCase {
 		System.out.println("nein:\n --> kein neuer filter");
 		// b)
 		System.out.println("ja:");
-		question = berater.evaluateAndAskNewQuestion("GroßesSmartphone");
+		question = berater.evaluateAndAskNewQuestion("Gro√üesSmartphone");
 		System.out.println(berater.getSQLString());
 		
 		// Frage 4

@@ -32,10 +32,10 @@ public class Controller {
 		String newQuestion = null;
 		if (szenario1) {
 			this.berater = berater1;
-			newQuestion = berater.askFirstQuestionZweck(); //init f�r Szenario1
+			newQuestion = berater.askFirstQuestionZweck(); //init für Szenario1
 		} else {
 			this.berater = berater2;
-			newQuestion = berater.askFirstQuestionGeneral(); //init f�r Szenario2
+			newQuestion = berater.askFirstQuestionGeneral(); //init für Szenario2
 		}
 		informUI(newQuestion);
 	}

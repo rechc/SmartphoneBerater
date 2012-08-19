@@ -39,7 +39,7 @@ public class ReadModel {
 		model.read("file:" + ontopath);
 		
 		
-		System.out.println("1.Es wird eine Sub-Klasse in der Klasse \"Zweck\" gesucht, die den Substring \"Spiele\" enth‰lt. Das sollte dann \"SpieleZweck\" sein. ");
+		System.out.println("1.Es wird eine Sub-Klasse in der Klasse \"Zweck\" gesucht, die den Substring \"Spiele\" enth√§lt. Das sollte dann \"SpieleZweck\" sein. ");
 		
 		
 		OntClass zweck = model.getOntClass(ns + "Zweck");

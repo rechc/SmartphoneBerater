@@ -48,7 +48,7 @@ public class Berater2 extends Berater {
 	public String askFirstQuestionZweck() {
 		context = 1;
 		nextAnswer = Answer.KEYWORD;
-		return "Guten Tag! Wie kann ich Ihnen helfen??";
+		return "Guten Tag! Wie kann ich Ihnen helfen?";
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class Berater2 extends Berater {
 		setCurrentProperties(subClassOfInterest);
 		context = 2;
 		nextAnswer = Answer.KEYWORD;
-		return "Sie besitzen also schon eines. Was stört sie an ihrem alten Smartphone insbesondere?";
+		return "Sie besitzen also schon eines. Was st√∂rt sie an Ihrem alten Smartphone insbesondere?";
 	}
 	
 	public String largeMemorySmartphone(String memory){
@@ -100,8 +100,7 @@ public class Berater2 extends Berater {
 		}
 		context = 4;
 		nextAnswer = Answer.KEYWORD;
-		//TODO evaluate expected yes/no answer
-		return "Möchten Sie das Smartphone auch über eine Hardware-Tastatur bedienen können?";
+		return "M√∂chten Sie das Smartphone auch √ºber eine Hardware-Tastatur bedienen k√∂nnen?";
 	}
 	
 	public String noKeyboardSmartphone(String keyboard){
@@ -116,7 +115,7 @@ public class Berater2 extends Berater {
 		setCurrentProperties(subClassOfInterest);
 		context = 5;
 		nextAnswer = Answer.YESNO;
-		return "Soll das Smartphone Multimedia-Fähigkeiten haben?";
+		return "Soll das Smartphone Multimedia-F√§higkeiten haben?";
 	}
 	
 	public String multimediaSmartphone(String media){
@@ -131,7 +130,7 @@ public class Berater2 extends Berater {
 		setCurrentProperties(subClassOfInterest);
 		context = 6;
 		nextAnswer = Answer.YESNO;
-		return "Soll das Smartphone eine gute Kamera haben, damit Sie Bilder und Videos in hoher Qualität aufnehmen können?";
+		return "Soll das Smartphone eine gute Kamera haben, damit Sie Bilder und Videos in hoher Qualit√§t aufnehmen k√∂nnen?";
 	}
 	
 	public String cameraSmartphone(String camera){
@@ -146,7 +145,7 @@ public class Berater2 extends Berater {
 		setCurrentProperties(subClassOfInterest);
 		context = 7;
 		nextAnswer = Answer.KEYWORD;
-		return "Wenn Sie schon ein Smartphone besitzen, haben sie wahrscheinlich schon Apps gekauft? Soll das neue Gerät das gleiche Betriebssystem haben, damit Sie ihre Anwendungen weiterverwenden können?";
+		return "Wenn Sie schon ein Smartphone besitzen, haben sie wahrscheinlich schon Apps gekauft? Soll das neue Ger√§t das gleiche Betriebssystem haben, damit Sie ihre Anwendungen weiterverwenden k√∂nnen?";
 	}
 	
 	public String sameOsSmartphone(String os){
@@ -161,7 +160,7 @@ public class Berater2 extends Berater {
 		setCurrentProperties(subClassOfInterest);
 		context = 8;
 		nextAnswer = Answer.YESNO;
-		return "Möchten Sie das Smartphone auch als Navigationsgerät nutzen";
+		return "M√∂chten Sie das Smartphone auch als Navigationsger√§t nutzen";
 	}
 	
 	public String navigationSmartphone(String navigation){

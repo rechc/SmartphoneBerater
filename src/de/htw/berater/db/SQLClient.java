@@ -63,7 +63,7 @@ public class SQLClient {
 					instance = new SQLClient();
 				} catch (DBException e) {
 					// TODO Auto-generated catch block
-					// TODO weiterschmeiﬂen
+					// TODO weiterschmei√üen
 					e.printStackTrace();
 				}
 			}
