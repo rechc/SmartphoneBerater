@@ -53,7 +53,7 @@ public class Berater1 extends Berater {
 		OntClass zweckClass = model.getOntClass(ns + "Zweck");
 		OntClass zweckSubClass = null;
 		for (Iterator<OntClass> i = zweckClass.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(zweck)) {
 				zweckSubClass = subClass;
 			}
@@ -85,7 +85,7 @@ public class Berater1 extends Berater {
 		String question = "";
 		// gab es ein covering axiom (abstrakte klasse)?
 		if (!classesCoveringAxiomsResolved.equals(smartphones)) {
-			question = "Moechten sie ";
+			question = "Möchten sie ";
 			for (OntClass smphone : classesCoveringAxiomsResolved) {
 				question += smphone.getLocalName() + ", ";
 			}
@@ -160,7 +160,7 @@ public class Berater1 extends Berater {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(touch.toLowerCase())) {
 				subClassOfInterest = subClass;
 			}
@@ -227,7 +227,7 @@ public class Berater1 extends Berater {
 	public String askFirstQuestionZweck() {
 		context = 1;
 		nextAnswer = Answer.KEYWORD;
-		return "Fuer welchen Zweck benoetigen Sie ein Smartphone?";
+		return "Für welchen Zweck benötigen Sie ein Smartphone?";
 	}
 
 	@Override

@@ -27,7 +27,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import de.htw.berater.Berater;
 import de.htw.berater.controller.Controller;
 import de.htw.berater.db.Smartphone;
 
@@ -35,8 +34,6 @@ public class BeraterUIJFrame extends BeraterUI{
 
 	private JFrame frame = new JFrame();
 	
-	private static final long serialVersionUID = 1L;
-
 	// Antwortmoeglichkeit 1 Textfeld
 	private JTextField txtAnswer;
 

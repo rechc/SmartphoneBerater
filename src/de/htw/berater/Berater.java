@@ -30,18 +30,16 @@ public abstract class Berater {
 
 	public static final int BERATER_1 = 0;
 	public static final int BERATER_2 = 1;
-	
-	protected String rdfPath;
-	protected String ns;
-	protected Set<OntClass> properties = new LinkedHashSet<OntClass>();
+
+	protected final String ns;
+	protected final Set<OntClass> properties = new LinkedHashSet<OntClass>();
 	protected int context; // irgendwie den kontext beachten um sinnvoll die
 							// naechste frage zu stellen
 	protected Answer nextAnswer;
 	protected Customer customer = new Customer();
-	protected OntModel model;
+	protected final OntModel model;
 
 	public Berater(String rdfPath, String ns) {
-		this.rdfPath = rdfPath;
 		this.ns = ns;
 
 		if (System.getProperty("log4j.configuration") == null) {
@@ -93,19 +91,16 @@ public abstract class Berater {
 	/* is covering axiom(abstract class)? */
 	protected boolean isCoveringAxiom(OntClass ontClass) {
 		boolean isCoveringAxiom = false;
-		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
-				.hasNext();) {
+		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers.hasNext();) {
 			OntClass superClass = supers.next();
 			if (superClass.isUnionClass()) {
 				isCoveringAxiom = true;
-				for (Iterator<?> it = superClass.asUnionClass().listOperands(); it
-						.hasNext();) {
-					OntClass op = (OntClass) it.next();
+				for (Iterator<? extends OntClass> it = superClass.asUnionClass().listOperands(); it.hasNext();) {
+					OntClass op = it.next();
 
 					if (!op.isRestriction()) {
 						boolean found = false;
-						ExtendedIterator<OntClass> it2 = ontClass
-								.listSubClasses();
+						Iterator<OntClass> it2 = ontClass.listSubClasses();
 						while (it2.hasNext()) {
 							if (it2.next().equals(op)) {
 								found = true;
@@ -156,7 +151,7 @@ public abstract class Berater {
 		return tmpProperties;
 	}
 
-	/* add all properties of a cerain class */
+	/* add all properties of a certain class */
 	protected final void setCurrentProperties(OntClass ontClass) {
 		if (ontClass.getLocalName().equals("Smartphone")) {
 			return;
@@ -205,9 +200,9 @@ public abstract class Berater {
 		} else {
 			if (property.isIntersectionClass()) {
 				String s = "";
-				for (Iterator<?> it = property.asIntersectionClass()
+				for (Iterator<? extends OntClass> it = property.asIntersectionClass()
 						.listOperands(); it.hasNext();) {
-					OntClass op = (OntClass) it.next();
+					OntClass op = it.next();
 					s += processPropertyToSQL(op) + " and ";
 				}
 				s = s.substring(0, s.length() - 5);
@@ -215,9 +210,9 @@ public abstract class Berater {
 			} else {
 				if (property.isUnionClass()) {
 					String s = "";
-					for (Iterator<?> it = property.asUnionClass()
+					for (Iterator<? extends OntClass> it = property.asUnionClass()
 							.listOperands(); it.hasNext();) {
-						OntClass op = (OntClass) it.next();
+						OntClass op = it.next();
 						s += processPropertyToSQL(op) + " or ";
 					}
 					s = s.substring(0, s.length() - 4);
@@ -225,9 +220,9 @@ public abstract class Berater {
 				} else {
 					if (property.isComplementClass()) {
 						String s = "";
-						for (Iterator<?> it = property.asComplementClass()
+						for (Iterator<? extends OntClass> it = property.asComplementClass()
 								.listOperands(); it.hasNext();) {
-							OntClass op = (OntClass) it.next();
+							OntClass op = it.next();
 							s = "not(" + processPropertyToSQL(op) + ")";
 						}
 						return "(" + s + ")";
@@ -306,10 +301,9 @@ public abstract class Berater {
 			if (res.canAs(UnionClass.class)) {
 				String unionStr = "";
 				UnionClass union = res.as(UnionClass.class);
-				for (Iterator<?> it = union.listOperands(); it.hasNext();) {
-					OntClass op = (OntClass) it.next();
-					unionStr += op.getLocalName()
-							+ (it.hasNext() ? " = 1 or " : "");
+				for (Iterator<? extends OntClass> it = union.listOperands(); it.hasNext();) {
+					OntClass op = it.next();
+					unionStr += op.getLocalName() + (it.hasNext() ? " = 1 or " : "");
 				}
 				sqlConstraint.setValue(unionStr);
 			} else {
@@ -321,9 +315,8 @@ public abstract class Berater {
 
 	protected List<OntClass> getCoveringAxiomClasses(List<OntClass> classes) {
 		List<OntClass> coveringAxiomClasses = new LinkedList<OntClass>();
-		for (int i = 0; i < classes.size(); i++) {
-			if (isCoveringAxiom(classes.get(i))) {
-				OntClass abstractClass = classes.get(i);
+		for (OntClass abstractClass : classes) {
+			if (isCoveringAxiom(abstractClass)) {
 				ExtendedIterator<OntClass> ri = abstractClass.listSubClasses();
 				while (ri.hasNext()) {
 					coveringAxiomClasses.add(ri.next());
@@ -331,7 +324,7 @@ public abstract class Berater {
 				coveringAxiomClasses
 						.addAll(getCoveringAxiomClasses(coveringAxiomClasses));
 			} else {
-				coveringAxiomClasses.add(classes.get(i));
+				coveringAxiomClasses.add(abstractClass);
 			}
 		}
 		return coveringAxiomClasses;

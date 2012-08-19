@@ -3,12 +3,10 @@ package de.htw.berater.controller;
 import java.util.List;
 
 import de.htw.berater.Berater;
-import de.htw.berater.StaticFactory;
 import de.htw.berater.db.DBException;
 import de.htw.berater.db.Smartphone;
 import de.htw.berater.db.SQLClient;
 import de.htw.berater.ui.BeraterUI;
-import de.htw.berater.ui.BeraterUIJFrame;
 
 public class Controller {
 	private Berater berater;

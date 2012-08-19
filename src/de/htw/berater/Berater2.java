@@ -32,7 +32,7 @@ public class Berater2 extends Berater {
 			case 8:
 				return navigationSmartphone(string);
 			case 9:
-				return smarphoneBrand(string);
+				return smartphoneBrand(string);
 		}
 		throw new RuntimeException("wrong context");
 	}
@@ -55,12 +55,12 @@ public class Berater2 extends Berater {
 	public String askFirstQuestionGeneral() {
 		throw new UnsupportedOperationException();
 	}
-	
-	public String proSmartphone(String proPhone){
+
+	public String proSmartphone(String proPhone) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(proPhone.toLowerCase())) {
 				subClassOfInterest = subClass;
 			}
@@ -70,12 +70,12 @@ public class Berater2 extends Berater {
 		nextAnswer = Answer.KEYWORD;
 		return "Sie besitzen also schon eines. Was stört sie an Ihrem alten Smartphone insbesondere?";
 	}
-	
-	public String largeMemorySmartphone(String memory){
+
+	public String largeMemorySmartphone(String memory) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(memory.toLowerCase())) {
 				subClassOfInterest = subClass;
 			}
@@ -85,13 +85,13 @@ public class Berater2 extends Berater {
 		nextAnswer = Answer.YESNO;
 		return "Liegt die schlechte Bedienbarkeit am Betriebssystem?";
 	}
-	
-	public String usabilityOs(String os){
+
+	public String usabilityOs(String os) {
 		if(!os.contains("nein")){
 			OntClass smartphone = model.getOntClass(ns + "Smartphone");
 			OntClass subClassOfInterest = null;
 			for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-				OntClass subClass = (OntClass) i.next();
+				OntClass subClass = i.next();
 				if (subClass.getLocalName().toLowerCase().contains(os.toLowerCase())) {
 					subClassOfInterest = subClass;
 				}
@@ -102,12 +102,12 @@ public class Berater2 extends Berater {
 		nextAnswer = Answer.KEYWORD;
 		return "Möchten Sie das Smartphone auch über eine Hardware-Tastatur bedienen können?";
 	}
-	
-	public String noKeyboardSmartphone(String keyboard){
+
+	public String noKeyboardSmartphone(String keyboard) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(keyboard.toLowerCase())) {
 				subClassOfInterest = subClass;
 			}
@@ -117,12 +117,12 @@ public class Berater2 extends Berater {
 		nextAnswer = Answer.YESNO;
 		return "Soll das Smartphone Multimedia-Fähigkeiten haben?";
 	}
-	
-	public String multimediaSmartphone(String media){
+
+	public String multimediaSmartphone(String media) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(media.toLowerCase())) {
 				subClassOfInterest = subClass;
 			}
@@ -132,12 +132,12 @@ public class Berater2 extends Berater {
 		nextAnswer = Answer.YESNO;
 		return "Soll das Smartphone eine gute Kamera haben, damit Sie Bilder und Videos in hoher Qualität aufnehmen können?";
 	}
-	
-	public String cameraSmartphone(String camera){
+
+	public String cameraSmartphone(String camera) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(camera.toLowerCase())) {
 				subClassOfInterest = subClass;
 			}
@@ -147,12 +147,12 @@ public class Berater2 extends Berater {
 		nextAnswer = Answer.KEYWORD;
 		return "Wenn Sie schon ein Smartphone besitzen, haben sie wahrscheinlich schon Apps gekauft? Soll das neue Gerät das gleiche Betriebssystem haben, damit Sie ihre Anwendungen weiterverwenden können?";
 	}
-	
-	public String sameOsSmartphone(String os){
+
+	public String sameOsSmartphone(String os) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(os.toLowerCase())) {
 				subClassOfInterest = subClass;
 			}
@@ -162,12 +162,12 @@ public class Berater2 extends Berater {
 		nextAnswer = Answer.YESNO;
 		return "Möchten Sie das Smartphone auch als Navigationsgerät nutzen";
 	}
-	
-	public String navigationSmartphone(String navigation){
+
+	public String navigationSmartphone(String navigation) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(navigation.toLowerCase())) {
 				subClassOfInterest = subClass;
 			}
@@ -177,12 +177,12 @@ public class Berater2 extends Berater {
 		nextAnswer = Answer.KEYWORD;
 		return "Bevorzugen Sie einen bestimmten Hersteller?";
 	}
-	
-	public String smarphoneBrand(String brand){
+
+	public String smartphoneBrand(String brand) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		OntClass subClassOfInterest = null;
 		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = (OntClass) i.next();
+			OntClass subClass = i.next();
 			if (subClass.getLocalName().toLowerCase().contains(brand.toLowerCase())) {
 				subClassOfInterest = subClass;
 			}

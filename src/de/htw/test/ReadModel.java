@@ -45,7 +45,7 @@ public class ReadModel {
 		OntClass zweck = model.getOntClass(ns + "Zweck");
 		OntClass spieleZweck = null;
 		for (Iterator<OntClass> i = zweck.listSubClasses(); i.hasNext();){
-		        OntClass subClass = (OntClass) i.next();
+		        OntClass subClass = i.next();
 		        if (subClass.getLocalName().toLowerCase().contains("spiele")) {
 		        	spieleZweck = subClass;
 		        	System.out.println(subClass.getLocalName());

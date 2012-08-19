@@ -75,7 +75,7 @@ public class SQLClient {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			return (Connection) DriverManager.getConnection(serverUrl + dbName,
+			return DriverManager.getConnection(serverUrl + dbName,
 					serverUserName, serverUserPw);
 
 		} catch (ClassNotFoundException e) {

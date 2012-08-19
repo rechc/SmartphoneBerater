@@ -18,7 +18,7 @@ public class Smartphone {
 	private boolean wlan;
 	private boolean bluetooth;
 	private boolean msexchange;
-	private boolean splashWaterProof;;
+	private boolean splashWaterProof;
 	private boolean hardwarekeyboard;
 	private boolean gps;
 	private int mhz;

@@ -8,9 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import de.htw.berater.Berater;
 import de.htw.berater.controller.FalseAnswerException;
-import de.htw.berater.db.SQLClient;
 import de.htw.berater.ui.BeraterUIJFrame.ComboboxData;
 
 public class UIActions implements ActionListener {
