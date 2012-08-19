@@ -224,15 +224,10 @@ public class Berater1 extends Berater {
 	}
 
 	@Override
-	public String askFirstQuestionZweck() {
+	public String askFirstQuestion() {
 		context = 1;
 		nextAnswer = Answer.KEYWORD;
 		return "Für welchen Zweck benötigen Sie ein Smartphone?";
-	}
-
-	@Override
-	public String askFirstQuestionGeneral() {
-		throw new UnsupportedOperationException();
 	}
 
 }

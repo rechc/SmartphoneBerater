@@ -330,8 +330,6 @@ public abstract class Berater {
 		return coveringAxiomClasses;
 	}
 
-	/* noch mehr allgemeine Methoden ?? */
-	public abstract String askFirstQuestionZweck(); // Szenario1
+	public abstract String askFirstQuestion();
 
-	public abstract String askFirstQuestionGeneral(); // Szenario2
 }

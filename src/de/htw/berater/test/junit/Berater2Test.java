@@ -14,7 +14,7 @@ public class Berater2Test extends TestCase {
 	
 	public void testZweck() {
 		// Frage 1
-		System.out.println(berater.askFirstQuestionZweck());
+		System.out.println(berater.askFirstQuestion());
 		String question = berater.evaluateAndAskNewQuestion("ProfiSmartphone");
 		System.out.println(berater.getSQLString());
 		

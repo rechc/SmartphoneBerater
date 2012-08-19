@@ -27,14 +27,8 @@ public class Controller {
 	}
 	
 	public void getFirstQuestion(boolean szenario1) {
-		String newQuestion = null;
-		if (szenario1) {
-			this.berater = berater1;
-			newQuestion = berater.askFirstQuestionZweck(); //init für Szenario1
-		} else {
-			this.berater = berater2;
-			newQuestion = berater.askFirstQuestionGeneral(); //init für Szenario2
-		}
+		this.berater = szenario1 ? berater1 : berater2;
+		String newQuestion = berater.askFirstQuestion();
 		informUI(newQuestion);
 	}
 	

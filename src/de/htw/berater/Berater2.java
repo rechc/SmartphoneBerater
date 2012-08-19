@@ -45,15 +45,10 @@ public class Berater2 extends Berater {
 	}
 
 	@Override
-	public String askFirstQuestionZweck() {
+	public String askFirstQuestion() {
 		context = 1;
 		nextAnswer = Answer.KEYWORD;
 		return "Guten Tag! Wie kann ich Ihnen helfen?";
-	}
-
-	@Override
-	public String askFirstQuestionGeneral() {
-		throw new UnsupportedOperationException();
 	}
 
 	public String proSmartphone(String proPhone) {
