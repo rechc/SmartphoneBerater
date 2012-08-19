@@ -332,4 +332,16 @@ public abstract class Berater {
 
 	public abstract String askFirstQuestion();
 
+	protected OntClass searchPhoneClassContaining(String keyword) {
+		keyword = keyword.toLowerCase();
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		for (Iterator<OntClass> it = smartphone.listSubClasses(); it.hasNext();) {
+			OntClass subClass = it.next();
+			if (subClass.getLocalName().toLowerCase().contains(keyword)) {
+				return subClass;
+			}
+		}
+		return null;
+	}
+
 }

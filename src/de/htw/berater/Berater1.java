@@ -157,14 +157,7 @@ public class Berater1 extends Berater {
 	}
 
 	private String touchBedinung(String touch) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		OntClass subClassOfInterest = null;
-		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(touch.toLowerCase())) {
-				subClassOfInterest = subClass;
-			}
-		}
+		OntClass subClassOfInterest = searchPhoneClassContaining(touch);
 		setCurrentProperties(subClassOfInterest);
 		context = 5;
 		nextAnswer = Answer.KEYWORD;

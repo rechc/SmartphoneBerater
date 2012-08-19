@@ -1,6 +1,5 @@
 package de.htw.berater;
 
-import java.util.Iterator;
 
 import com.hp.hpl.jena.ontology.OntClass;
 
@@ -52,14 +51,7 @@ public class Berater2 extends Berater {
 	}
 
 	public String proSmartphone(String proPhone) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		OntClass subClassOfInterest = null;
-		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(proPhone.toLowerCase())) {
-				subClassOfInterest = subClass;
-			}
-		}
+		OntClass subClassOfInterest = searchPhoneClassContaining(proPhone);
 		setCurrentProperties(subClassOfInterest);
 		context = 2;
 		nextAnswer = Answer.KEYWORD;
@@ -67,14 +59,7 @@ public class Berater2 extends Berater {
 	}
 
 	public String largeMemorySmartphone(String memory) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		OntClass subClassOfInterest = null;
-		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(memory.toLowerCase())) {
-				subClassOfInterest = subClass;
-			}
-		}
+		OntClass subClassOfInterest = searchPhoneClassContaining(memory);
 		setCurrentProperties(subClassOfInterest);
 		context = 3;
 		nextAnswer = Answer.YESNO;
@@ -83,14 +68,7 @@ public class Berater2 extends Berater {
 
 	public String usabilityOs(String os) {
 		if(!os.contains("nein")){
-			OntClass smartphone = model.getOntClass(ns + "Smartphone");
-			OntClass subClassOfInterest = null;
-			for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-				OntClass subClass = i.next();
-				if (subClass.getLocalName().toLowerCase().contains(os.toLowerCase())) {
-					subClassOfInterest = subClass;
-				}
-			}
+			OntClass subClassOfInterest = searchPhoneClassContaining(os);
 			setCurrentProperties(subClassOfInterest);
 		}
 		context = 4;
@@ -99,14 +77,7 @@ public class Berater2 extends Berater {
 	}
 
 	public String noKeyboardSmartphone(String keyboard) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		OntClass subClassOfInterest = null;
-		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(keyboard.toLowerCase())) {
-				subClassOfInterest = subClass;
-			}
-		}
+		OntClass subClassOfInterest = searchPhoneClassContaining(keyboard);
 		setCurrentProperties(subClassOfInterest);
 		context = 5;
 		nextAnswer = Answer.YESNO;
@@ -114,14 +85,7 @@ public class Berater2 extends Berater {
 	}
 
 	public String multimediaSmartphone(String media) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		OntClass subClassOfInterest = null;
-		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(media.toLowerCase())) {
-				subClassOfInterest = subClass;
-			}
-		}
+		OntClass subClassOfInterest = searchPhoneClassContaining(media);
 		setCurrentProperties(subClassOfInterest);
 		context = 6;
 		nextAnswer = Answer.YESNO;
@@ -129,14 +93,7 @@ public class Berater2 extends Berater {
 	}
 
 	public String cameraSmartphone(String camera) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		OntClass subClassOfInterest = null;
-		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(camera.toLowerCase())) {
-				subClassOfInterest = subClass;
-			}
-		}
+		OntClass subClassOfInterest = searchPhoneClassContaining(camera);
 		setCurrentProperties(subClassOfInterest);
 		context = 7;
 		nextAnswer = Answer.KEYWORD;
@@ -144,14 +101,7 @@ public class Berater2 extends Berater {
 	}
 
 	public String sameOsSmartphone(String os) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		OntClass subClassOfInterest = null;
-		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(os.toLowerCase())) {
-				subClassOfInterest = subClass;
-			}
-		}
+		OntClass subClassOfInterest = searchPhoneClassContaining(os);
 		setCurrentProperties(subClassOfInterest);
 		context = 8;
 		nextAnswer = Answer.YESNO;
@@ -159,14 +109,7 @@ public class Berater2 extends Berater {
 	}
 
 	public String navigationSmartphone(String navigation) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		OntClass subClassOfInterest = null;
-		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(navigation.toLowerCase())) {
-				subClassOfInterest = subClass;
-			}
-		}
+		OntClass subClassOfInterest = searchPhoneClassContaining(navigation);
 		setCurrentProperties(subClassOfInterest);
 		context = 9;
 		nextAnswer = Answer.KEYWORD;
@@ -174,14 +117,7 @@ public class Berater2 extends Berater {
 	}
 
 	public String smartphoneBrand(String brand) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		OntClass subClassOfInterest = null;
-		for (Iterator<OntClass> i = smartphone.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(brand.toLowerCase())) {
-				subClassOfInterest = subClass;
-			}
-		}
+		OntClass subClassOfInterest = searchPhoneClassContaining(brand);
 		setCurrentProperties(subClassOfInterest);
 		context = 10;
 		nextAnswer = Answer.FINISHED;
