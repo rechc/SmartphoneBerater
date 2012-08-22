@@ -11,22 +11,21 @@ public class DBTest {
 	// quick and dirty
 	
 	public static void main(String[] args){
-		SQLClient sq =SQLClient.getInstance();
-		List<Smartphone> xlist;
+		testOutput("Select * from Smartphones;");
+		System.out.println("Ende");
+	}
+	
+	public static void testOutput(String sql){
 		try {
-			xlist = sq.getSmartphones("Select * from Smartphones;");
-			for(Smartphone rd : xlist){
-				System.out.println(rd.toString());
-			}
+			List<Smartphone> list = SQLClient.getInstance().getSmartphones(sql);
+			System.out.println(list);
+			System.out.println(list.size());
 		} catch (DBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		System.out.println("Ende");
 	}
+	
+	
 
 }

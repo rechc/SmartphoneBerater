@@ -90,25 +90,40 @@ public class SQLClient {
 
 	/**
 	 * 
-	 * @param sql erwartet select Befehl auf Smartphones
+	 * @param sql
+	 *            erwartet select Befehl auf Smartphones
 	 * @return List<ResultData>
-	 * @throws DBException 
+	 * @throws DBException
 	 */
 	public List<Smartphone> getSmartphones(String sql) throws DBException {
 		ArrayList<Smartphone> rdl = new ArrayList<Smartphone>();
+		ResultSet rs = null;
+		Statement stmnt = null;
+		Connection con = null;
 		try {
-			Connection con = getConnection();
-			Statement stmnt = con.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+			con = getConnection();
+			stmnt = con.createStatement(ResultSet.TYPE_FORWARD_ONLY,
 					ResultSet.CONCUR_READ_ONLY);
 			if (stmnt.execute(sql)) {
-				ResultSet rs = stmnt.getResultSet();
+				rs = stmnt.getResultSet();
 				rdl = parseResultData(rdl, rs);
 				rs.close();
 			}
 			stmnt.close();
 			con.close();
 		} catch (SQLException e) {
-			throw new DBException("DB Exception: "+e);
+			throw new DBException("DB Exception: " + e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (stmnt != null)
+					stmnt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException ex) {
+				// Ignore.
+			}
 		}
 
 		return rdl;
@@ -162,12 +177,13 @@ public class SQLClient {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			stmt = conn.prepareStatement("select distinct(marke) from Smartphones order by 1");
+			stmt = conn
+					.prepareStatement("select distinct(marke) from Smartphones order by 1");
 			rs = stmt.executeQuery();
 			while (rs.next())
 				brands.add(rs.getString(1));
 		} catch (SQLException e) {
-			throw new DBException("DB Exception: "+e);
+			throw new DBException("DB Exception: " + e);
 		} finally {
 			try {
 				if (rs != null)

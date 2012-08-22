@@ -1,10 +1,16 @@
 package de.htw.berater.test.junit;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 import de.htw.berater.Berater1;
 import de.htw.berater.Customer;
 import de.htw.berater.controller.Answer;
 import de.htw.berater.controller.Question;
+import de.htw.berater.db.DBException;
+import de.htw.berater.db.SQLClient;
+import de.htw.berater.db.Smartphone;
+import de.htw.test.DBTest;
 
 public class Berater1Test extends TestCase {
 
@@ -21,6 +27,7 @@ public class Berater1Test extends TestCase {
 		System.out.println(question.getChoices());
 		berater.evaluateAnswer(new Answer("bilder"));
 		System.out.println(berater.getSQLString());
+		DBTest.testOutput(berater.getSQLString());
 		
 		// Frage 2a
 		printLeerzeilen();
@@ -28,6 +35,7 @@ public class Berater1Test extends TestCase {
 		System.out.println(question);
 		berater.evaluateAnswer(new Answer("normales"));
 		System.out.println(berater.getSQLString());
+		DBTest.testOutput(berater.getSQLString());
 		
 		// Frage 2b
 //		printLeerzeilen();
@@ -50,6 +58,7 @@ public class Berater1Test extends TestCase {
 		berater.addCustomerInfo(Customer.SEHBEHINDERT);
 		berater.evaluateAnswer(new Answer("großes"));
 		System.out.println(berater.getSQLString());
+		DBTest.testOutput(berater.getSQLString());
 		if (berater.getContext() == 4) {
 			// Frage 4 
 			printLeerzeilen();
@@ -57,6 +66,7 @@ public class Berater1Test extends TestCase {
 			System.out.println(question);
 			berater.evaluateAnswer(new Answer("keinetastatur"));
 			System.out.println(berater.getSQLString());
+			DBTest.testOutput(berater.getSQLString());
 		} 
 		
 		// Frage 5
@@ -65,6 +75,7 @@ public class Berater1Test extends TestCase {
 		System.out.println(question);
 		berater.evaluateAnswer(new Answer("outdoor"));
 		System.out.println(berater.getSQLString());
+		//DBTest.testOutput(berater.getSQLString());
 		
 		// Frage 6
 		printLeerzeilen();
@@ -89,8 +100,7 @@ public class Berater1Test extends TestCase {
 	}
 	
 	private static void printLeerzeilen() {
-		System.out.println();
-		System.out.println();
+		System.out.println("\n");
 	}
 
 	public static void main(String[] args) {
