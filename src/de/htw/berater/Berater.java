@@ -134,7 +134,8 @@ public abstract class Berater {
 			OntClass superClass = supers.next();
 			if (superClass.isRestriction() || superClass.isUnionClass()
 					|| superClass.isIntersectionClass()
-					|| superClass.isComplementClass()) {
+					|| superClass.isComplementClass()
+					&& !superClass.hasSubClass()) { //nur blatt-eigenschaften
 				tmpProperties.add(superClass);
 			}
 		}
@@ -171,13 +172,48 @@ public abstract class Berater {
 		}
 		return s.substring(0, s.length() - 5); //wegen " and "
 	}
+	
+	private String extractActualIdentifier(String propertyName) {
+		if (!propertyName.matches("^[A-Z].*")) throw new RuntimeException("Die Properties müssen immer mit einem grossbuchstaben beginnen");
+		boolean lowerCaseFound = false;
+		for (int i = 0; i < propertyName.length(); i++) {
+			if (Character.isLowerCase(propertyName.charAt(i))) {
+				lowerCaseFound = true;
+			}
+			if (lowerCaseFound) {
+				if (Character.isUpperCase(propertyName.charAt(i))) {
+					return propertyName.substring(0, i);
+				}
+			}
+		}
+		return propertyName;
+	}
+	
+	private String extractGeneralIdentifier(String propertyName) {
+		boolean lowerCaseFound = false;
+		for (int i = 0; i < propertyName.length(); i++) {
+			if (Character.isLowerCase(propertyName.charAt(i))) {
+				lowerCaseFound = true;
+			}
+			if (lowerCaseFound) {
+				if (Character.isUpperCase(propertyName.charAt(i))) {
+					return propertyName.substring(i);
+				}
+			}
+		}
+		return propertyName;
+	}
 
 	private String processPropertyToSQL(OntClass property) {
 		if (property.isRestriction()) {
 			ReadableProperty constraint = getReadablePropertyFromRestriction(property
 					.asRestriction());
 			if (constraint.getKey().equals("hatEigenschaft")) {
-				return constraint.getValue() + " = 1 ";
+				if (constraint.isBooleanValue()) {
+					return constraint.getValue() + " = 1 ";
+				} else {
+					return constraint.getValue();
+				}
 			} else {
 				if (constraint.getKey().equals("hatZweck")) {
 					return "1";
@@ -286,7 +322,7 @@ public abstract class Berater {
 					str = "<=";
 				}
 				Literal literal = stmt.getLiteral();
-				sqlConstraint.setValue(str + literal.getInt());
+				sqlConstraint.setValue(str + literal.getInt(), true);
 			}
 		} else {
 			if (res.canAs(UnionClass.class)) {
@@ -294,11 +330,11 @@ public abstract class Berater {
 				UnionClass union = res.as(UnionClass.class);
 				for (Iterator<? extends OntClass> it = union.listOperands(); it.hasNext();) {
 					OntClass op = it.next();
-					unionStr += op.getLocalName() + (it.hasNext() ? " = 1 or " : "");
+					unionStr += extractGeneralIdentifier(op.getLocalName()) + " like '" + extractActualIdentifier(op.getLocalName()) + "%' " + (it.hasNext() ? " or " : "");
 				}
-				sqlConstraint.setValue(unionStr);
+				sqlConstraint.setValue(unionStr, false);
 			} else {
-				sqlConstraint.setValue(res.getLocalName());
+				sqlConstraint.setValue(res.getLocalName(), true);
 			}
 		}
 		return sqlConstraint;
@@ -306,14 +342,15 @@ public abstract class Berater {
 
 	protected List<OntClass> getCoveringAxiomClasses(List<OntClass> classes) {
 		List<OntClass> coveringAxiomClasses = new LinkedList<OntClass>();
+		List<OntClass> tmpClasses = new LinkedList<OntClass>();
 		for (OntClass abstractClass : classes) {
 			if (isCoveringAxiom(abstractClass)) {
 				ExtendedIterator<OntClass> ri = abstractClass.listSubClasses();
 				while (ri.hasNext()) {
-					coveringAxiomClasses.add(ri.next());
+					tmpClasses.add(ri.next());
 				}
 				coveringAxiomClasses
-						.addAll(getCoveringAxiomClasses(coveringAxiomClasses));
+						.addAll(getCoveringAxiomClasses(tmpClasses));
 			} else {
 				coveringAxiomClasses.add(abstractClass);
 			}

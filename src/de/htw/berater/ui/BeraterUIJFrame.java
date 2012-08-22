@@ -10,10 +10,7 @@ import java.awt.Rectangle;
 import java.util.List;
 
 import javax.swing.BoxLayout;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,9 +19,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -36,23 +31,8 @@ public class BeraterUIJFrame extends BeraterUI{
 
 	private JFrame frame = new JFrame();
 	
-	// Antwortmoeglichkeit 1 Textfeld
-	private JTextField txtAnswer;
-
-	// Antwortmoeglichkeit 2 drop down
-	private JComboBox answerBox;
-
-	// Antwortmoeglichkeit 3 container mit Elementen
-	private JPanel answer_panel_a3;
-	
-	// Enthaelt alle 3 Tabs
-	private JTabbedPane tabbedPane;
-
 	// aktuelle Frage
 	private JLabel labelQuestion;
-
-	// Antwortmoeglichkeiten (für Antwortmoeglichkeit 2)
-	private String[] answer;
 
 	// Panel fuer die Weiter - Taste
 	private JPanel commit_panel;
@@ -96,7 +76,6 @@ public class BeraterUIJFrame extends BeraterUI{
 	 */
 	private void initialize() {
 
-		answer = new String[] {"Telefonieren, SMS, Internet, E-Mail, Spiele"};
 		UIActions uiActions = new UIActions(this);
 		JPanel szenario_mainpanel = new JPanel();
 		frame.getContentPane().add(szenario_mainpanel, BorderLayout.NORTH);
@@ -172,8 +151,20 @@ public class BeraterUIJFrame extends BeraterUI{
 		buttonGo.addActionListener(uiActions);
 		commit_panel.add(buttonGo);
 		
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		JScrollPane scrollLeft = new JScrollPane(tabbedPane);
+		answer_type2 = new JPanel();
+		answer_type2.setLayout(new BoxLayout(answer_type2, BoxLayout.Y_AXIS));
+		
+		JLabel L2 = new JLabel("Wählen Sie die passenden Eigenschaften aus");
+		L2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		answer_type2.add(L2);
+		L2.setBorder(null);
+		L2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setMaximumSize(new Dimension(32767, 20));
+		answer_type2.add(separator_1);
+		
+		JScrollPane scrollLeft = new JScrollPane(answer_type2);
 		
 		available_smartphones_panel = new JPanel();
 		available_smartphones_panel.setLayout(new BoxLayout(available_smartphones_panel, BoxLayout.PAGE_AXIS));
@@ -203,234 +194,8 @@ public class BeraterUIJFrame extends BeraterUI{
 		answer_splitPane.setOneTouchExpandable(true);
 		answer_splitPane.setMinimumSize(new Dimension(500, 500));
 		answer_splitPane.setVisible(false);
-
-		
-		JPanel answer_type1 = new JPanel();
-		tabbedPane.addTab("Direkteingabe", null, answer_type1, null);
-		answer_type1.setAlignmentX(Component.LEFT_ALIGNMENT);
-		answer_type1.setMinimumSize(new Dimension(250, 10));
-		answer_type1.setLayout(new BoxLayout(answer_type1, BoxLayout.PAGE_AXIS));
-		
-		JLabel L1 = new JLabel("Geben Sie hier die Antwort des Kunden ein");
-		L1.setAlignmentX(Component.CENTER_ALIGNMENT);
-		answer_type1.add(L1);
-		L1.setHorizontalTextPosition(SwingConstants.LEFT);
-		L1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		L1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JSeparator separator = new JSeparator();
-		separator.setMaximumSize(new Dimension(32767, 20));
-		answer_type1.add(separator);
-		
-		//Direkt-Eingabe der Antwort
-		txtAnswer = new JTextField();
-		txtAnswer.setMaximumSize(new Dimension(250, 25));
-		txtAnswer.setMinimumSize(new Dimension(250, 25));
-		txtAnswer.setPreferredSize(new Dimension(250, 25));
-		txtAnswer.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtAnswer.setText("");
-		answer_type1.add(txtAnswer);
-		txtAnswer.setColumns(1);
-		
-		
-		answer_type2 = new JPanel();
-		tabbedPane.addTab("Direkt-Auswahl", null, answer_type2, null);
-		answer_type2.setLayout(new BoxLayout(answer_type2, BoxLayout.Y_AXIS));
-		
-		JLabel L2 = new JLabel("Wählen Sie bitte die passende Antwort aus");
-		L2.setAlignmentX(Component.CENTER_ALIGNMENT);
-		answer_type2.add(L2);
-		L2.setBorder(null);
-		L2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setMaximumSize(new Dimension(32767, 20));
-		answer_type2.add(separator_1);
-		
-		answerBox = new JComboBox();
-		answerBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		answerBox.setMaximumSize(new Dimension(321, 30));
-		answerBox.setModel(new DefaultComboBoxModel(answer));
-		answerBox.setPreferredSize(new Dimension(250, 30));
-		answer_type2.add(answerBox);
-		
-		JPanel answer_type3 = new JPanel();
-		tabbedPane.addTab("Detail-Auswahl", null, answer_type3, null);
-		answer_type3.setLayout(new BoxLayout(answer_type3, BoxLayout.PAGE_AXIS));
-		
-		JLabel L3 = new JLabel("Wählen Sie die passenden Eigenschaften aus");
-		answer_type3.add(L3);
-		L3.setAlignmentX(Component.CENTER_ALIGNMENT);
-		L3.setHorizontalTextPosition(SwingConstants.LEFT);
-		L3.setHorizontalAlignment(SwingConstants.LEFT);
-		L3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setPreferredSize(new Dimension(0, 20));
-		separator_2.setMinimumSize(new Dimension(0, 20));
-		separator_2.setMaximumSize(new Dimension(32767, 20));
-		answer_type3.add(separator_2);
-		
-		answer_panel_a3 = getPropertyPanel();
-		answer_type3.add(answer_panel_a3);
-		
-		tabbedPane.setSelectedIndex(1);
 	}
 	
-	/* erstellt ein JPanel mit allen Propertys der Antwortmöglickeit 3
-	 * 
-	 */
-	private JPanel getPropertyPanel(){
-		JPanel tmpPanel = new JPanel();
-		tmpPanel.setPreferredSize(new Dimension(300, 450));
-		tmpPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		JCheckBox chkbxTelefonieren = new JCheckBox("Telefonieren", true);
-		chkbxTelefonieren.setName("telefonieren");
-		chkbxTelefonieren.setSelected(true);
-		chkbxTelefonieren.setEnabled(false);
-		tmpPanel.add(chkbxTelefonieren);
-		
-		JCheckBox chkbxSms = new JCheckBox("SMS", true);
-		chkbxSms.setName("sms");
-		chkbxSms.setSelected(true);
-		chkbxSms.setEnabled(false);
-		tmpPanel.add(chkbxSms);
-		
-		JCheckBox chkbxInternet = new JCheckBox("Internet", true);
-		chkbxInternet.setName("internet");
-		chkbxInternet.setName("sms");
-		chkbxInternet.setSelected(true);
-		chkbxInternet.setEnabled(false);
-		tmpPanel.add(chkbxInternet);
-		
-		// email
-		JCheckBox chkbxEmail = new JCheckBox("E-Mail", true);
-		chkbxEmail.setName("email");
-		chkbxEmail.setSelected(true);
-		chkbxEmail.setEnabled(false);
-		tmpPanel.add(chkbxEmail);
-		
-		// Outdoor Checkbox
-		JCheckBox chkbxOutdoor = new JCheckBox("Outdoor-Handy");
-		chkbxOutdoor.setName("outdoor");
-		tmpPanel.add(chkbxOutdoor);
-		
-		// Navi Checkbox
-		JCheckBox chkbxNavi = new JCheckBox("Navigation");
-		chkbxNavi.setName("navi");
-		tmpPanel.add(chkbxNavi);
-		
-		// Spiele Checkbox
-		JCheckBox chkbxSpiele = new JCheckBox("Spiele");
-		chkbxSpiele.setName("spiele");
-		tmpPanel.add(chkbxSpiele);
-
-		// Spiele-Auswahl Combobox
-		JPanel spielePanel = new JPanel();
-		spielePanel.add(new JLabel("Spiele-Auswahl:"));
-		
-		JComboBox comboSpiele = new JComboBox();
-		ComboboxData[] spieleData = new ComboboxData[3];
-		spieleData[0] = new ComboboxData("", "");
-		spieleData[1] = new ComboboxData("Normale Spiele", "normales");
-		spieleData[2] = new ComboboxData("Grafisch anspruchsvolle Spiele", "gutes");
-		comboSpiele.setModel(new DefaultComboBoxModel(spieleData));
-		spielePanel.add(comboSpiele);
-		tmpPanel.add(spielePanel);
-		
-		//Displaygroesse
-		JPanel panelDisplaygroesse = new JPanel();
-		panelDisplaygroesse.add(new JLabel("Displaygröße"));
-
-		ComboboxData[] displaygroesseData = new ComboboxData[3];
-		displaygroesseData[0] = new ComboboxData("", "");
-		displaygroesseData[1] = new ComboboxData("Klein", "kleines");
-		displaygroesseData[2] = new ComboboxData("Groß", "grosses");
-		JComboBox comboDisplaygroesse = new JComboBox();
-		comboDisplaygroesse.setModel(new DefaultComboBoxModel(displaygroesseData));
-		panelDisplaygroesse.add(comboDisplaygroesse);
-		tmpPanel.add(panelDisplaygroesse);
-
-		//Hardwaretastatur
-		JPanel panelHardwaretastatur = new JPanel();
-		panelHardwaretastatur.add(new JLabel("Hardwaretastatur"));
-
-		ComboboxData[] hardwaretastaturData = new ComboboxData[3];
-		hardwaretastaturData[0] = new ComboboxData("", "");
-		hardwaretastaturData[1] = new ComboboxData("Ja", "hardwaretastaur");
-		hardwaretastaturData[2] = new ComboboxData("Nein", "keinetastatur");
-		JComboBox comboHardwaretastatur = new JComboBox();
-		comboHardwaretastatur.setModel(new DefaultComboBoxModel(hardwaretastaturData));
-		panelHardwaretastatur.add(comboHardwaretastatur);
-		tmpPanel.add(panelHardwaretastatur);
-
-		//Kamera
-		JPanel panelKamera = new JPanel();
-		panelKamera.add(new JLabel("Kamera"));
-
-		ComboboxData[] kameraData = new ComboboxData[3];
-		kameraData[0] = new ComboboxData("", "");
-		kameraData[1] = new ComboboxData("Normale Kamera", "kamera");
-		kameraData[2] = new ComboboxData("Gute Kamera", "gutekamera");
-		JComboBox comboKamera = new JComboBox();
-		comboKamera.setModel(new DefaultComboBoxModel(kameraData));
-		panelKamera.add(comboKamera);
-		tmpPanel.add(panelKamera);
-
-		/**
-		//Aufloesung
-		JPanel panelAufloesung = new JPanel();
-		panelAufloesung.add(new JLabel("Auflösung"));
-
-		JTextField txtAufloesung = new JTextField();
-		txtAufloesung.setName("aufloesung");
-		txtAufloesung.setColumns(10);
-		panelAufloesung.add(txtAufloesung);
-		tmpPanel.add(panelAufloesung);
-		 **/
-		
-		//Betriebssystem
-		JPanel panelBetriebssystem = new JPanel();
-		panelBetriebssystem.add(new JLabel("Betriebssystem"));
-
-		ComboboxData[] betriebssystemData = new ComboboxData[6];
-		betriebssystemData[0] = new ComboboxData("", "");
-		betriebssystemData[1] = new ComboboxData("Android", "android");
-		betriebssystemData[2] = new ComboboxData("iOS (Apple)", "ios");
-		betriebssystemData[3] = new ComboboxData("Bada", "bada");
-		betriebssystemData[4] = new ComboboxData("Symbian", "symbian");
-		betriebssystemData[5] = new ComboboxData("Anderes", "other");
-		JComboBox comboBetriebssystem = new JComboBox();
-		comboBetriebssystem.setModel(new DefaultComboBoxModel(betriebssystemData));
-		panelBetriebssystem.add(comboBetriebssystem);
-		tmpPanel.add(panelBetriebssystem);
-
-		//Marke
-		JPanel panelMarke = new JPanel();
-		panelMarke.add(new JLabel("Marke"));
-
-		JTextField txtMarke = new JTextField();
-		txtMarke.setName("marke");
-		txtMarke.setColumns(10);
-		panelMarke.add(txtMarke);
-		tmpPanel.add(panelMarke);
-
-		// Name
-		JPanel panelName = new JPanel();
-		panelName.add(new JLabel("Name"));
-				
-		JTextField txtName = new JTextField();
-		txtName.setName("name");
-		txtName.setColumns(10);
-		panelName.add(txtName);
-		
-		tmpPanel.add(panelName);
-		
-		
-		
-		return tmpPanel;
-	}
 	
 	/** Setzt eine neue Frage
 	 * 
@@ -440,57 +205,8 @@ public class BeraterUIJFrame extends BeraterUI{
 		labelQuestion.setText(question.getText());
 	}
 	
-	/** Setzt EINE neue Antwort
-	 *  
-	 * @param newAnswer
-	 */
-	public void setNewAnswer(String newAnswer){
-		setNewAnswer(new String[] { newAnswer });
-	}
-	
-	/** Setzt mehrere neue Antworten
-	 * 
-	 * @param newAnswer
-	 */
-	public void setNewAnswer(String[] newAnswer){
-		answer = newAnswer;
-		answerBox.setModel(new DefaultComboBoxModel(answer));
-	}
-
-	/** gibt das Pane mit den Tabs zurueck
-	 * 
-	 * @return
-	 */
-	public JTabbedPane getTabbedPane(){
-		return tabbedPane;
-	}
-	
-	/** Gibt die Antwort zurueck, falls Antwortmoeglichkeit 1 ausgewaehlt
-	 * 
-	 * @return
-	 */
-	public String getTxtAnswer(){
-		return txtAnswer.getText();
-	}
-	
-	/** Gibt die Comboboy mit Antworten zurueck, falls Antwortmoeglichkeit 2 ausgewaehlt
-	 * 
-	 * @return
-	 */
-	public JComboBox getAnswerBox(){
-		return answerBox;
-	}
-
 	public AnswerPanel getAnswerPanel() {
 		return answerPanel;
-	}
-	
-	/** Gibt das Panel mit allen Eigenschaften zurueck, falls Antwortmoeglichkeit 3 ausgewaehlt
-	 * 
-	 * @return
-	 */
-	public JPanel getAnswer_panel_a3(){
-		return answer_panel_a3;
 	}
 	
 	public void initializeAnswers(){
@@ -506,6 +222,8 @@ public class BeraterUIJFrame extends BeraterUI{
 	@Override
 	public void onNewQuestion(Question question){
 		answer_type2.removeAll();
+		answer_type2.revalidate();
+		answer_type2.repaint();
 		answerPanel = new AnswerPanel(question);
 		answer_type2.add(answerPanel);
 		this.setNewQuestion(question);
@@ -603,27 +321,4 @@ public class BeraterUIJFrame extends BeraterUI{
 			}
 		});
 	}
-	
-
-	public class ComboboxData{
-		private String text;
-		private String name;
-		
-		public ComboboxData(String text, String name){
-			this.text = text;
-			this.name = name;
-		}
-		
-		public String getText(){
-			return text;
-		}
-		public String getName(){
-			return name;
-		}
-		
-		@Override
-		public String toString(){
-			return text;
-		}
-}
 }

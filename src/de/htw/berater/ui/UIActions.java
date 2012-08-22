@@ -3,14 +3,6 @@ package de.htw.berater.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import de.htw.berater.controller.Answer;
-import de.htw.berater.ui.BeraterUIJFrame.ComboboxData;
-
 public class UIActions implements ActionListener {
 
 	private BeraterUIJFrame frame;
@@ -42,76 +34,9 @@ public class UIActions implements ActionListener {
 		}
 		
 		if (a.getActionCommand().equals("weiter")){
-			//getSelectedIndex()
-			//View tmpView = siGui.getView();
-			int actualAnswerPanel = frame.getTabbedPane().getSelectedIndex();
-			
-			String answer = "";
-			
-			switch (actualAnswerPanel){
-				case 0: // Direkteingabe-View ist aktiv
-						answer = frame.getTxtAnswer();
-						break;
-						
-				case 1: // Direktauswahl-View ist aktiv
-//						answer = frame.getAnswerBox().getSelectedItem().toString();
-//						break;
-					frame.getController().answer(frame.getAnswerPanel().getAnswer());
-					return;
-						
-				case 2: // Detailauswahl-View ist aktiv
-						JPanel tmpAnswers = frame.getAnswer_panel_a3();
-						
-						for (Object o: tmpAnswers.getComponents()){
-							
-							// aktuelles Objekt == Checkbox?
-							if (o instanceof JCheckBox){
-								JCheckBox tmpChkBox = (JCheckBox)o;
-								if (tmpChkBox.isSelected()){
-									if (tmpChkBox.isEnabled()){
-										answer = tmpChkBox.getName();
-										tmpChkBox.setEnabled(false);
-									}
-								}
-							}
-							// aktuelles Objekt == JPanel?
-							if (o instanceof JPanel){
-								JPanel tmpPanel = (JPanel) o;
-								
-								// aktuelles (Unter) Objekt == JTextField?
-								if (tmpPanel.getComponent(tmpPanel.getComponentCount() -1) instanceof JTextField){
-								
-									JTextField tmpTextField = (JTextField)tmpPanel.getComponent(tmpPanel.getComponentCount() -1);
-									
-									// Inhalt nur in Antwort aufnehmen wenn es nicht leer ist
-									if (tmpTextField != null){
-										if (!tmpTextField.getText().equals("")){
-											if (tmpTextField.isEnabled()){
-												answer = tmpTextField.getText();
-												tmpTextField.setEnabled(false);
-											}
-										}
-									}
-									
-								} 
-								// aktuelles Objekt == JComboBox?
-								if (tmpPanel.getComponent(tmpPanel.getComponentCount() -1) instanceof JComboBox){
-									JComboBox tmpComboBox = (JComboBox) tmpPanel.getComponent(tmpPanel.getComponentCount() -1);
-									if (!((ComboboxData)tmpComboBox.getSelectedItem()).getName().equals("")){
-										if (tmpComboBox.isEnabled()){
-											answer = ((ComboboxData)tmpComboBox.getSelectedItem()).getName();
-											tmpComboBox.setEnabled(false);
-										}
-									}
-									
-								}
-							}
-						}
-					break;
-			}
-			// Antwort an Controller uebergeben
-			frame.getController().answer(new Answer(answer));
-		} 
+			frame.getController().answer(frame.getAnswerPanel().getAnswer());
+			return;
+		}
 		// Radiobutton fuer Szenario 1 gewaehlt
 		if (a.getActionCommand().equals("radioButtonScenario1")){
 			frame.getRadioButtonScenario2().setSelected(false);

@@ -32,7 +32,7 @@ public class AnswerPanel extends JPanel {
 	private void initialize() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		if (question.getType() == QuestionType.INPUT) {
+		if (question.getType() == QuestionType.INPUT) { //wegen preis = 500 z.b
 			input = new JTextField();
 			add(input);
 		} else {

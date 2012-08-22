@@ -76,7 +76,7 @@ public class Berater1 extends Berater {
 		OntClass zweckSubClass = null;
 		for (Iterator<OntClass> i = zweckClass.listSubClasses(); i.hasNext();) {
 			OntClass subClass = i.next();
-			if (subClass.getLocalName().toLowerCase().contains(zweck)) {
+			if (subClass.getLocalName().contains(zweck)) {
 				zweckSubClass = subClass;
 			}
 		}
@@ -115,15 +115,20 @@ public class Berater1 extends Berater {
 			question = question.replace(", ?", "?");
 			context = 2;
 			rememberList.clear();
+			
+			ChoicesBuilder cb = new ChoicesBuilder();
 			for (OntClass clazz : classesCoveringAxiomsResolved) {
 				if (!smartphones.contains(clazz)) {
 					rememberList.add(clazz);
+					cb.add("Ein " + clazz.getLocalName(), clazz.getLocalName());
 				}
 			}
+			List<Choice> choices = cb.build();
 			for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
 				setCurrentProperties(classesCoveringAxiomsResolved.get(i));
 			}
-			nextQuestion = new Question(QuestionType.CHOICE, "Was ist das? " + question, ChoicesBuilder.yesNo("lol", "olol"));
+			
+			nextQuestion = new Question(QuestionType.CHOICE, question, choices);
 		} else {
 			// dieser fall ist nicht in der ontologie enthalten, aber egal. Funktioniert auch für BilderMachenZweck
 			for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {

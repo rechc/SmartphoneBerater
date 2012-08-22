@@ -27,7 +27,6 @@ public class Smartphone {
 
 	// private boolean outDoor;
 	// private int aufloesung;
-	// private boolean appStore;
 
 	// ----- Getter + Setter -----
 

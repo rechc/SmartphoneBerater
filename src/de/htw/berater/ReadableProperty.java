@@ -4,17 +4,24 @@ public class ReadableProperty {
 	
 	private String key;
 	private String value;
+	private boolean booleanValue;
+	
 	public String getKey() {
 		return key;
 	}
 	public void setKey(String key) {
 		this.key = key;
 	}
+	public boolean isBooleanValue() {
+		return booleanValue;
+	}
+	
 	public String getValue() {
 		return value;
 	}
-	public void setValue(String value) {
+	public void setValue(String value, boolean booleanValue) {
 		this.value = value;
+		this.booleanValue = booleanValue;
 	}
 	
 	@Override
