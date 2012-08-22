@@ -23,11 +23,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import de.htw.berater.controller.Controller;
+import de.htw.berater.controller.Question;
 import de.htw.berater.db.Smartphone;
 
 public class BeraterUIJFrame extends BeraterUI{
@@ -66,6 +68,13 @@ public class BeraterUIJFrame extends BeraterUI{
 	
 	// Panel für Übrige Handys
 	private JPanel available_smartphones_panel;
+	private JTable table;
+
+	private SmartphoneTableModel tableModel;
+
+	private JPanel answer_type2;
+
+	private AnswerPanel answerPanel;
 
 	/** Konstruktor mit Werte, initialisiert die UI
 	 * 
@@ -164,12 +173,32 @@ public class BeraterUIJFrame extends BeraterUI{
 		commit_panel.add(buttonGo);
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		available_smartphones_panel = new JPanel();
 		JScrollPane scrollLeft = new JScrollPane(tabbedPane);
 		
-		JScrollPane scrollRight = new JScrollPane(available_smartphones_panel);
+		available_smartphones_panel = new JPanel();
+		available_smartphones_panel.setLayout(new BoxLayout(available_smartphones_panel, BoxLayout.PAGE_AXIS));
 		
-		answer_splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollLeft, scrollRight);
+		JLabel labelAvailableSmartphones = new JLabel("Verfügbare Smartphones");
+		labelAvailableSmartphones.setAlignmentX(Component.CENTER_ALIGNMENT);
+		labelAvailableSmartphones.setHorizontalTextPosition(SwingConstants.CENTER);
+		labelAvailableSmartphones.setHorizontalAlignment(SwingConstants.CENTER);
+		labelAvailableSmartphones.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		available_smartphones_panel.add(labelAvailableSmartphones);
+
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setMaximumSize(new Dimension(32767, 20));
+		separator_3.setPreferredSize(new Dimension(0, 20));
+		available_smartphones_panel.add(separator_3);
+
+		tableModel = new SmartphoneTableModel();
+		table = new JTable(tableModel);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setFillsViewportHeight(true);
+		table.getColumn("Name").setPreferredWidth(150);
+		JScrollPane scrollRight = new JScrollPane(table);
+		available_smartphones_panel.add(scrollRight);
+
+		answer_splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollLeft, available_smartphones_panel);
 		mainPanel.add(answer_splitPane, BorderLayout.CENTER);
 		answer_splitPane.setOneTouchExpandable(true);
 		answer_splitPane.setMinimumSize(new Dimension(500, 500));
@@ -204,8 +233,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		txtAnswer.setColumns(1);
 		
 		
-		//Direkt-Auswahl der Antwort
-		JPanel answer_type2 = new JPanel();
+		answer_type2 = new JPanel();
 		tabbedPane.addTab("Direkt-Auswahl", null, answer_type2, null);
 		answer_type2.setLayout(new BoxLayout(answer_type2, BoxLayout.Y_AXIS));
 		
@@ -246,21 +274,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		answer_panel_a3 = getPropertyPanel();
 		answer_type3.add(answer_panel_a3);
 		
-		available_smartphones_panel.setLayout(new BoxLayout(available_smartphones_panel, BoxLayout.PAGE_AXIS));
-	
-		
-		JLabel labelAvailableSmartphones = new JLabel("Verfügbare Smartphones");
-		labelAvailableSmartphones.setAlignmentX(Component.CENTER_ALIGNMENT);
-		labelAvailableSmartphones.setHorizontalTextPosition(SwingConstants.CENTER);
-		labelAvailableSmartphones.setHorizontalAlignment(SwingConstants.CENTER);
-		labelAvailableSmartphones.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		available_smartphones_panel.add(labelAvailableSmartphones);
-		
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setMaximumSize(new Dimension(32767, 20));
-		separator_3.setPreferredSize(new Dimension(0, 20));
-		available_smartphones_panel.add(separator_3);
-		
+		tabbedPane.setSelectedIndex(1);
 	}
 	
 	/* erstellt ein JPanel mit allen Propertys der Antwortmöglickeit 3
@@ -422,8 +436,8 @@ public class BeraterUIJFrame extends BeraterUI{
 	 * 
 	 * @param newQuestion
 	 */
-	public void setNewQuestion(String newQuestion){
-		labelQuestion.setText(newQuestion);
+	public void setNewQuestion(Question question){
+		labelQuestion.setText(question.getText());
 	}
 	
 	/** Setzt EINE neue Antwort
@@ -431,9 +445,7 @@ public class BeraterUIJFrame extends BeraterUI{
 	 * @param newAnswer
 	 */
 	public void setNewAnswer(String newAnswer){
-		answer = new String[1];
-		answer[0] = newAnswer;
-		answerBox.setModel(new DefaultComboBoxModel(answer));
+		setNewAnswer(new String[] { newAnswer });
 	}
 	
 	/** Setzt mehrere neue Antworten
@@ -468,6 +480,10 @@ public class BeraterUIJFrame extends BeraterUI{
 	public JComboBox getAnswerBox(){
 		return answerBox;
 	}
+
+	public AnswerPanel getAnswerPanel() {
+		return answerPanel;
+	}
 	
 	/** Gibt das Panel mit allen Eigenschaften zurueck, falls Antwortmoeglichkeit 3 ausgewaehlt
 	 * 
@@ -488,8 +504,11 @@ public class BeraterUIJFrame extends BeraterUI{
 	}
 
 	@Override
-	public void onNewQuestion(String newQuestion){
-		this.setNewQuestion(newQuestion);
+	public void onNewQuestion(Question question){
+		answer_type2.removeAll();
+		answerPanel = new AnswerPanel(question);
+		answer_type2.add(answerPanel);
+		this.setNewQuestion(question);
 	}
 	
 	@Override
@@ -505,21 +524,14 @@ public class BeraterUIJFrame extends BeraterUI{
 	
 	@Override
 	public void onNewData(List<Smartphone> resultData) {
-		//System.out.println("werde aufgerufen");
-		if (resultData != null){
-			//JPanel tmpPanel = new JPanel();
-			for (Smartphone r: resultData){
-				//tmpPanel.add(new JLabel(r.toString()));
-				available_smartphones_panel.add(new JLabel(r.toString()));
-			}
-			//this.setAvailable_smartphones_panel(tmpPanel);
-		}
+		tableModel.setPhoneList(resultData);
 	}
 
 	/** Funktion zum setzen des Controllers
 	 * 
 	 * @param controller
 	 */
+	@Override
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
@@ -609,6 +621,7 @@ public class BeraterUIJFrame extends BeraterUI{
 			return name;
 		}
 		
+		@Override
 		public String toString(){
 			return text;
 		}

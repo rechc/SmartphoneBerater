@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import de.htw.berater.controller.FalseAnswerException;
+import de.htw.berater.controller.Answer;
 import de.htw.berater.ui.BeraterUIJFrame.ComboboxData;
 
 public class UIActions implements ActionListener {
@@ -54,8 +54,10 @@ public class UIActions implements ActionListener {
 						break;
 						
 				case 1: // Direktauswahl-View ist aktiv
-						answer = frame.getAnswerBox().getSelectedItem().toString();
-						break;
+//						answer = frame.getAnswerBox().getSelectedItem().toString();
+//						break;
+					frame.getController().answer(frame.getAnswerPanel().getAnswer());
+					return;
 						
 				case 2: // Detailauswahl-View ist aktiv
 						JPanel tmpAnswers = frame.getAnswer_panel_a3();
@@ -105,18 +107,10 @@ public class UIActions implements ActionListener {
 								}
 							}
 						}
-					
-				default:
 					break;
-			
 			}
 			// Antwort an Controller uebergeben
-			try {
-				frame.getController().answer(answer);
-			} catch (FalseAnswerException e) {
-				e.printStackTrace();
-			}
-			
+			frame.getController().answer(new Answer(answer));
 		} 
 		// Radiobutton fuer Szenario 1 gewaehlt
 		if (a.getActionCommand().equals("radioButtonScenario1")){

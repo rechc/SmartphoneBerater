@@ -5,10 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -49,7 +50,7 @@ public class SQLClient {
 			throw new DBException("Property IOException " + e);
 		}
 
-	};
+	}
 
 	/**
 	 * Singelton
@@ -94,7 +95,7 @@ public class SQLClient {
 	 * @throws DBException 
 	 */
 	public List<Smartphone> getSmartphones(String sql) throws DBException {
-		LinkedList<Smartphone> rdl = new LinkedList<Smartphone>();
+		ArrayList<Smartphone> rdl = new ArrayList<Smartphone>();
 		try {
 			Connection con = getConnection();
 			Statement stmnt = con.createStatement(ResultSet.TYPE_FORWARD_ONLY,
@@ -113,10 +114,10 @@ public class SQLClient {
 		return rdl;
 	}
 
-	private LinkedList<Smartphone> parseResultData(LinkedList<Smartphone> rdl,
+	private ArrayList<Smartphone> parseResultData(ArrayList<Smartphone> rdl,
 			ResultSet rs) throws SQLException {
 		if (!rs.next()) {
-			return new LinkedList<Smartphone>();
+			return new ArrayList<Smartphone>();
 		}
 		Smartphone temprd;
 
@@ -152,6 +153,34 @@ public class SQLClient {
 		} while (rs.next());
 
 		return rdl;
+	}
+
+	public List<String> getBrands() throws DBException {
+		List<String> brands = new ArrayList<String>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			stmt = conn.prepareStatement("select distinct(marke) from Smartphones order by 1");
+			rs = stmt.executeQuery();
+			while (rs.next())
+				brands.add(rs.getString(1));
+		} catch (SQLException e) {
+			throw new DBException("DB Exception: "+e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				// Ignore.
+			}
+		}
+		return brands;
 	}
 
 }

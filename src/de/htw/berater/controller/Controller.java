@@ -28,33 +28,23 @@ public class Controller {
 	
 	public void getFirstQuestion(boolean szenario1) {
 		this.berater = szenario1 ? berater1 : berater2;
-		String newQuestion = berater.askFirstQuestion();
-		informUI(newQuestion);
+		Question question = berater.generateQuestion();
+		informUI(question);
 	}
 	
-	public void answer(String keyWord) throws FalseAnswerException {
-		if (berater.expectsYesNoAnswer()) {
-			throw new FalseAnswerException(Answer.YESNO);
-		}
-		String newQuestion = berater.evaluateAndAskNewQuestion(keyWord);
-		informUI(newQuestion);
+	public void answer(Answer answer) {
+		berater.evaluateAnswer(answer);
+		Question question = berater.generateQuestion();
+		informUI(question);
 	}
 	
-	public void answer(boolean yes) throws FalseAnswerException {
-		if (berater.expectsKeywordAnswer()) {
-			throw new FalseAnswerException(Answer.KEYWORD);
-		}
-		String newQuestion = berater.evaluateAndAskNewQuestion(yes);
-		informUI(newQuestion);
-	}
-	
-	private void informUI(String newQuestion) {
+	private void informUI(Question question) {
 		String sql = berater.getSQLString();
 		List<Smartphone> resultData;
 		try {
 			resultData = SQLClient.getInstance().getSmartphones(sql);
 			beraterUI.onNewData(resultData);
-			beraterUI.onNewQuestion(newQuestion);
+			beraterUI.onNewQuestion(question);
 		} catch (DBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

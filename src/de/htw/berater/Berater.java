@@ -25,6 +25,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.vocabulary.XSD;
 
 import de.htw.berater.controller.Answer;
+import de.htw.berater.controller.Question;
 
 public abstract class Berater {
 
@@ -35,7 +36,6 @@ public abstract class Berater {
 	protected final Set<OntClass> properties = new LinkedHashSet<OntClass>();
 	protected int context; // irgendwie den kontext beachten um sinnvoll die
 							// naechste frage zu stellen
-	protected Answer nextAnswer;
 	protected Customer customer = new Customer();
 	protected final OntModel model;
 
@@ -51,28 +51,22 @@ public abstract class Berater {
 		model.read("file:" + rdfPath);
 	}
 
-	public int getContext() {
-		return context;
-	}
-
 	public void addCustomerInfo(int info) {
 		customer.addCustomerInfo(info);
 	}
 
-	public abstract String evaluateAndAskNewQuestion(String string);
+	public abstract void evaluateAnswer(Answer answer);
 
-	public abstract String evaluateAndAskNewQuestion(boolean yes);
+	public abstract Question generateQuestion();
 
 	public final void reset() {
-
+		context = 0;
+		properties.clear();
+		customer = new Customer();
 	}
 
 	public final Set<OntClass> getProperties() {
 		return properties;
-	}
-
-	public final boolean expectsYesNoAnswer() {
-		return nextAnswer == Answer.YESNO;
 	}
 
 	protected final List<Restriction> getRestrictions(OntClass ontClass) {
@@ -117,10 +111,6 @@ public abstract class Berater {
 			}
 		}
 		return false;
-	}
-
-	public final boolean expectsKeywordAnswer() {
-		return nextAnswer == Answer.KEYWORD;
 	}
 
 	/* real super classes, no properties */
@@ -257,6 +247,7 @@ public abstract class Berater {
 		if (restriction.isSomeValuesFromRestriction()) {
 			res = restriction.asSomeValuesFromRestriction().getSomeValuesFrom();
 		}
+		// TODO: Und was, wenn nicht? NPE ist ungeil.
 
 		ReadableProperty sqlConstraint = new ReadableProperty();
 		sqlConstraint.setKey(restriction.getOnProperty().getLocalName());
@@ -329,8 +320,6 @@ public abstract class Berater {
 		}
 		return coveringAxiomClasses;
 	}
-
-	public abstract String askFirstQuestion();
 
 	protected OntClass searchPhoneClassContaining(String keyword) {
 		keyword = keyword.toLowerCase();
