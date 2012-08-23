@@ -79,6 +79,46 @@ public abstract class Berater {
 		return restrictions;
 	}
 	
+	protected boolean isSmartphoneOkForCustumer(OntClass displaySmartphone, int sehbehindert) {
+		List<OntClass> restrictions = getRestrictionsFlat(displaySmartphone);
+		for (OntClass restriction : restrictions) {
+			if (customer.isCustomer(sehbehindert)) {
+				if (!testSmartphoneOkForCustomerRecursively(restriction, true, "Sehbehindert")) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	protected boolean testSmartphoneOkForCustomerRecursively(OntClass clazz, boolean isOk, String what) {
+		if (clazz.isRestriction()) {
+			Restriction restriction = clazz.asRestriction();
+			ReadableProperty constraint = getReadablePropertyFromRestriction(restriction);
+			if (constraint.getKey().equals("fuerKunde")) {
+				if (!constraint.getValue().equals(what)) {
+					isOk = true;
+				}
+			}
+		} else if (clazz.isIntersectionClass()) { 
+			for (Iterator<? extends OntClass> it = clazz.asIntersectionClass()
+					.listOperands(); it.hasNext();) {
+				OntClass op = it.next();
+				isOk = testSmartphoneOkForCustomerRecursively(op, isOk, what);
+				if (!isOk) {
+					break;
+				}
+			}
+		} else if (clazz.isComplementClass()) {
+			for (Iterator<? extends OntClass> it = clazz.asComplementClass()
+					.listOperands(); it.hasNext();) {
+				OntClass op = it.next();
+				isOk = testSmartphoneOkForCustomerRecursively(op, !isOk, what);
+			}
+		}
+		return isOk;
+	}
+	
 	protected final List<OntClass> getRestrictionsFlat(OntClass ontClass) {
 		List<OntClass> restrictions = new LinkedList<OntClass>();
 		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
