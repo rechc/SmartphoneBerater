@@ -1,10 +1,13 @@
 package de.htw.berater.controller;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 
+ * Komfortables erstellen von Choices, die auf der GUI angezeigt werden.
+ */
 public final class ChoicesBuilder {
 
 	HashMap<Integer, List<Choice>> choices = new HashMap<Integer, List<Choice>>();
@@ -34,7 +37,7 @@ public final class ChoicesBuilder {
 	}
 
 	// TODO: Das is total ... seltsam. Warum wird bei Ja/Nein-Fragen als Antwort
-	// z.B. "Navi" erwartet?
+	// z.B. "Navi" erwartet? <== woher soll ich das wissen?
 	public static HashMap<Integer, List<Choice>> yesNo(String yesValue, String noValue) {
 		HashMap<Integer, List<Choice>> choices = new HashMap<Integer, List<Choice>>();
 		if (choices.get(0) == null) {

@@ -8,6 +8,10 @@ import de.htw.berater.db.Smartphone;
 import de.htw.berater.db.SQLClient;
 import de.htw.berater.ui.BeraterUI;
 
+/**
+ * 
+ *	Vermittler zwischen GUI und Berater
+ */
 public class Controller {
 	private Berater berater;
 	private Berater berater1;

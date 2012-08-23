@@ -1,5 +1,9 @@
 package de.htw.berater;
 
+/**
+ * Wenn Kundeninformationen Relevanz besitzen, werden diese hier festgehalten. 
+ *
+ */
 public class Customer {
 	public static final int SEHBEHINDERT = 1;
 	public static final int SPORTLER = 2;

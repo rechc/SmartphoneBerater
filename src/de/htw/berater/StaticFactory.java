@@ -3,6 +3,10 @@ package de.htw.berater;
 import de.htw.berater.ui.BeraterUI;
 import de.htw.berater.ui.BeraterUIJFrame;
 
+/**
+ * 
+ * Verlagerung der Objekterzeugung.
+ */
 public class StaticFactory {
 	public static BeraterUI getNewBeraterUI() {
 		return new BeraterUIJFrame();

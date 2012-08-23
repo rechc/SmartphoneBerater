@@ -1,7 +1,11 @@
 package de.htw.berater.controller;
 
+/**
+ * 
+ * Repraesentiert ein Häckchen, Radiobutton oder Texteingabe.
+ * Mapping von Fließtext zu keyword für den Berater
+ */
 public class Choice {
-
 	private String text;
 	private String value;
 	private ChoiceType choiceType;

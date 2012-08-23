@@ -1,10 +1,18 @@
 package de.htw.berater;
 
+/**
+ * 
+ * Umgewandelte Jena-Restriction in ein lesbares Format.
+ * z.B : hatEigenschaft some WLANEigenschaft
+ * Key:hatEigenschaft
+ * Value:WLANEigenschaft
+ * 
+ */
 public class ReadableProperty {
 	
 	private String key;
 	private String value;
-	private boolean booleanValue;
+	private boolean booleanValue; //ist das etwas, was " = 1" im sql erhält oder nicht?
 	
 	public String getKey() {
 		return key;

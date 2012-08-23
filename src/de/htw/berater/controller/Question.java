@@ -3,6 +3,10 @@ package de.htw.berater.controller;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * 
+ *	Diese Klasse wird vom Berater an die GUI übergeben. Hier sind die Informationen, was angezeigt werden soll.
+ */
 public class Question {
 
 	private String text;

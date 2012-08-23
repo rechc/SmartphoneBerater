@@ -359,8 +359,9 @@ public abstract class Berater {
 		Resource res = null;
 		if (restriction.isSomeValuesFromRestriction()) {
 			res = restriction.asSomeValuesFromRestriction().getSomeValuesFrom();
+		} else {
+			throw new RuntimeException("nur \"some\" properties sind vorgesehen, Ontologie neu?");
 		}
-		// TODO: Und was, wenn nicht? NPE ist ungeil.
 
 		ReadableProperty sqlConstraint = new ReadableProperty();
 		sqlConstraint.setKey(restriction.getOnProperty().getLocalName());

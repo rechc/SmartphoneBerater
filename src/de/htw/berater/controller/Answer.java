@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * 
+ * Die Antwort der GUI an den Berater. Liste von Keywords.
+ */
 public class Answer {
 
 	private List<String> values;
