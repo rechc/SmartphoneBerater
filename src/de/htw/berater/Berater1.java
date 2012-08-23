@@ -34,6 +34,10 @@ public class Berater1 extends Berater {
 	public void evaluateAnswer(Answer answer) {
 		String string = answer.getSingleValue();
 
+		if (answer.getValues().contains(Customer.SEHBEHINDERT + "")) {
+			customer.addCustomerInfo(Customer.SEHBEHINDERT);
+			answer.getValues().remove(Customer.SEHBEHINDERT + "");
+		}
 		switch (context) {
 		case 1:
 			smartphoneZweck(string);
@@ -42,7 +46,7 @@ public class Berater1 extends Berater {
 			spieleSmartphone(answer.getValues());
 			break;
 		case 3:
-			displaySmartphone(string);
+			displaySmartphone(answer.getValues().get(0));
 			break;
 		case 4:
 			touchBedinung(string);
@@ -80,7 +84,7 @@ public class Berater1 extends Berater {
 		List<OntClass> smartphones = new ArrayList<OntClass>();
 		while (ri.hasNext()) {
 			OntClass subClass = ri.next();
-			List<Restriction> restrictions = getRestrictions(subClass);
+			List<Restriction> restrictions = getRestrictionsDeep(subClass);
 			for (Restriction restriction : restrictions) {
 				if (restriction.getOnProperty().getLocalName().contains(property)) {
 					if (restriction.isSomeValuesFromRestriction()) {
@@ -96,13 +100,13 @@ public class Berater1 extends Berater {
 		return smartphones;
 	}
 	
-	private void smartphoneZweck(String zweck) {
+	private void smartphoneZweck(String string) {
 
-		OntClass zweckSubClass = searchClassContaining(zweck, "Zweck");
+		OntClass zweckSubClass = searchClassContaining(string, "Zweck");
 		List<OntClass> smartphonesWithHatZweck = getClassesWithProperty("hatZweck");
 		List<OntClass> smartphonesWithHatZweckOnZweckKeyword = new ArrayList<OntClass>();
 		for (OntClass clazz: smartphonesWithHatZweck) {
-			List<Restriction> restrictions = getRestrictions(clazz);
+			List<Restriction> restrictions = getRestrictionsDeep(clazz);
 			for (Restriction restriction : restrictions) {
 				OntClass range = restriction
 						.asSomeValuesFromRestriction()
@@ -147,7 +151,7 @@ public class Berater1 extends Berater {
 			context = 2;
 			nextQuestion = new Question(question, cb.build());
 		} else {
-			// dieser fall ist nicht in der ontologie enthalten, aber egal. Funktioniert auch für BilderMachenZweck
+			// dieser fall ist nicht im Szenario enthalten, aber egal. Funktioniert auch für BilderMachenZweck
 			for (int i = 0; i < smartphonesWithHatZweckOnZweckKeyword.size(); i++) {
 				setCurrentProperties(smartphonesWithHatZweckOnZweckKeyword.get(i));
 			}
@@ -192,10 +196,58 @@ public class Berater1 extends Berater {
 					"Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?",
 					choices);
 		} else {
-			System.out.println("es wird eine Frage übersprungen: Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?");
-			context = 5;
-			nextQuestion = questionUsage();
+			if (isSmartphoneOkForCustumer(displaySmartphone, Customer.SEHBEHINDERT)) {
+				System.out.println("es wird eine Frage übersprungen: Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?");
+				context = 5;
+				nextQuestion = questionUsage();
+			} else {
+				removeSQLConstraints(displaySmartphone);
+				customer.removeCustomerInfo(Customer.SEHBEHINDERT);
+				nextQuestion = questionDisplaySize();
+				context = 3;
+				System.out.println("Sie können kein kleines sm holen, wenn Sie sehbehindert sind. OMG! Daher wiederhole ich die letzte Frage nochmal");
+			}
 		}
+	}
+
+	private boolean isSmartphoneOkForCustumer(OntClass displaySmartphone, int sehbehindert) {
+		List<OntClass> restrictions = getRestrictionsFlat(displaySmartphone);
+		for (OntClass restriction : restrictions) {
+			if (customer.isCustomer(sehbehindert)) {
+				if (!testSmartphoneOkForCustomerRecursively(restriction, true, "Sehbehindert")) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	protected boolean testSmartphoneOkForCustomerRecursively(OntClass clazz, boolean isOk, String what) {
+		if (clazz.isRestriction()) {
+			Restriction restriction = clazz.asRestriction();
+			ReadableProperty constraint = getReadablePropertyFromRestriction(restriction);
+			if (constraint.getKey().equals("fuerKunde")) {
+				if (!constraint.getValue().equals(what)) {
+					isOk = true;
+				}
+			}
+		} else if (clazz.isIntersectionClass()) { 
+			for (Iterator<? extends OntClass> it = clazz.asIntersectionClass()
+					.listOperands(); it.hasNext();) {
+				OntClass op = it.next();
+				isOk = testSmartphoneOkForCustomerRecursively(op, isOk, what);
+				if (!isOk) {
+					break;
+				}
+			}
+		} else if (clazz.isComplementClass()) {
+			for (Iterator<? extends OntClass> it = clazz.asComplementClass()
+					.listOperands(); it.hasNext();) {
+				OntClass op = it.next();
+				isOk = testSmartphoneOkForCustomerRecursively(op, !isOk, what);
+			}
+		}
+		return isOk;
 	}
 
 	private void touchBedinung(String touch) {
@@ -278,7 +330,7 @@ public class Berater1 extends Berater {
 						String value = o.getLocalName();
 						String text = value.replace("Zweck", "")
 								.replaceAll("([^A-Z])([A-Z])", "$1 $2");
-						return new Choice(text, value, ChoiceType.CHECK);
+						return new Choice(text, value, ChoiceType.RADIO);
 					}
 				}).toList();
 		HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
@@ -292,6 +344,7 @@ public class Berater1 extends Berater {
 		for (OntClass clazz : smartphonesWithHatDisplaygroesse) {
 			cb.add(clazz.getLocalName(), clazz.getLocalName(), ChoiceType.RADIO);
 		}
+		cb.add("Sie sind sehbehindert.", Customer.SEHBEHINDERT + "", ChoiceType.CHECK);
 		return new Question(
 				"Wie groß soll das Display des Geräts sein?",
 				cb.build());

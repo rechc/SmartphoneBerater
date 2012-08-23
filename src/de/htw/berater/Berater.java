@@ -69,12 +69,23 @@ public abstract class Berater {
 		return properties;
 	}
 
-	protected final List<Restriction> getRestrictions(OntClass ontClass) {
+	protected final List<Restriction> getRestrictionsDeep(OntClass ontClass) {
 		List<Restriction> restrictions = new LinkedList<Restriction>();
 		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
 				.hasNext();) {
 			OntClass superClass = supers.next();
 			restrictions.addAll(getRestrictionsRecursively(superClass));
+		}
+		return restrictions;
+	}
+	
+	protected final List<OntClass> getRestrictionsFlat(OntClass ontClass) {
+		List<OntClass> restrictions = new LinkedList<OntClass>();
+		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
+				.hasNext();) {
+			OntClass superClass = supers.next();
+			if (superClass.isAnon())
+				restrictions.add(superClass);
 		}
 		return restrictions;
 	}
@@ -303,7 +314,7 @@ public abstract class Berater {
 		}
 	}
 
-	private ReadableProperty getReadablePropertyFromRestriction(
+	protected ReadableProperty getReadablePropertyFromRestriction(
 			Restriction restriction) {
 		Resource res = null;
 		if (restriction.isSomeValuesFromRestriction()) {
