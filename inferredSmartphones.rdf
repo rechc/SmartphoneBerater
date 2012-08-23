@@ -1082,12 +1082,6 @@
 
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;KameraEigenschaft">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;HardwareEigenschaft"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatMegaPixel"/>
-                <owl:someValuesFrom rdf:resource="&xsd;float"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KameraSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KeineTastaturSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KleinesSmartphone"/>

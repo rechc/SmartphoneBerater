@@ -1,12 +1,12 @@
 package de.htw.berater.controller;
 
-public enum QuestionType {
+public enum ChoiceType {
 
 	/** Einfache Auswahl. */
-	CHOICE,
+	RADIO,
 
 	/** Mehrfachauswahl. */
-	MULTI,
+	CHECK,
 
 	/** Benutzereingabe. */
 	INPUT,

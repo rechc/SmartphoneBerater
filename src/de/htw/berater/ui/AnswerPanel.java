@@ -1,5 +1,6 @@
 package de.htw.berater.ui;
 
+import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -16,11 +18,10 @@ import javax.swing.JToggleButton;
 import de.htw.berater.controller.Answer;
 import de.htw.berater.controller.Choice;
 import de.htw.berater.controller.Question;
-import de.htw.berater.controller.QuestionType;
+import de.htw.berater.controller.ChoiceType;
 
 public class AnswerPanel extends JPanel {
 
-	private JTextField input;
 	private List<String> answer = new ArrayList<String>();
 	private final Question question;
 
@@ -32,36 +33,45 @@ public class AnswerPanel extends JPanel {
 	private void initialize() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		if (question.getType() == QuestionType.INPUT) { //wegen preis = 500 z.b
-			input = new JTextField();
-			add(input);
-		} else {
+
+		for (int group : question.getChoices().keySet()) {
 			ButtonGroup buttonGroup = new ButtonGroup();
-			for (final Choice choice : question.getChoices()) {
-				JToggleButton btn;
-				if (question.getType() == QuestionType.CHOICE)
-					btn = new JRadioButton(choice.getText());
-				else
-					btn = new JCheckBox(choice.getText());
-				btn.addItemListener(new ItemListener() {
-					@Override
-					public void itemStateChanged(ItemEvent e) {
-						if (e.getStateChange() == ItemEvent.SELECTED)
-							answer.add(choice.getValue());
-						else
-							answer.remove(choice.getValue());
+			List<Choice> choices = question.getChoices().get(group);
+			for (final Choice choice : choices) {
+				JComponent component = null;
+				if (choice.getChoiceType() == ChoiceType.INPUT) { //wegen preis = 500 z.b
+					component = new JTextField();
+				} else {
+					JToggleButton tbtn;
+					if (choice.getChoiceType() == ChoiceType.RADIO) {
+						tbtn = new JRadioButton(choice.getText());
+						buttonGroup.add(tbtn);
+					} else {
+						tbtn = new JCheckBox(choice.getText());
 					}
-				});
-				add(btn);
-				if (question.getType() == QuestionType.CHOICE)
-					buttonGroup.add(btn);
+					tbtn.addItemListener(new ItemListener() {
+						@Override
+						public void itemStateChanged(ItemEvent e) {
+							if (e.getStateChange() == ItemEvent.SELECTED)
+								answer.add(choice.getValue());
+							else
+								answer.remove(choice.getValue());
+						}
+					});
+					component = tbtn;
+				}
+				add(component);
 			}
 		}
+		
 	}
 
 	public Answer getAnswer() {
-		if (question.getType() == QuestionType.INPUT)
-			return new Answer(input.getText());
+		for (Component componen : this.getComponents()) {
+			if (componen instanceof JTextField) {
+				answer.add(((JTextField)componen).getText());
+			}
+		}
 		return new Answer(answer);
 	}
 

@@ -1,6 +1,8 @@
 package de.htw.berater;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.hp.hpl.jena.ontology.OntClass;
@@ -8,9 +10,9 @@ import com.hp.hpl.jena.util.iterator.Map1;
 
 import de.htw.berater.controller.Answer;
 import de.htw.berater.controller.Choice;
+import de.htw.berater.controller.ChoiceType;
 import de.htw.berater.controller.ChoicesBuilder;
 import de.htw.berater.controller.Question;
-import de.htw.berater.controller.QuestionType;
 import de.htw.berater.db.DBException;
 import de.htw.berater.db.SQLClient;
 
@@ -73,68 +75,64 @@ public class Berater2 extends Berater {
 	}
 
 	private void proSmartphone(String proPhone) {
-		OntClass subClassOfInterest = searchPhoneClassContaining(proPhone);
+		OntClass subClassOfInterest = searchClassContaining(proPhone, "Smartphone");
+		if (subClassOfInterest == null) throw new RuntimeException(proPhone + " not in ontology");
 		setCurrentProperties(subClassOfInterest);
 
 		context = 2;
-		List<Choice> choices = new ChoicesBuilder()
-				.add("Es ist zu schwer zu bedienen", "Bedienbarkeit")
-				.add("Es hat zu wenig Speicherplatz", "Speicher")
-				.add("Das Display ist zu klein", "KleinesDisplay")
-				.add("Es ist zu groß", "")
+		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
+				.add("Es ist zu schwer zu bedienen", "Bedienbarkeit", ChoiceType.CHECK)
+				.add("Es hat zu wenig Speicherplatz", "Speicher", ChoiceType.CHECK)
+				.add("Das Display ist zu klein", "KleinesDisplay", ChoiceType.CHECK)
+				.add("Es ist zu groß", "", ChoiceType.CHECK)
 				.build();
 		nextQuestion = new Question(
-				QuestionType.MULTI,
 				"Sie besitzen also schon eines. Was stört sie an Ihrem alten Smartphone insbesondere?",
 				choices);
 	}
 
 	private void largeMemorySmartphone(String memory) {
-		OntClass subClassOfInterest = searchPhoneClassContaining(memory);
+		OntClass subClassOfInterest = searchClassContaining(memory, "Smartphone");
 		setCurrentProperties(subClassOfInterest);
 
 		context = 3;
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Liegt die schlechte Bedienbarkeit am Betriebssystem?",
 				ChoicesBuilder.yesNo());
 	}
 
 	private void usabilityOs(String os) {
 		if(!os.contains("nein")){
-			OntClass subClassOfInterest = searchPhoneClassContaining(os);
+			OntClass subClassOfInterest = searchClassContaining(os, "Smartphone");
 			setCurrentProperties(subClassOfInterest);
 		}
 		context = 4;
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Möchten Sie das Smartphone auch über eine Hardware-Tastatur bedienen können?",
 				ChoicesBuilder.yesNo("Tastatur", "KeineTastatur"));
 	}
 
 	private void noKeyboardSmartphone(String keyboard) {
-		OntClass subClassOfInterest = searchPhoneClassContaining(keyboard);
+		OntClass subClassOfInterest = searchClassContaining(keyboard, "Smartphone");
 		setCurrentProperties(subClassOfInterest);
 
 		context = 5;
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Soll das Smartphone Multimedia-Fähigkeiten haben?",
 				ChoicesBuilder.yesNo("Multimedia", "LolFail"));
 	}
 
 	private void multimediaSmartphone(String media) {
-		OntClass subClassOfInterest = searchPhoneClassContaining(media);
+		OntClass subClassOfInterest = searchClassContaining(media, "Smartphone");
 		setCurrentProperties(subClassOfInterest);
 		context = 6;
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Soll das Smartphone eine gute Kamera haben, damit Sie Bilder und Videos in hoher Qualität aufnehmen können?",
 				ChoicesBuilder.yesNo("Kamera", "Blindfisch"));
 	}
 
 	private void cameraSmartphone(String camera) {
-		OntClass subClassOfInterest = searchPhoneClassContaining(camera);
+		OntClass subClassOfInterest = searchClassContaining(camera, "Smartphone");
 		setCurrentProperties(subClassOfInterest);
 
 		context = 7;
@@ -149,45 +147,46 @@ public class Berater2 extends Berater {
 								.replace("Betriebssystemeigenschaft", "")
 								.replaceAll("([^A-Z])([A-Z])", "$1 $2");
 						String text = "Ja. Ich habe ein Gerät mit " + displayName;
-						return new Choice(text, value);
+						return new Choice(text, value, ChoiceType.RADIO);
 					}
 				}).toList();
-		choices.add(new Choice("Nein, ich habe genug Geld.", "Nein"));
-		choices.add(new Choice("Apps? Betriebssystem?", "Nein"));
+		choices.add(new Choice("Nein, ich habe genug Geld.", "Nein", ChoiceType.RADIO));
+		choices.add(new Choice("Apps? Betriebssystem?", "Nein", ChoiceType.RADIO));
+		HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
+		choicesMap.put(0, choices);
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Wenn Sie schon ein Smartphone besitzen, haben sie wahrscheinlich schon Apps gekauft? Soll das neue Gerät das gleiche Betriebssystem haben, damit Sie ihre Anwendungen weiterverwenden können?",
-				choices);
+				choicesMap);
 	}
 
 	private void sameOsSmartphone(String os) {
-		OntClass subClassOfInterest = searchPhoneClassContaining(os);
+		OntClass subClassOfInterest = searchClassContaining(os, "Smartphone");
 		setCurrentProperties(subClassOfInterest);
 
 		context = 8;
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Möchten Sie das Smartphone auch als Navigationsgerät nutzen",
 				ChoicesBuilder.yesNo("Navi", "OhnePeilung"));
 	}
 
 	private void navigationSmartphone(String navigation) {
-		OntClass subClassOfInterest = searchPhoneClassContaining(navigation);
+		OntClass subClassOfInterest = searchClassContaining(navigation, "Smartphone");
 		setCurrentProperties(subClassOfInterest);
 
 		context = 9;
 		List<Choice> choices = new ArrayList<Choice>();
-		choices.add(new Choice("Nein", "nein"));
+		choices.add(new Choice("Nein", "nein", ChoiceType.RADIO));
 		try {
 			for (String brand : SQLClient.getInstance().getBrands())
-				choices.add(new Choice("Ja, " + brand, brand));
+				choices.add(new Choice("Ja, " + brand, brand, ChoiceType.RADIO));
 		} catch (DBException ex) {
 			// Pech gehabt.
 		}
+		HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
+		choicesMap.put(0, choices);
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Bevorzugen Sie einen bestimmten Hersteller?",
-				choices);
+				choicesMap);
 	}
 
 	private void smartphoneBrand(String brand) {
@@ -197,7 +196,6 @@ public class Berater2 extends Berater {
 
 		context = 10;
 		nextQuestion = new Question(
-				QuestionType.INPUT,
 				"Welchen Preisrahmen haben Sie sich vorgestellt? (von-bis)",
 				null);
 	}
@@ -228,16 +226,15 @@ public class Berater2 extends Berater {
 
 	private Question firstQuestion() {
 		context = 1;
-		List<Choice> choices = new ChoicesBuilder()
+		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
 				.add("Hallo! Ich will ein iPhone! Darf aber nicht mehr als 100 € kosten!",
-						"Loser")
+						"Loser", ChoiceType.CHECK)
 				.add("Ich möchte ein Dingsbums…handy. Mit Äpps, und so. Hilfe!",
-						"DAU")
+						"DAU", ChoiceType.CHECK)
 				.add("Ich benötige ein neues Smartphone, da mir mein altes nicht mehr genügt.",
-						"Profi")
+						"Profi", ChoiceType.CHECK)
 				.build();
-		return new Question(QuestionType.MULTI,
-				"Guten Tag! Wie kann ich Ihnen helfen?", choices);
+		return new Question("Guten Tag! Wie kann ich Ihnen helfen?", choices);
 	}
 
 }

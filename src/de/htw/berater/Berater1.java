@@ -1,9 +1,12 @@
 package de.htw.berater;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.management.RuntimeErrorException;
 
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.Restriction;
@@ -14,7 +17,7 @@ import de.htw.berater.controller.Answer;
 import de.htw.berater.controller.Choice;
 import de.htw.berater.controller.ChoicesBuilder;
 import de.htw.berater.controller.Question;
-import de.htw.berater.controller.QuestionType;
+import de.htw.berater.controller.ChoiceType;
 import de.htw.berater.db.DBException;
 import de.htw.berater.db.SQLClient;
 
@@ -36,7 +39,7 @@ public class Berater1 extends Berater {
 			smartphoneZweck(string);
 			break;
 		case 2:
-			spieleSmartphone(string);
+			spieleSmartphone(answer.getValues());
 			break;
 		case 3:
 			displaySmartphone(string);
@@ -71,16 +74,7 @@ public class Berater1 extends Berater {
 		}
 	}
 
-	private void smartphoneZweck(String zweck) {
-		OntClass zweckClass = model.getOntClass(ns + "Zweck");
-		OntClass zweckSubClass = null;
-		for (Iterator<OntClass> i = zweckClass.listSubClasses(); i.hasNext();) {
-			OntClass subClass = i.next();
-			if (subClass.getLocalName().contains(zweck)) {
-				zweckSubClass = subClass;
-			}
-		}
-
+	protected List<OntClass> getClassesWithProperty(String property) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
 		List<OntClass> smartphones = new ArrayList<OntClass>();
@@ -88,61 +82,91 @@ public class Berater1 extends Berater {
 			OntClass subClass = ri.next();
 			List<Restriction> restrictions = getRestrictions(subClass);
 			for (Restriction restriction : restrictions) {
-				if (restriction.getOnProperty().getLocalName()
-						.contains("hatZweck")) {
-					// some
+				if (restriction.getOnProperty().getLocalName().contains(property)) {
 					if (restriction.isSomeValuesFromRestriction()) {
-						OntClass range = restriction
-								.asSomeValuesFromRestriction()
-								.getSomeValuesFrom().as(OntClass.class);
-						if (range.equals(zweckSubClass)) {
+						if (!smartphones.contains(subClass)) {
 							smartphones.add(subClass);
 						}
+					} else {
+						throw new RuntimeException("not defined in ontology");
 					}
 				}
 			}
 		}
-		List<OntClass> classesCoveringAxiomsResolved = getCoveringAxiomClasses(smartphones);
+		return smartphones;
+	}
+	
+	private void smartphoneZweck(String zweck) {
+
+		OntClass zweckSubClass = searchClassContaining(zweck, "Zweck");
+		List<OntClass> smartphonesWithHatZweck = getClassesWithProperty("hatZweck");
+		List<OntClass> smartphonesWithHatZweckOnZweckKeyword = new ArrayList<OntClass>();
+		for (OntClass clazz: smartphonesWithHatZweck) {
+			List<Restriction> restrictions = getRestrictions(clazz);
+			for (Restriction restriction : restrictions) {
+				OntClass range = restriction
+						.asSomeValuesFromRestriction()
+						.getSomeValuesFrom().as(OntClass.class);
+				if (range.equals(zweckSubClass)) {
+					smartphonesWithHatZweckOnZweckKeyword.add(clazz);
+				}
+			}
+		}
+		List<List<OntClass>> classesCoveringAxiomsResolved = null;
+		boolean abstractClassSomewhere = false;
+		for (OntClass smphone : smartphonesWithHatZweckOnZweckKeyword) {
+			if (isCoveringAxiom(smphone)) {
+				abstractClassSomewhere = true;
+				classesCoveringAxiomsResolved = getCoveringAxiomClasses(smartphonesWithHatZweckOnZweckKeyword);
+				break;
+			}
+		}
 
 		String question = "";
-		// gab es ein covering axiom (abstrakte klasse)?
-		if (!classesCoveringAxiomsResolved.equals(smartphones)) {
+		if (abstractClassSomewhere) {
+			ChoicesBuilder cb = new ChoicesBuilder();
 			question = "Möchten sie ";
-			for (OntClass smphone : classesCoveringAxiomsResolved) {
-				question += smphone.getLocalName() + ", ";
+			int group = 0;
+			rememberList.clear();
+			if (classesCoveringAxiomsResolved == null) throw new RuntimeException("Ontologie geaendert");
+			for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
+				List<OntClass> classes = classesCoveringAxiomsResolved.get(i);
+				for (OntClass smphone : classes) {
+					question += smphone.getLocalName() + ", ";
+					rememberList.add(smphone);
+					if (i == classesCoveringAxiomsResolved.size() - 1)
+						cb.add("Ein " + smphone.getLocalName(), smphone.getLocalName(), ChoiceType.CHECK, group);
+					else
+						cb.add("Ein " + smphone.getLocalName(), smphone.getLocalName(), ChoiceType.RADIO, group);
+					setCurrentProperties(smphone);
+				}
+				group++;
 			}
 			question += "?";
 			question = question.replace(", ?", "?");
 			context = 2;
-			rememberList.clear();
-			
-			ChoicesBuilder cb = new ChoicesBuilder();
-			for (OntClass clazz : classesCoveringAxiomsResolved) {
-				if (!smartphones.contains(clazz)) {
-					rememberList.add(clazz);
-					cb.add("Ein " + clazz.getLocalName(), clazz.getLocalName());
-				}
-			}
-			List<Choice> choices = cb.build();
-			for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
-				setCurrentProperties(classesCoveringAxiomsResolved.get(i));
-			}
-			
-			nextQuestion = new Question(QuestionType.CHOICE, question, choices);
+			nextQuestion = new Question(question, cb.build());
 		} else {
 			// dieser fall ist nicht in der ontologie enthalten, aber egal. Funktioniert auch für BilderMachenZweck
-			for (int i = 0; i < classesCoveringAxiomsResolved.size(); i++) {
-				setCurrentProperties(smartphones.get(i));
+			for (int i = 0; i < smartphonesWithHatZweckOnZweckKeyword.size(); i++) {
+				setCurrentProperties(smartphonesWithHatZweckOnZweckKeyword.get(i));
 			}
 			context = 3;
 			nextQuestion = questionDisplaySize();
 		}
 	}
 
-	private void spieleSmartphone(String spiele) {
+	private void spieleSmartphone(List<String> list) {
 		for (int i = 0; i < rememberList.size(); i++) {
-			if (!rememberList.get(i).getLocalName().toLowerCase()
-					.contains(spiele.toLowerCase())) {
+			boolean found = false;
+			for (String keyword : list) {
+				if (rememberList.get(i).getLocalName().toLowerCase()
+						.contains(keyword.toLowerCase())) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
 				removeSQLConstraints(rememberList.get(i));
 			}
 		}
@@ -155,26 +179,16 @@ public class Berater1 extends Berater {
 	}
 
 	private void displaySmartphone(String display) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
-		List<OntClass> displaySmartphones = new ArrayList<OntClass>();
-		while (ri.hasNext()) {
-			OntClass subClass = ri.next();
-			if (subClass.getLocalName().toLowerCase().contains(display)) {
-				displaySmartphones.add(subClass);
-			}
-		}
-		for (int i = 0; i < displaySmartphones.size(); i++) {
-			setCurrentProperties(displaySmartphones.get(i));
-		}
+		OntClass displaySmartphone = searchClassContaining(display, "Smartphone");
+		if (display != null)
+			setCurrentProperties(displaySmartphone);
 		if (!customer.isCustomer(Customer.SEHBEHINDERT)) {
 			context = 4;
-			List<Choice> choices = new ChoicesBuilder()
-					.add("Ein Gerät ohne Hardware-Tastatur", "KeineTastatur")
-					.add("Ein Gerät mit integrierter Tastatur", "Tastatur")
+			HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
+					.add("Ein Gerät ohne Hardware-Tastatur", "KeineTastatur", ChoiceType.RADIO)
+					.add("Ein Gerät mit integrierter Tastatur", "Tastatur", ChoiceType.RADIO)
 					.build();
 			nextQuestion = new Question(
-					QuestionType.CHOICE,
 					"Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?",
 					choices);
 		} else {
@@ -185,7 +199,7 @@ public class Berater1 extends Berater {
 	}
 
 	private void touchBedinung(String touch) {
-		OntClass subClassOfInterest = searchPhoneClassContaining(touch);
+		OntClass subClassOfInterest = searchClassContaining(touch, "Smartphone");
 		setCurrentProperties(subClassOfInterest);
 		context = 5;
 		nextQuestion = questionUsage();
@@ -208,7 +222,6 @@ public class Berater1 extends Berater {
 
 		context = 6;
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Möchten Sie das Smartphone zur Navigation oder zur Aufzeichnung ihrer sportlichen Aktivitäten verwenden?",
 				ChoicesBuilder.yesNo("navi", "whatever ..."));
 	}
@@ -230,7 +243,6 @@ public class Berater1 extends Berater {
 
 		context = 7;
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Nutzen Sie das Smartphone auch als Kamera?",
 				ChoicesBuilder.yesNo("kamera", "nix ..."));
 	}
@@ -238,17 +250,17 @@ public class Berater1 extends Berater {
 	private void kameraSmartphone(String kamera) {
 		context = 8;
 		List<Choice> choices = new ArrayList<Choice>();
-		choices.add(new Choice("Nein", "nein"));
+		choices.add(new Choice("Nein", "nein", ChoiceType.RADIO));
 		try {
 			for (String brand : SQLClient.getInstance().getBrands())
-				choices.add(new Choice("Ja, " + brand, brand));
+				choices.add(new Choice("Ja, " + brand, brand, ChoiceType.RADIO));
 		} catch (DBException ex) {
 			// Pech gehabt.
 		}
+		HashMap<Integer, List<Choice>> choicesGroupMap = new HashMap<Integer, List<Choice>>();
 		nextQuestion = new Question(
-				QuestionType.CHOICE,
 				"Bevorzugen Sie einen bestimmten Hersteller?",
-				choices);
+				choicesGroupMap);
 	}
 
 	private void smartphoneMarke(String marke) {
@@ -266,32 +278,32 @@ public class Berater1 extends Berater {
 						String value = o.getLocalName();
 						String text = value.replace("Zweck", "")
 								.replaceAll("([^A-Z])([A-Z])", "$1 $2");
-						return new Choice(text, value);
+						return new Choice(text, value, ChoiceType.CHECK);
 					}
 				}).toList();
-		return new Question(QuestionType.MULTI,
-				"Für welchen Zweck benötigen Sie ein Smartphone?", choices);
+		HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
+		choicesMap.put(0, choices);
+		return new Question("Für welchen Zweck benötigen Sie ein Smartphone?", choicesMap);
 	}
 
 	private Question questionDisplaySize() {
-		List<Choice> choices = new ChoicesBuilder()
-				.add("Ich will etwas darauf erkennen können", "Großes")
-				.add("Es soll bequem in jede Hosentasche passen", "Kleines")
-				.build();
+		List<OntClass> smartphonesWithHatDisplaygroesse = getClassesWithProperty("hatDisplaygroesse");
+		ChoicesBuilder cb = new ChoicesBuilder();
+		for (OntClass clazz : smartphonesWithHatDisplaygroesse) {
+			cb.add(clazz.getLocalName(), clazz.getLocalName(), ChoiceType.RADIO);
+		}
 		return new Question(
-				QuestionType.CHOICE,
 				"Wie groß soll das Display des Geräts sein?",
-				choices);
+				cb.build());
 	}
 
 	private Question questionUsage() {
-		List<Choice> choices = new ChoicesBuilder()
-				.add("Ich benutze das Gerät nur privat.", "?")
-				.add("Ich benutze das Gerät auch beim Sport.", "Outdoor")
-				.add("Ich benutze das Gerät geschäftlich.", "Business")
+		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
+				.add("Ich benutze das Gerät nur privat.", "?", ChoiceType.RADIO)
+				.add("Ich benutze das Gerät auch beim Sport.", "Outdoor", ChoiceType.RADIO)
+				.add("Ich benutze das Gerät geschäftlich.", "Business", ChoiceType.RADIO)
 				.build();
 		return new Question(
-				QuestionType.CHOICE,
 				"Nutzen Sie das Gerät eher für geschäftliche Zwecke oder in ihrer Freizeit?",
 				choices);
 	}
@@ -299,5 +311,4 @@ public class Berater1 extends Berater {
 	public int getContext() {
 		return context;
 	}
-
 }

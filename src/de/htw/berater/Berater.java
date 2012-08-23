@@ -74,9 +74,33 @@ public abstract class Berater {
 		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
 				.hasNext();) {
 			OntClass superClass = supers.next();
-			if (superClass.isRestriction()) {
-				Restriction restriction = superClass.asRestriction();
-				restrictions.add(restriction);
+			restrictions.addAll(getRestrictionsRecursively(superClass));
+		}
+		return restrictions;
+	}
+	
+	protected List<Restriction> getRestrictionsRecursively(OntClass clazz) {
+		List<Restriction> restrictions = new LinkedList<Restriction>();
+		if (clazz.isRestriction()) {
+			Restriction restriction = clazz.asRestriction();
+			restrictions.add(restriction);
+		} else if (clazz.isIntersectionClass()) { 
+			for (Iterator<? extends OntClass> it = clazz.asIntersectionClass()
+					.listOperands(); it.hasNext();) {
+				OntClass op = it.next();
+				restrictions.addAll(getRestrictionsRecursively(op));
+			}
+		} else if (clazz.isComplementClass()) {
+			for (Iterator<? extends OntClass> it = clazz.asComplementClass()
+					.listOperands(); it.hasNext();) {
+				OntClass op = it.next();
+				restrictions.addAll(getRestrictionsRecursively(op));
+			}
+		} else if (clazz.isUnionClass()) {
+			for (Iterator<? extends OntClass> it = clazz.asUnionClass()
+					.listOperands(); it.hasNext();) {
+				OntClass op = it.next();
+				restrictions.addAll(getRestrictionsRecursively(op));
 			}
 		}
 		return restrictions;
@@ -103,6 +127,8 @@ public abstract class Berater {
 						if (!found) {
 							isCoveringAxiom = false;
 						}
+					} else {
+						return false;
 					}
 				}
 				if (isCoveringAxiom) {
@@ -340,27 +366,29 @@ public abstract class Berater {
 		return sqlConstraint;
 	}
 
-	protected List<OntClass> getCoveringAxiomClasses(List<OntClass> classes) {
-		List<OntClass> coveringAxiomClasses = new LinkedList<OntClass>();
-		List<OntClass> tmpClasses = new LinkedList<OntClass>();
-		for (OntClass abstractClass : classes) {
-			if (isCoveringAxiom(abstractClass)) {
-				ExtendedIterator<OntClass> ri = abstractClass.listSubClasses();
+	protected List<List<OntClass>> getCoveringAxiomClasses(List<OntClass> classes) {
+		List<List<OntClass>> result = new LinkedList<List<OntClass>>();
+		List<OntClass> concrereClasses = new LinkedList<OntClass>();
+		for (OntClass clazz : classes) {
+			if (isCoveringAxiom(clazz)) {
+				ExtendedIterator<OntClass> ri = clazz.listSubClasses();
+				List<OntClass> subClasses = new LinkedList<OntClass>();
 				while (ri.hasNext()) {
-					tmpClasses.add(ri.next());
+					OntClass subClass = ri.next();
+					subClasses.add(subClass);
 				}
-				coveringAxiomClasses
-						.addAll(getCoveringAxiomClasses(tmpClasses));
+				result.addAll(getCoveringAxiomClasses(subClasses));
 			} else {
-				coveringAxiomClasses.add(abstractClass);
+				concrereClasses.add(clazz);
 			}
 		}
-		return coveringAxiomClasses;
+		result.add(concrereClasses);
+		return result;
 	}
 
-	protected OntClass searchPhoneClassContaining(String keyword) {
+	protected OntClass searchClassContaining(String keyword, String type) {
 		keyword = keyword.toLowerCase();
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		OntClass smartphone = model.getOntClass(ns + type);
 		for (Iterator<OntClass> it = smartphone.listSubClasses(); it.hasNext();) {
 			OntClass subClass = it.next();
 			if (subClass.getLocalName().toLowerCase().contains(keyword)) {

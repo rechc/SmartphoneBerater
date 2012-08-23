@@ -42,6 +42,7 @@ public class Controller {
 		String sql = berater.getSQLString();
 		List<Smartphone> resultData;
 		try {
+			System.out.println(sql);
 			resultData = SQLClient.getInstance().getSmartphones(sql);
 			beraterUI.onNewData(resultData);
 			beraterUI.onNewQuestion(question);
