@@ -37,21 +37,24 @@ public class Controller {
 	}
 	
 	public void answer(Answer answer) {
-		berater.evaluateAnswer(answer);
-		Question question = berater.generateQuestion();
-		informUI(question);
+		try {
+			berater.evaluateAnswer(answer);
+			Question question = berater.generateQuestion();
+			informUI(question);
+		} catch (DBException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void informUI(Question question) {
-		String sql = berater.getSQLString();
-		List<Smartphone> resultData;
 		try {
+			String sql = berater.getSQLString();
+			List<Smartphone> resultData;
 			System.out.println(sql);
 			resultData = SQLClient.getInstance().getSmartphones(sql);
 			beraterUI.onNewData(resultData);
 			beraterUI.onNewQuestion(question);
 		} catch (DBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

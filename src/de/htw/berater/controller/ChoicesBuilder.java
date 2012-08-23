@@ -38,13 +38,13 @@ public final class ChoicesBuilder {
 
 	// TODO: Das is total ... seltsam. Warum wird bei Ja/Nein-Fragen als Antwort
 	// z.B. "Navi" erwartet? <== woher soll ich das wissen?
-	public static HashMap<Integer, List<Choice>> yesNo(String yesValue, String noValue) {
+	public static HashMap<Integer, List<Choice>> yesNo(String yesText, String noText) {
 		HashMap<Integer, List<Choice>> choices = new HashMap<Integer, List<Choice>>();
 		if (choices.get(0) == null) {
 			choices.put(0, new LinkedList<Choice>());
 		}
-		choices.get(0).add(new Choice("Ja", yesValue, ChoiceType.RADIO));
-		choices.get(0).add(new Choice("Nein", noValue, ChoiceType.RADIO));
+		choices.get(0).add(new Choice(yesText, "Ja", ChoiceType.RADIO));
+		choices.get(0).add(new Choice(noText, "Nein", ChoiceType.RADIO));
 		return choices;
 	}
 

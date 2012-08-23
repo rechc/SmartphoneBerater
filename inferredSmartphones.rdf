@@ -264,12 +264,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -362,12 +362,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -528,7 +528,7 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;KommunikationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
@@ -537,7 +537,7 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -636,12 +636,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -689,12 +689,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -741,12 +741,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -793,12 +793,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -866,12 +866,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -967,12 +967,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1051,12 +1051,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1130,12 +1130,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1173,12 +1173,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1234,12 +1234,12 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Laie"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1292,7 +1292,7 @@
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;Kunde">
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
@@ -1300,7 +1300,7 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1325,7 +1325,7 @@
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;Laie">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Kunde"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MobilfunknetzEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
@@ -1333,7 +1333,7 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1379,16 +1379,16 @@
     
 
 
-    <!-- http://semantische-interoperabilitaet-projekt#Metall -->
+    <!-- http://semantische-interoperabilitaet-projekt#MetallMaterialEigenschaft -->
 
-    <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;Metall">
+    <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;MultimediaSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NaviSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Sehbehindert"/>
@@ -1453,7 +1453,7 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1504,7 +1504,7 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NavigationEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Normal"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1555,7 +1555,7 @@
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;NormalesSpieleSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1586,7 +1586,7 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1635,7 +1635,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;MetallMaterialEigenschaft"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
+                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpritzwasserfestEigenschaft"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1652,7 +1658,7 @@
                 </owl:unionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Plastik"/>
+        <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RouteAufzeichnenEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;RoutenaufzeichnungEigenschaft"/>
@@ -1672,9 +1678,9 @@
     
 
 
-    <!-- http://semantische-interoperabilitaet-projekt#Plastik -->
+    <!-- http://semantische-interoperabilitaet-projekt#PlastikMaterialEigenschaft -->
 
-    <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;Plastik">
+    <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;PlastikMaterialEigenschaft">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;MaterialEigenschaft"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;ProfiSmartphone"/>
         <owl:disjointWith rdf:resource="&semantische-interoperabilitaet-projekt;Reisender"/>
@@ -2019,18 +2025,6 @@
     <owl:Class rdf:about="&semantische-interoperabilitaet-projekt;SportSmartphone">
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;OutdoorSmartphone"/>
         <rdfs:subClassOf rdf:resource="&semantische-interoperabilitaet-projekt;Smartphone"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;Metall"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;hatEigenschaft"/>
-                <owl:someValuesFrom rdf:resource="&semantische-interoperabilitaet-projekt;SpritzwasserfestEigenschaft"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semantische-interoperabilitaet-projekt;fuerKunde"/>

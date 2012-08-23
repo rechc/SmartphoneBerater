@@ -26,6 +26,8 @@ import com.hp.hpl.jena.vocabulary.XSD;
 
 import de.htw.berater.controller.Answer;
 import de.htw.berater.controller.Question;
+import de.htw.berater.db.DBException;
+import de.htw.berater.db.SQLClient;
 
 public abstract class Berater {
 
@@ -55,7 +57,7 @@ public abstract class Berater {
 		customer.addCustomerInfo(info);
 	}
 
-	public abstract void evaluateAnswer(Answer answer);
+	public abstract void evaluateAnswer(Answer answer) throws DBException;
 
 	public abstract Question generateQuestion();
 
@@ -79,7 +81,7 @@ public abstract class Berater {
 		return restrictions;
 	}
 	
-	protected boolean isSmartphoneOkForCustumer(OntClass displaySmartphone, int sehbehindert) {
+	protected boolean isSmartphoneOkForCustumer(OntClass displaySmartphone, int sehbehindert) throws DBException {
 		List<OntClass> restrictions = getRestrictionsFlat(displaySmartphone);
 		for (OntClass restriction : restrictions) {
 			if (customer.isCustomer(sehbehindert)) {
@@ -91,7 +93,7 @@ public abstract class Berater {
 		return true;
 	}
 	
-	protected boolean testSmartphoneOkForCustomerRecursively(OntClass clazz, boolean isOk, String what) {
+	protected boolean testSmartphoneOkForCustomerRecursively(OntClass clazz, boolean isOk, String what) throws DBException {
 		if (clazz.isRestriction()) {
 			Restriction restriction = clazz.asRestriction();
 			ReadableProperty constraint = getReadablePropertyFromRestriction(restriction);
@@ -239,7 +241,7 @@ public abstract class Berater {
 		properties.removeAll(tmpProperties);
 	}
 
-	public String getSQLString() {
+	public String getSQLString() throws DBException {
 		String s = "select * from Smartphones where ";
 		for (OntClass property : properties) {
 			s += "(" + processPropertyToSQL(property) + ")" + " and ";
@@ -281,7 +283,7 @@ public abstract class Berater {
 		return propertyName;
 	}
 
-	private String processPropertyToSQL(OntClass property) {
+	private String processPropertyToSQL(OntClass property) throws DBException {
 		if (property.isRestriction()) {
 			ReadableProperty constraint = getReadablePropertyFromRestriction(property
 					.asRestriction());
@@ -336,7 +338,7 @@ public abstract class Berater {
 		return "1";
 	}
 
-	protected void setCustomerInfo() {
+	protected void setCustomerInfo() throws DBException {
 		for (OntClass property : properties) {
 			if (property.isRestriction()) {
 				ReadableProperty sqlConstraint = getReadablePropertyFromRestriction(property
@@ -355,7 +357,7 @@ public abstract class Berater {
 	}
 
 	protected ReadableProperty getReadablePropertyFromRestriction(
-			Restriction restriction) {
+			Restriction restriction) throws DBException {
 		Resource res = null;
 		if (restriction.isSomeValuesFromRestriction()) {
 			res = restriction.asSomeValuesFromRestriction().getSomeValuesFrom();
@@ -406,13 +408,23 @@ public abstract class Berater {
 			if (res.canAs(UnionClass.class)) {
 				String unionStr = "";
 				UnionClass union = res.as(UnionClass.class);
+				boolean isBooleanValue = false;
 				for (Iterator<? extends OntClass> it = union.listOperands(); it.hasNext();) {
 					OntClass op = it.next();
-					unionStr += extractGeneralIdentifier(op.getLocalName()) + " like '" + extractActualIdentifier(op.getLocalName()) + "%' " + (it.hasNext() ? " or " : "");
+					isBooleanValue = SQLClient.getInstance().doesTableExist(op.getLocalName());
+					if (isBooleanValue)
+						unionStr += op.getLocalName() + " = 1 " + (it.hasNext() ? " or " : "");
+					else
+						unionStr += extractGeneralIdentifier(op.getLocalName()) + " like '" + extractActualIdentifier(op.getLocalName()) + "%' " + (it.hasNext() ? " or " : "");
 				}
-				sqlConstraint.setValue(unionStr, false);
+				sqlConstraint.setValue(unionStr, isBooleanValue);
 			} else {
-				sqlConstraint.setValue(res.getLocalName(), true);
+				boolean isBooleanValue = SQLClient.getInstance().doesTableExist(res.getLocalName());
+				String s = res.getLocalName();
+				if (!isBooleanValue) {
+					s = extractGeneralIdentifier(s) + " like '" + extractActualIdentifier(s) + "'";
+				} 
+				sqlConstraint.setValue(s, isBooleanValue);
 			}
 		}
 		return sqlConstraint;

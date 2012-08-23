@@ -20,7 +20,7 @@ public class Berater1Test extends TestCase {
 		this.berater = new Berater1("inferredSmartphones.rdf", "http://semantische-interoperabilitaet-projekt#");
 	}
 	
-	public void testZweck() {
+	public void testZweck() throws DBException {
 		// Frage 1
 		Question question = berater.generateQuestion();
 		System.out.println(question);

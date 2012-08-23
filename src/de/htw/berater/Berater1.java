@@ -31,7 +31,7 @@ public class Berater1 extends Berater {
 	}
 
 	@Override
-	public void evaluateAnswer(Answer answer) {
+	public void evaluateAnswer(Answer answer) throws DBException {
 		String string = answer.getSingleValue();
 
 		if (answer.getValues().contains(Customer.SEHBEHINDERT + "")) {
@@ -55,10 +55,10 @@ public class Berater1 extends Berater {
 			outdoorSmartphone(string);
 			break;
 		case 6:
-			navigationSmartphone(string);
+			navigationSmartphone(string.equals("Ja") ? true : false);
 			break;
 		case 7:
-			kameraSmartphone(string);
+			kameraSmartphone(string.equals("Ja") ? true : false);
 			break;
 		case 8:
 			smartphoneMarke(string);
@@ -160,7 +160,7 @@ public class Berater1 extends Berater {
 		}
 	}
 
-	private void spieleSmartphone(List<String> list) {
+	private void spieleSmartphone(List<String> list) throws DBException {
 		for (int i = 0; i < rememberList.size(); i++) {
 			boolean found = false;
 			for (String keyword : list) {
@@ -182,7 +182,7 @@ public class Berater1 extends Berater {
 		nextQuestion = questionDisplaySize();
 	}
 
-	private void displaySmartphone(String display) {
+	private void displaySmartphone(String display) throws DBException {
 		OntClass displaySmartphone = searchClassContaining(display, "Smartphone");
 		if (display != null)
 			setCurrentProperties(displaySmartphone);
@@ -213,7 +213,7 @@ public class Berater1 extends Berater {
 	
 
 	private void touchBedinung(String touch) {
-		OntClass subClassOfInterest = searchClassContaining(touch, "Smartphone");
+		OntClass subClassOfInterest = searchClassContaining(touch, "Smartphone"); //Hier muessen die unterklassen gefunden werden. IosSmartphone konkret. ansonsten ist das so falsch.
 		setCurrentProperties(subClassOfInterest);
 		context = 5;
 		nextQuestion = questionUsage();
@@ -222,10 +222,10 @@ public class Berater1 extends Berater {
 	private void outdoorSmartphone(String outdoor) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
-		List<OntClass> outdoorSmartphones = new ArrayList<OntClass>();
+		List<OntClass> outdoorSmartphones = new ArrayList<OntClass>(); //Outdoorsmartphon wird nicht gefunden.
 		while (ri.hasNext()) {
 			OntClass subClass = ri.next();
-			if (subClass.getLocalName().toLowerCase().contains(outdoor)) {
+			if (subClass.getLocalName().toLowerCase().contains(outdoor.toLowerCase())) {
 				outdoorSmartphones.add(subClass);
 			}
 		}
@@ -237,31 +237,36 @@ public class Berater1 extends Berater {
 		context = 6;
 		nextQuestion = new Question(
 				"Möchten Sie das Smartphone zur Navigation oder zur Aufzeichnung ihrer sportlichen Aktivitäten verwenden?",
-				ChoicesBuilder.yesNo("navi", "whatever ..."));
+				ChoicesBuilder.yesNo("ahjo...", "eher net so"));
 	}
 
-	private void navigationSmartphone(String navigation) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
-		List<OntClass> naviSmartphones = new ArrayList<OntClass>();
-		while (ri.hasNext()) {
-			OntClass subClass = ri.next();
-			if (subClass.getLocalName().toLowerCase().contains(navigation)) {
-				naviSmartphones.add(subClass);
+	private void navigationSmartphone(boolean yes) {
+		if (yes) {
+			OntClass smartphone = model.getOntClass(ns + "Smartphone");
+			ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
+			List<OntClass> naviSmartphones = new ArrayList<OntClass>();
+			while (ri.hasNext()) {
+				OntClass subClass = ri.next();
+				if (subClass.getLocalName().toLowerCase().contains("navi")) {
+					naviSmartphones.add(subClass);
+				}
 			}
-		}
-
-		for (int i = 0; i < naviSmartphones.size(); i++) {
-			setCurrentProperties(naviSmartphones.get(i));
+	
+			for (int i = 0; i < naviSmartphones.size(); i++) {
+				setCurrentProperties(naviSmartphones.get(i));
+			}
 		}
 
 		context = 7;
 		nextQuestion = new Question(
 				"Nutzen Sie das Smartphone auch als Kamera?",
-				ChoicesBuilder.yesNo("kamera", "nix ..."));
+				ChoicesBuilder.yesNo("jo, was feur eine dumme Frage!?", "Neee"));
 	}
 
-	private void kameraSmartphone(String kamera) {
+	private void kameraSmartphone(boolean yes) {
+		if (yes) {
+			//TODO Kamerasmartphone oder was??
+		}
 		context = 8;
 		List<Choice> choices = new ArrayList<Choice>();
 		choices.add(new Choice("Nein", "nein", ChoiceType.RADIO));
@@ -269,9 +274,11 @@ public class Berater1 extends Berater {
 			for (String brand : SQLClient.getInstance().getBrands())
 				choices.add(new Choice("Ja, " + brand, brand, ChoiceType.RADIO));
 		} catch (DBException ex) {
+			ex.printStackTrace();
 			// Pech gehabt.
 		}
 		HashMap<Integer, List<Choice>> choicesGroupMap = new HashMap<Integer, List<Choice>>();
+		choicesGroupMap.put(0, choices);
 		nextQuestion = new Question(
 				"Bevorzugen Sie einen bestimmten Hersteller?",
 				choicesGroupMap);
@@ -279,7 +286,6 @@ public class Berater1 extends Berater {
 
 	private void smartphoneMarke(String marke) {
 		context = 9;
-//		QuestionType.FINISHED;
 	}
 
 	private Question firstQuestion() {

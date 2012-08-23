@@ -199,4 +199,26 @@ public class SQLClient {
 		return brands;
 	}
 
+	public boolean doesTableExist(String localName) throws DBException {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = getConnection();
+			stmt = conn.prepareStatement("select * from Smartphones where " + localName + " = 1");
+			stmt.executeQuery();
+			return true;
+		} catch (SQLException e) {
+			return false;
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				// Ignore.
+			}
+		}
+	}
+
 }
