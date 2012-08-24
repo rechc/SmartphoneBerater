@@ -199,7 +199,7 @@ public class SQLClient {
 		return brands;
 	}
 
-	public boolean doesTableExist(String localName) throws DBException {
+	public boolean doesColumnExist(String localName) throws DBException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {

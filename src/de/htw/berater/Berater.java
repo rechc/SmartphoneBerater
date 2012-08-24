@@ -411,7 +411,7 @@ public abstract class Berater {
 				boolean isBooleanValue = false;
 				for (Iterator<? extends OntClass> it = union.listOperands(); it.hasNext();) {
 					OntClass op = it.next();
-					isBooleanValue = SQLClient.getInstance().doesTableExist(op.getLocalName());
+					isBooleanValue = SQLClient.getInstance().doesColumnExist(op.getLocalName());
 					if (isBooleanValue)
 						unionStr += op.getLocalName() + " = 1 " + (it.hasNext() ? " or " : "");
 					else
@@ -419,7 +419,7 @@ public abstract class Berater {
 				}
 				sqlConstraint.setValue(unionStr, isBooleanValue);
 			} else {
-				boolean isBooleanValue = SQLClient.getInstance().doesTableExist(res.getLocalName());
+				boolean isBooleanValue = SQLClient.getInstance().doesColumnExist(res.getLocalName());
 				String s = res.getLocalName();
 				if (!isBooleanValue) {
 					s = extractGeneralIdentifier(s) + " like '" + extractActualIdentifier(s) + "'";
