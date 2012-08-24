@@ -2,11 +2,7 @@ package de.htw.berater;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-
-import javax.management.RuntimeErrorException;
 
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.Restriction;
@@ -15,16 +11,16 @@ import com.hp.hpl.jena.util.iterator.Map1;
 
 import de.htw.berater.controller.Answer;
 import de.htw.berater.controller.Choice;
+import de.htw.berater.controller.ChoiceType;
 import de.htw.berater.controller.ChoicesBuilder;
 import de.htw.berater.controller.Question;
-import de.htw.berater.controller.ChoiceType;
 import de.htw.berater.db.DBException;
 import de.htw.berater.db.SQLClient;
 
 public class Berater1 extends Berater {
 
-	private List<OntClass> rememberList = new LinkedList<OntClass>();
-	private Question nextQuestion;
+	
+	
 
 	public Berater1(String rdfPath, String ns) {
 		super(rdfPath, ns);
@@ -68,15 +64,7 @@ public class Berater1 extends Berater {
 		}
 	}
 
-	@Override
-	public Question generateQuestion() {
-		switch (context) {
-		case 0:
-			return firstQuestion();
-		default:
-			return nextQuestion;
-		}
-	}
+
 
 	protected List<OntClass> getClassesWithProperty(String property) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
@@ -288,7 +276,8 @@ public class Berater1 extends Berater {
 		context = 9;
 	}
 
-	private Question firstQuestion() {
+	@Override
+	public Question firstQuestion() {
 		context = 1;
 		OntClass zweckClass = model.getOntClass(ns + "Zweck");
 		List<Choice> choices = zweckClass.listSubClasses()

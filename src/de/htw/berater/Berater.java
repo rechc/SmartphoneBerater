@@ -34,6 +34,8 @@ public abstract class Berater {
 	public static final int BERATER_1 = 0;
 	public static final int BERATER_2 = 1;
 
+	protected List<OntClass> rememberList = new LinkedList<OntClass>();
+	protected Question nextQuestion;
 	protected final String ns;
 	protected final Set<OntClass> properties = new LinkedHashSet<OntClass>();
 	protected int context; // irgendwie den kontext beachten um sinnvoll die
@@ -59,7 +61,16 @@ public abstract class Berater {
 
 	public abstract void evaluateAnswer(Answer answer) throws DBException;
 
-	public abstract Question generateQuestion();
+	public abstract Question firstQuestion();
+	
+	public final Question generateQuestion() {
+		switch (context) {
+		case 0:
+			return firstQuestion();
+		default:
+			return nextQuestion;
+		}
+	}
 
 	public final void reset() {
 		context = 0;

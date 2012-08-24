@@ -2,7 +2,6 @@ package de.htw.berater;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.hp.hpl.jena.ontology.OntClass;
@@ -17,8 +16,6 @@ import de.htw.berater.db.DBException;
 import de.htw.berater.db.SQLClient;
 
 public class Berater2 extends Berater {
-
-	private Question nextQuestion;
 
 	public Berater2(String rdfPath, String ns) {
 		super(rdfPath, ns);
@@ -64,15 +61,7 @@ public class Berater2 extends Berater {
 		}
 	}
 
-	@Override
-	public Question generateQuestion() {
-		switch (context) {
-		case 0:
-			return firstQuestion();
-		default:
-			return nextQuestion;
-		}
-	}
+	
 
 	private void proSmartphone(String proPhone) {
 		OntClass subClassOfInterest = searchClassContaining(proPhone, "Smartphone");
@@ -228,7 +217,8 @@ public class Berater2 extends Berater {
 		context = 11;
 	}
 
-	private Question firstQuestion() {
+	@Override
+	public Question firstQuestion() {
 		context = 1;
 		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
 				.add("Hallo! Ich will ein iPhone! Darf aber nicht mehr als 100 € kosten!",
