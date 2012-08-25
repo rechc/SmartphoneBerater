@@ -24,7 +24,6 @@ public class DBTest {
 			System.out.println(list.size());
 			sqlcl.closeConnection();
 		} catch (DBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
