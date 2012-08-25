@@ -1,5 +1,6 @@
 package de.htw.berater.test.junit;
 
+
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -21,13 +22,19 @@ public class Berater1Test extends TestCase {
 	}
 	
 	public void testZweck() throws DBException {
+		// Datenbank Verbindung
+		SQLClient sqlCl = SQLClient.getInstance();
+		sqlCl.initialConnection();
+		
+		
+		
 		// Frage 1
 		Question question = berater.generateQuestion();
 		System.out.println(question);
 		System.out.println(question.getChoices());
 		berater.evaluateAnswer(new Answer("bilder"));
 		System.out.println(berater.getSQLString());
-		DBTest.testOutput(berater.getSQLString());
+		ausgabeDB(sqlCl, berater.getSQLString());
 		
 		// Frage 2a
 		printLeerzeilen();
@@ -35,7 +42,7 @@ public class Berater1Test extends TestCase {
 		System.out.println(question);
 		berater.evaluateAnswer(new Answer("normales"));
 		System.out.println(berater.getSQLString());
-		DBTest.testOutput(berater.getSQLString());
+		ausgabeDB(sqlCl, berater.getSQLString());
 		
 		// Frage 2b
 //		printLeerzeilen();
@@ -58,7 +65,7 @@ public class Berater1Test extends TestCase {
 		berater.addCustomerInfo(Customer.SEHBEHINDERT);
 		berater.evaluateAnswer(new Answer("großes"));
 		System.out.println(berater.getSQLString());
-		DBTest.testOutput(berater.getSQLString());
+		ausgabeDB(sqlCl, berater.getSQLString());
 		if (berater.getContext() == 4) {
 			// Frage 4 
 			printLeerzeilen();
@@ -66,7 +73,7 @@ public class Berater1Test extends TestCase {
 			System.out.println(question);
 			berater.evaluateAnswer(new Answer("keinetastatur"));
 			System.out.println(berater.getSQLString());
-			DBTest.testOutput(berater.getSQLString());
+			ausgabeDB(sqlCl, berater.getSQLString());
 		} 
 		
 		// Frage 5
@@ -75,7 +82,7 @@ public class Berater1Test extends TestCase {
 		System.out.println(question);
 		berater.evaluateAnswer(new Answer("outdoor"));
 		System.out.println(berater.getSQLString());
-		//DBTest.testOutput(berater.getSQLString());
+		ausgabeDB(sqlCl, berater.getSQLString());
 		
 		// Frage 6
 		printLeerzeilen();
@@ -83,6 +90,7 @@ public class Berater1Test extends TestCase {
 		System.out.println(question);
 		berater.evaluateAnswer(new Answer("navi"));
 		System.out.println(berater.getSQLString());
+		ausgabeDB(sqlCl, berater.getSQLString());
 		
 		// Frage 7
 		printLeerzeilen();
@@ -90,6 +98,7 @@ public class Berater1Test extends TestCase {
 		System.out.println(question);
 		berater.evaluateAnswer(new Answer("???"));
 		System.out.println(berater.getSQLString());
+		ausgabeDB(sqlCl, berater.getSQLString());
 		
 		// Frage 8
 		printLeerzeilen();
@@ -97,10 +106,28 @@ public class Berater1Test extends TestCase {
 		System.out.println(question);
 		berater.evaluateAnswer(new Answer("???"));
 		System.out.println(berater.getSQLString());
+		ausgabeDB(sqlCl, berater.getSQLString());
+		
+		
+		//Connection close
+		sqlCl.closeConnection();
 	}
 	
 	private static void printLeerzeilen() {
 		System.out.println("\n");
+	}
+	
+	private void ausgabeDB(SQLClient sqlcl , String sql){
+		List<Smartphone> list;
+		try {
+			list = sqlcl.getSmartphones(sql);
+			System.out.println(list);
+			System.out.println(list.size());
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public static void main(String[] args) {
