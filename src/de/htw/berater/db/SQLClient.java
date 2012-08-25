@@ -31,7 +31,7 @@ public class SQLClient {
 	private String serverUserPw;
 
 	// the connection
-	Connection connection = null;
+	private Connection connection = null;
 
 	private SQLClient() throws DBException {
 
