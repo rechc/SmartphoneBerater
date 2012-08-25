@@ -11,7 +11,6 @@ import de.htw.berater.controller.Question;
 import de.htw.berater.db.DBException;
 import de.htw.berater.db.SQLClient;
 import de.htw.berater.db.Smartphone;
-import de.htw.test.DBTest;
 
 public class Berater1Test extends TestCase {
 
