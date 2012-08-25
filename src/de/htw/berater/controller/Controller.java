@@ -51,7 +51,10 @@ public class Controller {
 			String sql = berater.getSQLString();
 			List<Smartphone> resultData;
 			System.out.println(sql);
-			resultData = SQLClient.getInstance().getSmartphones(sql);
+			SQLClient sqlc = SQLClient.getInstance();
+			sqlc.initialConnection();
+			resultData = sqlc.getSmartphones(sql);
+			sqlc.closeConnection();
 			beraterUI.onNewData(resultData);
 			beraterUI.onNewQuestion(question);
 		} catch (DBException e) {
