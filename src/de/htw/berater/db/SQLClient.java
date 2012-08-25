@@ -59,17 +59,12 @@ public class SQLClient {
 	 * Singelton
 	 * 
 	 * @return
+	 * @throws DBException 
 	 */
-	public static SQLClient getInstance() {
+	public static SQLClient getInstance() throws DBException {
 		synchronized (SQLClient.class) {
 			if (instance == null) {
-				try {
-					instance = new SQLClient();
-				} catch (DBException e) {
-					// TODO Auto-generated catch block
-					// TODO weiterschmeißen
-					e.printStackTrace();
-				}
+				instance = new SQLClient();
 			}
 			return instance;
 		}
@@ -88,11 +83,11 @@ public class SQLClient {
 							+ e);
 		} catch (SQLException e) {
 			throw new DBException("DB-Connection-Error " + e);
-		} 
+		}
 	}
-	
-	public void closeConnection() throws DBException{
-		if (connection != null){
+
+	public void closeConnection() throws DBException {
+		if (connection != null) {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -100,13 +95,12 @@ public class SQLClient {
 			}
 		}
 	}
-	
-	private void checkAndOpenConnection() throws DBException{
-		if (connection == null){
+
+	private void checkAndOpenConnection() throws DBException {
+		if (connection == null) {
 			initialConnection();
 		}
 	}
-	
 
 	/**
 	 * 
@@ -117,7 +111,7 @@ public class SQLClient {
 	 */
 	public List<Smartphone> getSmartphones(String sql) throws DBException {
 		checkAndOpenConnection();
-		
+
 		ArrayList<Smartphone> rdl = new ArrayList<Smartphone>();
 		ResultSet rs = null;
 		Statement statement = null;
@@ -132,7 +126,7 @@ public class SQLClient {
 			}
 		} catch (SQLException e) {
 			throw new DBException("DB Exception: " + e);
-		}finally {
+		} finally {
 			try {
 				if (rs != null)
 					rs.close();
@@ -185,19 +179,18 @@ public class SQLClient {
 		return rdl;
 	}
 
-	
 	public List<String> getBrands() throws DBException {
 		checkAndOpenConnection();
-		
+
 		List<String> brands = new ArrayList<String>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			pstmt = this.connection
 					.prepareStatement("select distinct(marke) from Smartphones order by 1");
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next())
 				brands.add(rs.getString(1));
 		} catch (SQLException e) {
@@ -220,8 +213,9 @@ public class SQLClient {
 
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = connection.prepareStatement("select * from Smartphones where "
-					+ localName + " = 1");
+			pstmt = connection
+					.prepareStatement("select * from Smartphones where "
+							+ localName + " = 1");
 			pstmt.executeQuery();
 			return true;
 		} catch (SQLException e) {
