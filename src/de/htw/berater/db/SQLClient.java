@@ -30,6 +30,9 @@ public class SQLClient {
 	private String serverUserName;
 	private String serverUserPw;
 
+	// the connection
+	Connection connection = null;
+
 	private SQLClient() throws DBException {
 
 		Properties dbprop = new Properties();
@@ -72,11 +75,11 @@ public class SQLClient {
 		}
 	}
 
-	private Connection getConnection() throws DBException {
+	public void initialConnection() throws DBException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			return DriverManager.getConnection(serverUrl + dbName,
+			this.connection = DriverManager.getConnection(serverUrl + dbName,
 					serverUserName, serverUserPw);
 
 		} catch (ClassNotFoundException e) {
@@ -85,8 +88,25 @@ public class SQLClient {
 							+ e);
 		} catch (SQLException e) {
 			throw new DBException("DB-Connection-Error " + e);
+		} 
+	}
+	
+	public void closeConnection() throws DBException{
+		if (connection != null){
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new DBException("DB-Connection-Close-Error " + e);
+			}
 		}
 	}
+	
+	private void checkAndOpenConnection() throws DBException{
+		if (connection == null){
+			initialConnection();
+		}
+	}
+	
 
 	/**
 	 * 
@@ -96,36 +116,32 @@ public class SQLClient {
 	 * @throws DBException
 	 */
 	public List<Smartphone> getSmartphones(String sql) throws DBException {
+		checkAndOpenConnection();
+		
 		ArrayList<Smartphone> rdl = new ArrayList<Smartphone>();
 		ResultSet rs = null;
-		Statement stmnt = null;
-		Connection con = null;
+		Statement statement = null;
 		try {
-			con = getConnection();
-			stmnt = con.createStatement(ResultSet.TYPE_FORWARD_ONLY,
-					ResultSet.CONCUR_READ_ONLY);
-			if (stmnt.execute(sql)) {
-				rs = stmnt.getResultSet();
+			statement = this.connection.createStatement(
+					ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+			if (statement.execute(sql)) {
+				rs = statement.getResultSet();
 				rdl = parseResultData(rdl, rs);
+				statement.close();
 				rs.close();
 			}
-			stmnt.close();
-			con.close();
 		} catch (SQLException e) {
 			throw new DBException("DB Exception: " + e);
-		} finally {
+		}finally {
 			try {
 				if (rs != null)
 					rs.close();
-				if (stmnt != null)
-					stmnt.close();
-				if (con != null)
-					con.close();
+				if (statement != null)
+					statement.close();
 			} catch (SQLException ex) {
 				// Ignore.
 			}
 		}
-
 		return rdl;
 	}
 
@@ -166,20 +182,22 @@ public class SQLClient {
 			rdl.add(temprd);
 
 		} while (rs.next());
-
 		return rdl;
 	}
 
+	
 	public List<String> getBrands() throws DBException {
+		checkAndOpenConnection();
+		
 		List<String> brands = new ArrayList<String>();
-		Connection conn = null;
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		try {
-			conn = getConnection();
-			stmt = conn
+			pstmt = this.connection
 					.prepareStatement("select distinct(marke) from Smartphones order by 1");
-			rs = stmt.executeQuery();
+			rs = pstmt.executeQuery();
+			
 			while (rs.next())
 				brands.add(rs.getString(1));
 		} catch (SQLException e) {
@@ -188,10 +206,8 @@ public class SQLClient {
 			try {
 				if (rs != null)
 					rs.close();
-				if (stmt != null)
-					stmt.close();
-				if (conn != null)
-					conn.close();
+				if (pstmt != null)
+					pstmt.close();
 			} catch (SQLException ex) {
 				// Ignore.
 			}
@@ -200,21 +216,20 @@ public class SQLClient {
 	}
 
 	public boolean doesColumnExist(String localName) throws DBException {
-		Connection conn = null;
-		PreparedStatement stmt = null;
+		checkAndOpenConnection();
+
+		PreparedStatement pstmt = null;
 		try {
-			conn = getConnection();
-			stmt = conn.prepareStatement("select * from Smartphones where " + localName + " = 1");
-			stmt.executeQuery();
+			pstmt = connection.prepareStatement("select * from Smartphones where "
+					+ localName + " = 1");
+			pstmt.executeQuery();
 			return true;
 		} catch (SQLException e) {
 			return false;
 		} finally {
 			try {
-				if (stmt != null)
-					stmt.close();
-				if (conn != null)
-					conn.close();
+				if (pstmt != null)
+					pstmt.close();
 			} catch (SQLException ex) {
 				// Ignore.
 			}

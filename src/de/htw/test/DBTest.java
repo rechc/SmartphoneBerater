@@ -17,9 +17,12 @@ public class DBTest {
 	
 	public static void testOutput(String sql){
 		try {
-			List<Smartphone> list = SQLClient.getInstance().getSmartphones(sql);
+			SQLClient sqlcl = SQLClient.getInstance();
+			sqlcl.initialConnection();
+			List<Smartphone> list = sqlcl.getSmartphones(sql);
 			System.out.println(list);
 			System.out.println(list.size());
+			sqlcl.closeConnection();
 		} catch (DBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
