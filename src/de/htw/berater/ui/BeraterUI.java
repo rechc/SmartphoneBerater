@@ -1,5 +1,6 @@
 package de.htw.berater.ui;
 
+import java.awt.Color;
 import java.util.List;
 
 import de.htw.berater.controller.Controller;
@@ -19,6 +20,8 @@ public abstract class BeraterUI {
 	public abstract void show();
 
 	public abstract void onNewData(List<Smartphone> resultData);
+	
+	public abstract void onNewStatus(String text, Color farbe, int maxSeconds);
 
 	public void setController(Controller controller) {
 		this.controller = controller;

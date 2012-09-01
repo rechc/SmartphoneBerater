@@ -1,5 +1,6 @@
 package de.htw.berater.ui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,10 +27,12 @@ public class UIActions implements ActionListener {
 			// Szenario 1 starten
 			if (frame.getRadioButtonScenario1().isSelected()){
 				frame.getController().getFirstQuestion(true);
+				frame.onNewStatus("Szenario 1 gestartet", Color.YELLOW, 5);
 		
 			// Szenario 2 starten
 			} else {
 				frame.getController().getFirstQuestion(false);
+				frame.onNewStatus("Szenario 2 gestartet", Color.YELLOW, 5);
 			}
 		}
 		

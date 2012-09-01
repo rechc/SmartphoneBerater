@@ -1,6 +1,7 @@
 package de.htw.berater.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
@@ -20,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -55,6 +57,8 @@ public class BeraterUIJFrame extends BeraterUI{
 	private JPanel answer_type2;
 
 	private AnswerPanel answerPanel;
+	
+	private JTextField status_bar;
 
 	/** Konstruktor mit Werte, initialisiert die UI
 	 * 
@@ -124,7 +128,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		JPanel mainPanel = new JPanel();
 		frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		mainPanel.setLayout(new BorderLayout(0, 0));
-		
+				
 		JPanel question_panel = new JPanel();
 		question_panel.setMinimumSize(new Dimension(350, 10));
 		FlowLayout fl_question_panel = (FlowLayout) question_panel.getLayout();
@@ -136,14 +140,23 @@ public class BeraterUIJFrame extends BeraterUI{
 		labelQuestion.setBounds(new Rectangle(10, 10, 10, 10));
 		labelQuestion.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
+		JPanel south_Panel = new JPanel();
+		south_Panel.setLayout(new BoxLayout(south_Panel, BoxLayout.Y_AXIS));
+		
 		commit_panel = new JPanel();
 		commit_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		FlowLayout fl_commit_panel = (FlowLayout) commit_panel.getLayout();
 		fl_commit_panel.setVgap(20);
 		fl_commit_panel.setHgap(20);
 		fl_commit_panel.setAlignment(FlowLayout.LEFT);
-		mainPanel.add(commit_panel, BorderLayout.SOUTH);
+		
 		commit_panel.setVisible(false);
+		
+		south_Panel.add(commit_panel);
+		status_bar = new JTextField("Wählen Sie ein Szenario aus");
+		status_bar.setEditable(false);
+		south_Panel.add(status_bar);
+		mainPanel.add(south_Panel, BorderLayout.SOUTH);
 		
 		JButton buttonGo = new JButton("Weiter");
 		buttonGo.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -194,6 +207,8 @@ public class BeraterUIJFrame extends BeraterUI{
 		answer_splitPane.setOneTouchExpandable(true);
 		answer_splitPane.setMinimumSize(new Dimension(500, 500));
 		answer_splitPane.setVisible(false);
+		answer_splitPane.setDividerLocation(0.5);
+		answer_splitPane.setResizeWeight(0.5);
 	}
 	
 	
@@ -245,6 +260,49 @@ public class BeraterUIJFrame extends BeraterUI{
 		tableModel.setPhoneList(resultData);
 	}
 
+	/** Funktion zum neuSetzen des Textes der Statusleiste
+	 *  @param text - Der anzuzeigende Text
+	 *  @param farbe - Die Hintergrundfarbe
+	 *  @param maxSeconds - Die Anzeigedauer des Textes, 0 bedeutet: unbegrenzt, bleibt stehen bis es ueberschrieben wird
+	 */
+	@Override
+	public void onNewStatus(String text, Color farbe, int maxSeconds){
+		
+		final String myText = text;
+		final int myMaxSeconds = maxSeconds;
+		if (maxSeconds > 0){
+		
+			Thread thread = new Thread(){
+				public void run(){
+					for (int i = 0; i <= myMaxSeconds; i++){
+						try {
+							this.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						//Prüfen ob eigener Text nicht bereits ueberschrieben wurde
+						if (!status_bar.getText().equals(myText)){
+							break;
+						}
+						//Text wieder von der Statusleiste entfernen
+						if (i == myMaxSeconds) {
+							status_bar.setText("");
+							status_bar.setBackground(null);
+						}
+						
+					}
+				}
+				
+			};
+			
+			thread.start();
+		}
+		status_bar.setText(text);
+		status_bar.setBackground(farbe);
+		
+	}
+	
 	/** Funktion zum setzen des Controllers
 	 * 
 	 * @param controller

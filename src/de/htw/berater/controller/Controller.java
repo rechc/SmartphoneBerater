@@ -47,19 +47,26 @@ public class Controller {
 	}
 	
 	private void informUI(Question question) {
-		try {
-			String sql = berater.getSQLString();
-			List<Smartphone> resultData;
-			System.out.println(sql);
-			SQLClient sqlc = SQLClient.getInstance();
-			sqlc.initialConnection();
-			resultData = sqlc.getSmartphones(sql);
-			sqlc.closeConnection();
-			beraterUI.onNewData(resultData);
-			beraterUI.onNewQuestion(question);
-		} catch (DBException e) {
-			e.printStackTrace();
-		}
+		Thread thread = new Thread() {
+			@Override
+			public void run(){
+				try{
+					String sql = berater.getSQLString();
+					List<Smartphone> resultData;
+					System.out.println(sql);
+					SQLClient sqlc = SQLClient.getInstance();
+					sqlc.initialConnection();
+					resultData = sqlc.getSmartphones(sql);
+					sqlc.closeConnection();
+					beraterUI.onNewData(resultData);
+				} catch (DBException e){
+					e.printStackTrace();
+				}
+			}
+		};
+		
+		beraterUI.onNewQuestion(question);
+		thread.start();
 		
 	}
 }
