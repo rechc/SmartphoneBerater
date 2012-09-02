@@ -33,21 +33,26 @@ public class Controller {
 		berater.reset();
 	}
 	
-	public void getFirstQuestion(boolean szenario1) {
-		this.berater = szenario1 ? berater1 : berater2;
-		Question question = berater.generateQuestion();
-		try {
-			informUI(question);
-		} catch (DBException e) {
-			beraterUI.onNewStatus(e.getMessage(), Color.RED, 0);
-			e.printStackTrace();
-		}
-		try {
-			SQLClient.getInstance().closeConnection();
-		} catch (DBException e) {
-			beraterUI.onNewStatus(e.getMessage(), Color.RED, 0);
-			e.printStackTrace();
-		}
+	public void getFirstQuestion(final boolean szenario1) {
+		new Thread() {
+			@Override
+			public void run() {
+				berater = szenario1 ? berater1 : berater2;
+				Question question = berater.generateQuestion();
+				try {
+					informUI(question);
+				} catch (DBException e) {
+					beraterUI.onNewStatus(e.getMessage(), Color.RED, 0);
+					e.printStackTrace();
+				}
+				try {
+					SQLClient.getInstance().closeConnection();
+				} catch (DBException e) {
+					beraterUI.onNewStatus(e.getMessage(), Color.RED, 0);
+					e.printStackTrace();
+				}
+			}
+		}.start();
 	}
 	
 	public void answer(final Answer answer) {

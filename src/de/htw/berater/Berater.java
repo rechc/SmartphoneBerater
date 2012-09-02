@@ -294,7 +294,7 @@ public abstract class Berater {
 				}
 			}
 		}
-		return propertyName;
+		return null;
 	}
 
 	private String processPropertyToSQL(OntClass property) throws DBException {
@@ -448,7 +448,13 @@ public abstract class Berater {
 				boolean isBooleanValue = SQLClient.getInstance().doesColumnExist(res.getLocalName());
 				String s = res.getLocalName();
 				if (!isBooleanValue) {
-					s = extractGeneralIdentifier(s) + " like '" + extractActualIdentifier(s) + "'";
+					String general = extractGeneralIdentifier(s);
+					
+					if (general == null) {
+						isBooleanValue = true;
+					} else {
+						s = general + " like '" + extractActualIdentifier(s) + "'";
+					}
 				} 
 				sqlConstraint.setValue(s, isBooleanValue);
 			}

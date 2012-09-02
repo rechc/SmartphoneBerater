@@ -173,7 +173,7 @@ public class Berater1 extends Berater {
 		nextQuestion = questionDisplaySize();
 	}
 
-	private void displaySmartphone(String display) throws DBException {
+	private void displaySmartphone(String display) throws Exception {
 		OntClass displaySmartphone = searchClassContaining(display, "Smartphone");
 		if (display != null)
 			setCurrentProperties(displaySmartphone);
@@ -196,7 +196,7 @@ public class Berater1 extends Berater {
 				customer.removeCustomerInfo(Customer.SEHBEHINDERT);
 				nextQuestion = questionDisplaySize();
 				context = 3;
-				System.out.println("Sie können kein kleines sm holen, wenn Sie sehbehindert sind. OMG! Daher wiederhole ich die letzte Frage nochmal");
+				throw new Exception("Sie können kein kleines sm holen, wenn Sie sehbehindert sind. OMG! Daher wiederhole ich die letzte Frage nochmal");
 			}
 		}
 	}
