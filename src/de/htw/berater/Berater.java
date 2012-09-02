@@ -398,7 +398,7 @@ public abstract class Berater {
 							.contains("sudokuhengst")) {
 						this.customer.addCustomerInfo(Customer.SUDOKUHENGST);
 					} else if (sqlConstraint.getValue().toLowerCase()
-							.contains("spielefreak")) {
+							.contains("spielefreak")) { 
 						this.customer.addCustomerInfo(Customer.SPIELEFREAK);
 					}
 				}
