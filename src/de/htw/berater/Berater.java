@@ -1,5 +1,6 @@
 package de.htw.berater;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -109,7 +110,7 @@ public abstract class Berater {
 			Restriction restriction = clazz.asRestriction();
 			ReadableProperty constraint = getReadablePropertyFromRestriction(restriction);
 			if (constraint.getKey().equals("fuerKunde")) {
-				if (!constraint.getValue().equals(what)) {
+				if (!constraint.getValue().contains(what)) {
 					isOk = true;
 				}
 			}
@@ -294,7 +295,7 @@ public abstract class Berater {
 				}
 			}
 		}
-		return null;
+		return propertyName;
 	}
 
 	private String processPropertyToSQL(OntClass property) throws DBException {
@@ -364,6 +365,29 @@ public abstract class Berater {
 		return "1";
 	}
 
+	
+	protected List<OntClass> getClassesWithProperty(String property) {
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
+		List<OntClass> smartphones = new ArrayList<OntClass>();
+		while (ri.hasNext()) {
+			OntClass subClass = ri.next();
+			List<Restriction> restrictions = getRestrictionsDeep(subClass);
+			for (Restriction restriction : restrictions) {
+				if (restriction.getOnProperty().getLocalName().contains(property)) {
+					if (restriction.isSomeValuesFromRestriction()) {
+						if (!smartphones.contains(subClass)) {
+							smartphones.add(subClass);
+						}
+					} else {
+						throw new RuntimeException("not defined in ontology");
+					}
+				}
+			}
+		}
+		return smartphones;
+	}
+	
 	protected void setCustomerInfo() throws DBException {
 		for (OntClass property : properties) {
 			if (property.isRestriction()) {
@@ -371,10 +395,10 @@ public abstract class Berater {
 						.asRestriction());
 				if (sqlConstraint.getKey().equals("fuerKunde")) {
 					if (sqlConstraint.getValue().toLowerCase()
-							.equals("sudokuhengst")) {
+							.contains("sudokuhengst")) {
 						this.customer.addCustomerInfo(Customer.SUDOKUHENGST);
 					} else if (sqlConstraint.getValue().toLowerCase()
-							.equals("spielefreak")) {
+							.contains("spielefreak")) {
 						this.customer.addCustomerInfo(Customer.SPIELEFREAK);
 					}
 				}
@@ -450,11 +474,7 @@ public abstract class Berater {
 				if (!isBooleanValue) {
 					String general = extractGeneralIdentifier(s);
 					
-					if (general == null) {
-						isBooleanValue = true;
-					} else {
-						s = general + " like '" + extractActualIdentifier(s) + "'";
-					}
+					s = general + " like '" + extractActualIdentifier(s) + "'";
 				} 
 				sqlConstraint.setValue(s, isBooleanValue);
 			}

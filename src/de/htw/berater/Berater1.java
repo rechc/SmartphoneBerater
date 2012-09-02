@@ -69,27 +69,7 @@ public class Berater1 extends Berater {
 
 
 
-	protected List<OntClass> getClassesWithProperty(String property) {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
-		List<OntClass> smartphones = new ArrayList<OntClass>();
-		while (ri.hasNext()) {
-			OntClass subClass = ri.next();
-			List<Restriction> restrictions = getRestrictionsDeep(subClass);
-			for (Restriction restriction : restrictions) {
-				if (restriction.getOnProperty().getLocalName().contains(property)) {
-					if (restriction.isSomeValuesFromRestriction()) {
-						if (!smartphones.contains(subClass)) {
-							smartphones.add(subClass);
-						}
-					} else {
-						throw new RuntimeException("not defined in ontology");
-					}
-				}
-			}
-		}
-		return smartphones;
-	}
+	
 	
 	private void smartphoneZweck(String string) {
 
