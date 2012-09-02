@@ -22,6 +22,8 @@ public abstract class BeraterUI {
 	public abstract void onNewData(List<Smartphone> resultData);
 	
 	public abstract void onNewStatus(String text, Color farbe, int maxSeconds);
+	
+	public abstract void resetStatus();
 
 	public void setController(Controller controller) {
 		this.controller = controller;

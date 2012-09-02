@@ -20,7 +20,7 @@ public class Berater1Test extends TestCase {
 		this.berater = new Berater1("inferredSmartphones.rdf", "http://semantische-interoperabilitaet-projekt#");
 	}
 	
-	public void testZweck() throws DBException {
+	public void testZweck() throws Exception {
 		// Datenbank Verbindung
 		SQLClient sqlCl = SQLClient.getInstance();
 		sqlCl.initialConnection();

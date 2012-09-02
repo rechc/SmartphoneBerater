@@ -71,6 +71,7 @@ public class SQLClient {
 	}
 
 	public void initialConnection() throws DBException {
+		System.out.println("connection opened");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -90,9 +91,11 @@ public class SQLClient {
 		if (connection != null) {
 			try {
 				connection.close();
+				System.out.println("connection closed");
 			} catch (SQLException e) {
 				throw new DBException("DB-Connection-Close-Error " + e);
 			}
+			connection = null;
 		}
 	}
 

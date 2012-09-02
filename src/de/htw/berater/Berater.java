@@ -59,7 +59,7 @@ public abstract class Berater {
 		customer.addCustomerInfo(info);
 	}
 
-	public abstract void evaluateAnswer(Answer answer) throws DBException;
+	public abstract void evaluateAnswer(Answer answer) throws Exception;
 
 	public abstract Question firstQuestion();
 	
@@ -255,7 +255,10 @@ public abstract class Berater {
 	public String getSQLString() throws DBException {
 		String s = "select * from Smartphones where ";
 		for (OntClass property : properties) {
-			s += "(" + processPropertyToSQL(property) + ")" + " and ";
+			String expression = processPropertyToSQL(property);
+			if (!expression.equals("1") && !expression.equals("()")) {
+				s += "(" + expression + ")" + " and ";
+			}
 		}
 		if (s.equals("select * from Smartphones where ")) {
 			return "select * from Smartphones";
@@ -305,9 +308,9 @@ public abstract class Berater {
 					return constraint.getValue();
 				}
 			} else {
-				if (constraint.getKey().equals("hatZweck")) {
+				if (constraint.getKey().equals("hatZweck")) { //braucht man nicht
 					return "1";
-				} else if (constraint.getKey().equals("fuerKunde")) {
+				} else if (constraint.getKey().equals("fuerKunde")) { //braucht man nicht
 					return "1";
 				} else {
 					return constraint.getKey() + " " + constraint.getValue();
@@ -319,9 +322,13 @@ public abstract class Berater {
 				for (Iterator<? extends OntClass> it = property.asIntersectionClass()
 						.listOperands(); it.hasNext();) {
 					OntClass op = it.next();
-					s += processPropertyToSQL(op) + " and ";
+					String expression = processPropertyToSQL(op);
+					if (!expression.equals("1") && !expression.equals("()")) {
+						s += expression + " and ";
+					}
 				}
-				s = s.substring(0, s.length() - 5);
+				if (s.length() > 0)
+					s = s.substring(0, s.length() - 5);
 				return "(" + s + ")";
 			} else {
 				if (property.isUnionClass()) {
@@ -329,9 +336,13 @@ public abstract class Berater {
 					for (Iterator<? extends OntClass> it = property.asUnionClass()
 							.listOperands(); it.hasNext();) {
 						OntClass op = it.next();
-						s += processPropertyToSQL(op) + " or ";
+						String expression = processPropertyToSQL(op);
+						if (!expression.equals("1") && !expression.equals("()")) {
+							s += expression + " or ";
+						}
 					}
-					s = s.substring(0, s.length() - 4);
+					if (s.length() > 0)
+						s = s.substring(0, s.length() - 4);
 					return "(" + s + ")";
 				} else {
 					if (property.isComplementClass()) {
@@ -339,7 +350,11 @@ public abstract class Berater {
 						for (Iterator<? extends OntClass> it = property.asComplementClass()
 								.listOperands(); it.hasNext();) {
 							OntClass op = it.next();
-							s = "not(" + processPropertyToSQL(op) + ")";
+							String expression = processPropertyToSQL(op);
+							if (!expression.equals("1") && !expression.equals("()")) {
+								s = "not(" + expression + ")";
+							}
+							
 						}
 						return "(" + s + ")";
 					}

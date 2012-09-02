@@ -20,7 +20,7 @@ public class Berater2Test extends TestCase {
 				"http://semantische-interoperabilitaet-projekt#");
 	}
 
-	public void testZweck() throws DBException {
+	public void testZweck() throws Exception {
 		// Datenbank Verbindung
 		SQLClient sqlCl = SQLClient.getInstance();
 		sqlCl.initialConnection();

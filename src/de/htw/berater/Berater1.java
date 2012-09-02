@@ -27,7 +27,7 @@ public class Berater1 extends Berater {
 	}
 
 	@Override
-	public void evaluateAnswer(Answer answer) throws DBException {
+	public void evaluateAnswer(Answer answer) throws Exception {
 		String string = answer.getSingleValue();
 
 		if (answer.getValues().contains(Customer.SEHBEHINDERT + "")) {
@@ -42,7 +42,10 @@ public class Berater1 extends Berater {
 			spieleSmartphone(answer.getValues());
 			break;
 		case 3:
-			displaySmartphone(answer.getValues().get(0));
+			if (answer.getValues().size() > 0)
+				displaySmartphone(answer.getValues().get(0));
+			else
+				throw new Exception("no display value selected");
 			break;
 		case 4:
 			touchBedinung(string);

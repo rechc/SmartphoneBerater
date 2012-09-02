@@ -51,6 +51,8 @@ public class BeraterUIJFrame extends BeraterUI{
 	// Panel für Übrige Handys
 	private JPanel available_smartphones_panel;
 	private JTable table;
+	
+	private Color statusBarColor;
 
 	private SmartphoneTableModel tableModel;
 
@@ -155,6 +157,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		south_Panel.add(commit_panel);
 		status_bar = new JTextField("Wählen Sie ein Szenario aus");
 		status_bar.setEditable(false);
+		statusBarColor = status_bar.getBackground();
 		south_Panel.add(status_bar);
 		mainPanel.add(south_Panel, BorderLayout.SOUTH);
 		
@@ -378,5 +381,11 @@ public class BeraterUIJFrame extends BeraterUI{
 				frame.setVisible(true);
 			}
 		});
+	}
+
+	@Override
+	public void resetStatus() {
+		status_bar.setText("");
+		status_bar.setBackground(statusBarColor);
 	}
 }

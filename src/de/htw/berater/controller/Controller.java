@@ -1,6 +1,9 @@
 package de.htw.berater.controller;
 
+import java.awt.Color;
 import java.util.List;
+
+import javax.swing.SwingUtilities;
 
 import de.htw.berater.Berater;
 import de.htw.berater.db.DBException;
@@ -33,40 +36,67 @@ public class Controller {
 	public void getFirstQuestion(boolean szenario1) {
 		this.berater = szenario1 ? berater1 : berater2;
 		Question question = berater.generateQuestion();
-		informUI(question);
-	}
-	
-	public void answer(Answer answer) {
 		try {
-			berater.evaluateAnswer(answer);
-			Question question = berater.generateQuestion();
 			informUI(question);
 		} catch (DBException e) {
+			beraterUI.onNewStatus(e.getMessage(), Color.RED, 0);
+			e.printStackTrace();
+		}
+		try {
+			SQLClient.getInstance().closeConnection();
+		} catch (DBException e) {
+			beraterUI.onNewStatus(e.getMessage(), Color.RED, 0);
 			e.printStackTrace();
 		}
 	}
 	
-	private void informUI(Question question) {
-		Thread thread = new Thread() {
+	public void answer(final Answer answer) {
+		beraterUI.resetStatus();
+		new Thread() {
 			@Override
 			public void run(){
-				try{
-					String sql = berater.getSQLString();
-					List<Smartphone> resultData;
-					System.out.println(sql);
-					SQLClient sqlc = SQLClient.getInstance();
-					sqlc.initialConnection();
-					resultData = sqlc.getSmartphones(sql);
-					sqlc.closeConnection();
-					beraterUI.onNewData(resultData);
-				} catch (DBException e){
+				try {
+					berater.evaluateAnswer(answer);
+					Question question = berater.generateQuestion();
+					informUI(question);
+				} catch (final Exception e) {
+					SwingUtilities.invokeLater(new Runnable() {
+
+						@Override
+						public void run() {
+							beraterUI.onNewStatus(e.getMessage(), Color.RED, 0);
+						}
+					});
+					e.printStackTrace();
+				}
+				try {
+					SQLClient.getInstance().closeConnection();
+				} catch (final DBException e) {
+					SwingUtilities.invokeLater(new Runnable() {
+
+						@Override
+						public void run() {
+							beraterUI.onNewStatus(e.getMessage(), Color.RED, 0);
+						}
+					});
 					e.printStackTrace();
 				}
 			}
-		};
-		
-		beraterUI.onNewQuestion(question);
-		thread.start();
-		
+		}.start();
+	}
+	
+	private void informUI(final Question question) throws DBException {
+		String sql = berater.getSQLString();
+		final List<Smartphone> resultData;
+		System.out.println(sql);
+		resultData = SQLClient.getInstance().getSmartphones(sql);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				beraterUI.onNewData(resultData);
+				beraterUI.onNewQuestion(question);
+			}
+		});
 	}
 }
