@@ -2,10 +2,15 @@ package de.htw.berater;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.Restriction;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFList;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.impl.RDFListImpl;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Map1;
 
@@ -48,7 +53,7 @@ public class Berater1 extends Berater {
 				throw new Exception("no display value selected");
 			break;
 		case 4:
-			touchBedinung(string);
+			touchBedinung(string.equals("Ja") ? true : false);
 			break;
 		case 5:
 			outdoorSmartphone(string);
@@ -159,13 +164,9 @@ public class Berater1 extends Berater {
 			setCurrentProperties(displaySmartphone);
 		if (!customer.isCustomer(Customer.SEHBEHINDERT)) {
 			context = 4;
-			HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
-					.add("Ein Gerät ohne Hardware-Tastatur", "KeineTastatur", ChoiceType.RADIO)
-					.add("Ein Gerät mit integrierter Tastatur", "Tastatur", ChoiceType.RADIO)
-					.build();
 			nextQuestion = new Question(
 					"Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?",
-					choices);
+					ChoicesBuilder.yesNo("Ein Gerät mit integrierter Tastatur", "Ein Gerät ohne Hardware-Tastatur"));
 		} else {
 			if (isSmartphoneOkForCustumer(displaySmartphone, Customer.SEHBEHINDERT)) {
 				System.out.println("es wird eine Frage übersprungen: Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?");
@@ -183,12 +184,32 @@ public class Berater1 extends Berater {
 
 	
 
-	private void touchBedinung(String touch) {
-		OntClass subClassOfInterest = searchClassContaining(touch, "Smartphone"); //Hier muessen die unterklassen gefunden werden. IosSmartphone konkret. ansonsten ist das so falsch.
-		setCurrentProperties(subClassOfInterest);
+	private void touchBedinung(boolean withKeyboard) {
+		if (!withKeyboard) {
+			OntClass subClassOfInterest = searchClassContaining("KeineTastatur", "Smartphone");
+			ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
+			List<OntClass> properties = new LinkedList<OntClass>();
+			while (ri.hasNext()) {
+				OntClass subClass = ri.next();
+				List<OntClass> disjointClasses = getDisjointSmartphones(subClass);
+				for (OntClass disjointClass : disjointClasses) {
+					properties.addAll(getClassProperties(disjointClass));
+				}
+			}
+			OntClass tmpClass = model.createClass("TmpSmartphone");
+
+			RDFList inList = model.createList(properties.toArray(new RDFNode[0]));
+			System.out.println(inList.size());
+			OntClass unionClass = model.createUnionClass(null, inList);
+			tmpClass.addSuperClass(unionClass);
+			setCurrentProperties(tmpClass);
+		}
+		
 		context = 5;
 		nextQuestion = questionUsage();
 	}
+
+	
 
 	private void outdoorSmartphone(String outdoor) {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");

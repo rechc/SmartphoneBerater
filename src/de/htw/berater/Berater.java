@@ -94,7 +94,7 @@ public abstract class Berater {
 	}
 	
 	protected boolean isSmartphoneOkForCustumer(OntClass displaySmartphone, int sehbehindert) throws DBException {
-		List<OntClass> restrictions = getRestrictionsFlat(displaySmartphone);
+		List<OntClass> restrictions = getClassProperties(displaySmartphone);
 		for (OntClass restriction : restrictions) {
 			if (customer.isCustomer(sehbehindert)) {
 				if (!testSmartphoneOkForCustomerRecursively(restriction, true, "Sehbehindert")) {
@@ -133,7 +133,7 @@ public abstract class Berater {
 		return isOk;
 	}
 	
-	protected final List<OntClass> getRestrictionsFlat(OntClass ontClass) {
+	protected final List<OntClass> getClassProperties(OntClass ontClass) {
 		List<OntClass> restrictions = new LinkedList<OntClass>();
 		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
 				.hasNext();) {
@@ -144,7 +144,7 @@ public abstract class Berater {
 		return restrictions;
 	}
 	
-	protected List<Restriction> getRestrictionsRecursively(OntClass clazz) {
+	private List<Restriction> getRestrictionsRecursively(OntClass clazz) {
 		List<Restriction> restrictions = new LinkedList<Restriction>();
 		if (clazz.isRestriction()) {
 			Restriction restriction = clazz.asRestriction();
@@ -210,7 +210,7 @@ public abstract class Berater {
 		for (Iterator<OntClass> supers = ontClass.listSuperClasses(true); supers
 				.hasNext();) {
 			OntClass superClass = supers.next();
-			if (!superClass.isAnon()) {
+			if (!superClass.isAnon() && !superClass.isUnionClass()) {
 				superClasses.add(superClass);
 			}
 		}
@@ -233,6 +233,18 @@ public abstract class Berater {
 		return tmpProperties;
 	}
 
+	protected List<OntClass> getDisjointSmartphones(OntClass ontClass) {
+		OntClass smartphone = searchClassContaining("Smartphone", "Smartphone");
+		List<OntClass> list = new LinkedList<OntClass>();
+		for (Iterator<OntClass> it = smartphone.listSubClasses(); it.hasNext();) {
+			OntClass subClass = it.next();
+			if (subClass.isDisjointWith(ontClass)) {
+				list.add(subClass);
+			}
+		}
+		return list;
+	}
+	
 	/* add all properties of a certain class */
 	protected final void setCurrentProperties(OntClass ontClass) {
 		if (ontClass.getLocalName().equals("Smartphone")) {
