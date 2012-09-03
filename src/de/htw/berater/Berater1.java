@@ -72,10 +72,6 @@ public class Berater1 extends Berater {
 		}
 	}
 
-
-
-	
-	
 	private void smartphoneZweck(String string) {
 
 		OntClass zweckSubClass = searchClassContaining(string, "Zweck");
@@ -162,16 +158,15 @@ public class Berater1 extends Berater {
 		OntClass displaySmartphone = searchClassContaining(display, "Smartphone");
 		if (display != null)
 			setCurrentProperties(displaySmartphone);
-		if (!customer.isCustomer(Customer.SEHBEHINDERT)) {
-			context = 4;
-			nextQuestion = new Question(
-					"Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?",
-					ChoicesBuilder.yesNo("Ein Gerät mit integrierter Tastatur", "Ein Gerät ohne Hardware-Tastatur"));
-		} else {
+		if (customer.isCustomer(Customer.SEHBEHINDERT)) {
 			if (isSmartphoneOkForCustumer(displaySmartphone, Customer.SEHBEHINDERT)) {
-				System.out.println("es wird eine Frage übersprungen: Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?");
-				context = 5;
-				nextQuestion = questionUsage();
+				OntClass tastaturSmartphone = searchClassContaining("Tastatur", "Smartphone");
+				if (!isSmartphoneOkForCustumer(tastaturSmartphone, Customer.SEHBEHINDERT)) {
+					System.out.println("es wird eine Frage übersprungen: Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?");
+					context = 5;
+					nextQuestion = questionUsage();
+					return;
+				}
 			} else {
 				removeSQLConstraints(displaySmartphone);
 				customer.removeCustomerInfo(Customer.SEHBEHINDERT);
@@ -180,13 +175,15 @@ public class Berater1 extends Berater {
 				throw new Exception("Sie können kein kleines sm holen, wenn Sie sehbehindert sind. OMG! Daher wiederhole ich die letzte Frage nochmal");
 			}
 		}
+		context = 4;
+		nextQuestion = new Question(
+				"Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?",
+				ChoicesBuilder.yesNo("Ein Gerät mit integrierter Tastatur", "Ein Gerät ohne Hardware-Tastatur"));
 	}
-
-	
 
 	private void touchBedinung(boolean withKeyboard) {
 		if (!withKeyboard) {
-			OntClass subClassOfInterest = searchClassContaining("KeineTastatur", "Smartphone");
+			OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
 			ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
 			List<OntClass> properties = new LinkedList<OntClass>();
 			while (ri.hasNext()) {
@@ -199,7 +196,6 @@ public class Berater1 extends Berater {
 			OntClass tmpClass = model.createClass("TmpSmartphone");
 
 			RDFList inList = model.createList(properties.toArray(new RDFNode[0]));
-			System.out.println(inList.size());
 			OntClass unionClass = model.createUnionClass(null, inList);
 			tmpClass.addSuperClass(unionClass);
 			setCurrentProperties(tmpClass);
