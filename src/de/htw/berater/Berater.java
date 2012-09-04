@@ -277,7 +277,7 @@ public abstract class Berater {
 			}
 		}
 		if (!brand.equals("")) {
-			s += "Marke like '%"  + brand + "%' and";
+			s += "Marke like '%"  + brand + "%' and ";
 		}
 		if (s.equals("select * from Smartphones where ")) {
 			return "select * from Smartphones";
