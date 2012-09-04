@@ -43,9 +43,11 @@ public abstract class Berater {
 							// naechste frage zu stellen
 	protected Customer customer = new Customer();
 	protected final OntModel model;
+	private String brand = "";
 
 	public Berater(String rdfPath, String ns) {
 		this.ns = ns;
+		this.brand = "";
 
 		if (System.getProperty("log4j.configuration") == null) {
 			System.setProperty("log4j.configuration", "jena-log4j.properties");
@@ -273,6 +275,9 @@ public abstract class Berater {
 			if (!expression.equals("1") && !expression.equals("()")) {
 				s += "(" + expression + ")" + " and ";
 			}
+		}
+		if (!brand.equals("")) {
+			s += "Marke like '%"  + brand + "%' and ";
 		}
 		if (s.equals("select * from Smartphones where ")) {
 			return "select * from Smartphones";
@@ -525,6 +530,10 @@ public abstract class Berater {
 			}
 		}
 		return null;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
 }

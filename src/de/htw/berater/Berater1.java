@@ -203,32 +203,24 @@ public class Berater1 extends Berater {
 		nextQuestion = questionUsage();
 	}
 
-	private void outdoorSmartphone(String outdoor) throws DBException {
-		OntClass smartphone = model.getOntClass(ns + "Smartphone");
-		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
-		List<OntClass> outdoorSmartphones = new ArrayList<OntClass>(); //Outdoorsmartphon wird nicht gefunden.
-		while (ri.hasNext()) {
-			OntClass subClass = ri.next();
-			if (subClass.getLocalName().toLowerCase().contains(outdoor.toLowerCase())) {
-				outdoorSmartphones.add(subClass);
-			}
-		}
+	private void outdoorSmartphone(String outdoor) throws DBException {		
+		List<OntClass> outdoorSmartphones = findClass(outdoor.toLowerCase());
 		if (outdoor.equals("Outdoor")) {
 			List<OntClass> properties = setCurrentProperties(outdoorSmartphones.get(0));
 
 			for (OntClass property : properties) {
-				searchForCustomer(property);	
+				searchForCustomer("Sportler", property);	
 			}
 
 			int tempFound = found;
-			smartphone = model.getOntClass(ns + "Smartphone");
-			ri = smartphone.listSubClasses();
+			OntClass smartphone = model.getOntClass(ns + "Smartphone");
+			ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
 			List<OntClass> result = new ArrayList<OntClass>();
 			while (ri.hasNext()) {
 				OntClass subClass = ri.next();
 				properties = getProperties(subClass);
 				for (OntClass property : properties) {
-					searchForCustomer(property);	
+					searchForCustomer("Sportler", property);	
 				}
 				if (tempFound != found) {
 					result.add(subClass);
@@ -258,12 +250,12 @@ public class Berater1 extends Berater {
 		}
 	}
 
-	private void searchForCustomer(OntClass property) throws DBException {
+	private void searchForCustomer(String customer, OntClass property) throws DBException {
 		if (property.isRestriction()) {
 			ReadableProperty constraint = getReadablePropertyFromRestriction(property
 					.asRestriction());
-			if (constraint.getKey().equals("fuerKunde")) { //braucht man nicht
-				if (constraint.getValue().toString().contains("Sportler")) {
+			if (constraint.getKey().equals("fuerKunde")) {
+				if (constraint.getValue().toString().contains(customer)) {
 					found++;
 				} 
 			}
@@ -272,21 +264,21 @@ public class Berater1 extends Berater {
 				for (Iterator<? extends OntClass> it = property.asIntersectionClass()
 						.listOperands(); it.hasNext();) {
 					OntClass op = it.next();
-					searchForCustomer(op);
+					searchForCustomer(customer, op);
 				}
 			} else {
 				if (property.isUnionClass()) {
 					for (Iterator<? extends OntClass> it = property.asUnionClass()
 							.listOperands(); it.hasNext();) {
 						OntClass op = it.next();
-						searchForCustomer(op);
+						searchForCustomer(customer, op);
 					}
 				} else {
 					if (property.isComplementClass()) {
 						for (Iterator<? extends OntClass> it = property.asComplementClass()
 								.listOperands(); it.hasNext();) {
 							OntClass op = it.next();
-							searchForCustomer(op);	
+							searchForCustomer(customer, op);	
 						}
 					}
 				}
@@ -296,21 +288,9 @@ public class Berater1 extends Berater {
 
 	private void navigationSmartphone(boolean yes) {
 		if (yes) {
-			OntClass smartphone = model.getOntClass(ns + "Smartphone");
-			ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
-			List<OntClass> naviSmartphones = new ArrayList<OntClass>();
-			while (ri.hasNext()) {
-				OntClass subClass = ri.next();
-				if (subClass.getLocalName().toLowerCase().contains("navi")) {
-					naviSmartphones.add(subClass);
-				}
-			}
-
-			for (int i = 0; i < naviSmartphones.size(); i++) {
-				setCurrentProperties(naviSmartphones.get(i));
-			}
+			List<OntClass> kamera = findClass("navi");
+			setProperties(kamera);
 		}
-
 		context = 7;
 		nextQuestion = new Question(
 				"Nutzen Sie das Smartphone auch als Kamera?",
@@ -319,7 +299,8 @@ public class Berater1 extends Berater {
 
 	private void kameraSmartphone(boolean yes) {
 		if (yes) {
-			//TODO Kamerasmartphone oder was??
+			List<OntClass> kamera = findClass("kamera");
+			setProperties(kamera);
 		}
 		context = 8;
 		List<Choice> choices = new ArrayList<Choice>();
@@ -339,7 +320,27 @@ public class Berater1 extends Berater {
 	}
 
 	private void smartphoneMarke(String marke) {
+		setBrand(marke);
 		context = 9;
+	}
+	
+	private List<OntClass> findClass(String search) {
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
+		List<OntClass> result = new ArrayList<OntClass>();
+		while (ri.hasNext()) {
+			OntClass subClass = ri.next();
+			if (subClass.getLocalName().toLowerCase().contains(search)) {
+				result.add(subClass);
+			}
+		}
+		return result;
+	}
+	
+	private void setProperties(List<OntClass> result) {
+		for (int i = 0; i < result.size(); i++) {
+			setCurrentProperties(result.get(i));
+		}
 	}
 
 	@Override
