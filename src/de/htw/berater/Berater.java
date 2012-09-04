@@ -246,9 +246,9 @@ public abstract class Berater {
 	}
 	
 	/* add all properties of a certain class */
-	protected final void setCurrentProperties(OntClass ontClass) {
+	protected final List<OntClass> setCurrentProperties(OntClass ontClass) {
 		if (ontClass.getLocalName().equals("Smartphone")) {
-			return;
+			return null;
 		} else {
 			List<OntClass> superClasses = getSuperclasses(ontClass);
 			for (OntClass superClass : superClasses) {
@@ -257,6 +257,7 @@ public abstract class Berater {
 		}
 		List<OntClass> tmpProperties = getProperties(ontClass);
 		properties.addAll(tmpProperties);
+		return tmpProperties;
 	}
 
 	/* remove all properties of a certain class */
