@@ -2,6 +2,7 @@ package de.htw.berater;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,8 +23,7 @@ import de.htw.berater.db.SQLClient;
 
 public class Berater1 extends Berater {
 
-	
-	
+	private int found;
 
 	public Berater1(String rdfPath, String ns) {
 		super(rdfPath, ns);
@@ -198,14 +198,12 @@ public class Berater1 extends Berater {
 			tmpClass.addSuperClass(unionClass);
 			setCurrentProperties(tmpClass);
 		}
-		
+
 		context = 5;
 		nextQuestion = questionUsage();
 	}
 
-	
-
-	private void outdoorSmartphone(String outdoor) {
+	private void outdoorSmartphone(String outdoor) throws DBException {
 		OntClass smartphone = model.getOntClass(ns + "Smartphone");
 		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
 		List<OntClass> outdoorSmartphones = new ArrayList<OntClass>(); //Outdoorsmartphon wird nicht gefunden.
@@ -215,15 +213,85 @@ public class Berater1 extends Berater {
 				outdoorSmartphones.add(subClass);
 			}
 		}
+		if (outdoor.equals("Outdoor")) {
+			List<OntClass> properties = setCurrentProperties(outdoorSmartphones.get(0));
 
-		for (int i = 0; i < outdoorSmartphones.size(); i++) {
-			setCurrentProperties(outdoorSmartphones.get(i));
+			for (OntClass property : properties) {
+				searchForCustomer(property);	
+			}
+
+			int tempFound = found;
+			smartphone = model.getOntClass(ns + "Smartphone");
+			ri = smartphone.listSubClasses();
+			List<OntClass> result = new ArrayList<OntClass>();
+			while (ri.hasNext()) {
+				OntClass subClass = ri.next();
+				properties = getProperties(subClass);
+				for (OntClass property : properties) {
+					searchForCustomer(property);	
+				}
+				if (tempFound != found) {
+					result.add(subClass);
+					found--;
+				}
+			}
+
+			result.remove(outdoorSmartphones.get(0));
+			for (OntClass x : result) {
+				String one = x.getLocalName();
+				String two = outdoorSmartphones.get(0).getSubClass().getLocalName();
+				if (one.contains(two)) {
+					result.remove(x);
+				}
+			}
+			context = 6;
+			nextQuestion = new Question(
+					"Möchten Sie ein " + result.get(0).getLocalName() + "?",
+					ChoicesBuilder.yesNo("Ja", "Nein"));
 		}
 
-		context = 6;
-		nextQuestion = new Question(
-				"Möchten Sie das Smartphone zur Navigation oder zur Aufzeichnung ihrer sportlichen Aktivitäten verwenden?",
-				ChoicesBuilder.yesNo("ahjo...", "eher net so"));
+		if (context != 6) {
+			context = 6;
+			nextQuestion = new Question(
+					"Möchten Sie das Smartphone zur Navigation verwenden?",
+					ChoicesBuilder.yesNo("Ja", "Nein"));
+		}
+	}
+
+	private void searchForCustomer(OntClass property) throws DBException {
+		if (property.isRestriction()) {
+			ReadableProperty constraint = getReadablePropertyFromRestriction(property
+					.asRestriction());
+			if (constraint.getKey().equals("fuerKunde")) { //braucht man nicht
+				if (constraint.getValue().toString().contains("Sportler")) {
+					found++;
+				} 
+			}
+		} else {
+			if (property.isIntersectionClass()) {
+				for (Iterator<? extends OntClass> it = property.asIntersectionClass()
+						.listOperands(); it.hasNext();) {
+					OntClass op = it.next();
+					searchForCustomer(op);
+				}
+			} else {
+				if (property.isUnionClass()) {
+					for (Iterator<? extends OntClass> it = property.asUnionClass()
+							.listOperands(); it.hasNext();) {
+						OntClass op = it.next();
+						searchForCustomer(op);
+					}
+				} else {
+					if (property.isComplementClass()) {
+						for (Iterator<? extends OntClass> it = property.asComplementClass()
+								.listOperands(); it.hasNext();) {
+							OntClass op = it.next();
+							searchForCustomer(op);	
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private void navigationSmartphone(boolean yes) {
@@ -237,7 +305,7 @@ public class Berater1 extends Berater {
 					naviSmartphones.add(subClass);
 				}
 			}
-	
+
 			for (int i = 0; i < naviSmartphones.size(); i++) {
 				setCurrentProperties(naviSmartphones.get(i));
 			}
@@ -246,7 +314,7 @@ public class Berater1 extends Berater {
 		context = 7;
 		nextQuestion = new Question(
 				"Nutzen Sie das Smartphone auch als Kamera?",
-				ChoicesBuilder.yesNo("jo, was feur eine dumme Frage!?", "Neee"));
+				ChoicesBuilder.yesNo("Ja", "Nein"));
 	}
 
 	private void kameraSmartphone(boolean yes) {
@@ -307,10 +375,10 @@ public class Berater1 extends Berater {
 
 	private Question questionUsage() {
 		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
-				.add("Ich benutze das Gerät nur privat.", "?", ChoiceType.RADIO)
-				.add("Ich benutze das Gerät auch beim Sport.", "Outdoor", ChoiceType.RADIO)
-				.add("Ich benutze das Gerät geschäftlich.", "Business", ChoiceType.RADIO)
-				.build();
+		.add("Ich benutze das Gerät nur privat.", "Privat", ChoiceType.RADIO)
+		.add("Ich benutze das Gerät auch beim Sport.", "Outdoor", ChoiceType.RADIO)
+		.add("Ich benutze das Gerät geschäftlich.", "Business", ChoiceType.RADIO)
+		.build();
 		return new Question(
 				"Nutzen Sie das Gerät eher für geschäftliche Zwecke oder in ihrer Freizeit?",
 				choices);
