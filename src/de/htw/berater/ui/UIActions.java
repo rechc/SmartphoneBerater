@@ -37,7 +37,11 @@ public class UIActions implements ActionListener {
 		}
 		
 		if (a.getActionCommand().equals("weiter")){
-			frame.getController().answer(frame.getAnswerPanel().getAnswer());
+			try {
+				frame.getController().answer(frame.getAnswerPanel().getAnswer());
+			} catch (IllegalArgumentException e) {
+				frame.onNewStatus(e.getMessage(), Color.red, 0);
+			}
 			return;
 		}
 		// Radiobutton fuer Szenario 1 gewaehlt
