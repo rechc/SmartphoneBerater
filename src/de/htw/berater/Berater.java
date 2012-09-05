@@ -79,6 +79,9 @@ public abstract class Berater {
 		context = 0;
 		properties.clear();
 		customer = new Customer();
+		rememberList.clear();
+		brand = "";
+		nextQuestion = null;
 	}
 
 	public final Set<OntClass> getProperties() {

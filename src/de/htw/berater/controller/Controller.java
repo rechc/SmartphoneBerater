@@ -38,6 +38,7 @@ public class Controller {
 			@Override
 			public void run() {
 				berater = szenario1 ? berater1 : berater2;
+				berater.reset();
 				Question question = berater.generateQuestion();
 				try {
 					informUI(question);
