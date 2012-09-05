@@ -180,7 +180,7 @@ public class Berater1 extends Berater {
 	}
 
 	private void touchBedinung(boolean withKeyboard) {
-		if (!withKeyboard) {
+		if (withKeyboard) {
 			OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
 			ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
 			List<OntClass> properties = new LinkedList<OntClass>();
