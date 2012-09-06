@@ -16,6 +16,10 @@ public class StaticFactory {
 	public static Berater getNewBerater1(String rdfPath, String namespace) {
 		return new Berater1(rdfPath, namespace);
 	}
+	
+	public static Berater getNewBerater(String rdfPath, String namespace) {
+		return new Berater(rdfPath, namespace, false);
+	}
 
 
 	public static Berater getNewBerater2(String rdfPath, String namespace) {

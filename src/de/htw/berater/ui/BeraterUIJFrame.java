@@ -33,6 +33,11 @@ public class BeraterUIJFrame extends BeraterUI{
 
 	private JFrame frame = new JFrame();
 	
+	
+	private String rdfPath = "inferredSmartphones.rdf";
+	private String namespace = "http://semantische-interoperabilitaet-projekt#";
+	
+	
 	// aktuelle Frage
 	private JLabel labelQuestion;
 
@@ -42,11 +47,6 @@ public class BeraterUIJFrame extends BeraterUI{
 	// Splitpanel mit den Antworten
 	private JSplitPane answer_splitPane;
 	
-	// Radio Button Szenario 1
-	private JRadioButton radioButtonScenario1;
-	
-	// Radio Button Szenario 2
-	private JRadioButton radioButtonScenario2;
 	
 	// Panel für Übrige Handys
 	private JPanel available_smartphones_panel;
@@ -92,26 +92,9 @@ public class BeraterUIJFrame extends BeraterUI{
 		FlowLayout fl_szenario_panel1 = new FlowLayout(FlowLayout.CENTER, 10, 13);
 		szenario_panel1.setLayout(fl_szenario_panel1);
 		
-		JLabel labelChooseScenario = new JLabel("Szenario auswählen");
-		labelChooseScenario.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		szenario_panel1.add(labelChooseScenario);
-		
 		JPanel szenario_panel2 = new JPanel();
 		szenario_mainpanel.add(szenario_panel2);
 		szenario_panel2.setLayout(new BorderLayout(0, 0));
-		
-		radioButtonScenario1 = new JRadioButton("Szenario 1 (Kunde hat keine Ahnung)");
-		radioButtonScenario1.setSelected(true);
-		radioButtonScenario1.setActionCommand("radioButtonScenario1");
-		radioButtonScenario1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		radioButtonScenario1.addActionListener(uiActions);
-		szenario_panel2.add(radioButtonScenario1, BorderLayout.NORTH);
-		
-		radioButtonScenario2 = new JRadioButton("Szenario 2 (Update auf leistungsstärkeres Gerät)");
-		radioButtonScenario2.setActionCommand("radioButtonScenario2");
-		radioButtonScenario2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		radioButtonScenario2.addActionListener(uiActions);
-		szenario_panel2.add(radioButtonScenario2, BorderLayout.SOUTH);
 		
 		JPanel szenario_panel3 = new JPanel();
 		szenario_mainpanel.add(szenario_panel3);
@@ -137,7 +120,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		fl_question_panel.setVgap(20);
 		mainPanel.add(question_panel, BorderLayout.NORTH);
 		
-		labelQuestion = new JLabel("Wählen Sie bitte das Szenario aus und klicken Sie anschließend auf Starten");
+		labelQuestion = new JLabel("Wählen Sie bitte Starten");
 		question_panel.add(labelQuestion);
 		labelQuestion.setBounds(new Rectangle(10, 10, 10, 10));
 		labelQuestion.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -155,7 +138,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		commit_panel.setVisible(false);
 		
 		south_Panel.add(commit_panel);
-		status_bar = new JTextField("Wählen Sie ein Szenario aus");
+		status_bar = new JTextField("");
 		status_bar.setEditable(false);
 		statusBarColor = status_bar.getBackground();
 		south_Panel.add(status_bar);
@@ -170,11 +153,11 @@ public class BeraterUIJFrame extends BeraterUI{
 		answer_type2 = new JPanel();
 		answer_type2.setLayout(new BoxLayout(answer_type2, BoxLayout.Y_AXIS));
 		
-		JLabel L2 = new JLabel("Wählen Sie die passenden Eigenschaften aus");
-		L2.setAlignmentX(Component.CENTER_ALIGNMENT);
-		answer_type2.add(L2);
-		L2.setBorder(null);
-		L2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		//JLabel L2 = new JLabel("Wählen Sie die passenden Eigenschaften aus");
+		//L2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		//answer_type2.add(L2);
+		//L2.setBorder(null);
+		//L2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setMaximumSize(new Dimension(32767, 20));
@@ -212,6 +195,8 @@ public class BeraterUIJFrame extends BeraterUI{
 		answer_splitPane.setVisible(false);
 		answer_splitPane.setDividerLocation(0.5);
 		answer_splitPane.setResizeWeight(0.5);
+		
+		initializeAnswers();
 	}
 	
 	
@@ -276,6 +261,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		if (maxSeconds > 0){
 		
 			Thread thread = new Thread(){
+				@Override
 				public void run(){
 					for (int i = 0; i <= myMaxSeconds; i++){
 						try {
@@ -329,33 +315,6 @@ public class BeraterUIJFrame extends BeraterUI{
 
 	
 
-	/**
-	 * @return the radioButtonScenario1
-	 */
-	public JRadioButton getRadioButtonScenario1() {
-		return radioButtonScenario1;
-	}
-
-	/**
-	 * @param radioButtonScenario1 the radioButtonScenario1 to set
-	 */
-	public void setRadioButtonScenario1(JRadioButton radioButtonScenario1) {
-		this.radioButtonScenario1 = radioButtonScenario1;
-	}
-
-	/**
-	 * @return the radioButtonScenario2
-	 */
-	public JRadioButton getRadioButtonScenario2() {
-		return radioButtonScenario2;
-	}
-
-	/**
-	 * @param radioButtonScenario2 the radioButtonScenario2 to set
-	 */
-	public void setRadioButtonScenario2(JRadioButton radioButtonScenario2) {
-		this.radioButtonScenario2 = radioButtonScenario2;
-	}
 
 	/**
 	 * @return the available_smartphones_panel
@@ -387,5 +346,21 @@ public class BeraterUIJFrame extends BeraterUI{
 	public void resetStatus() {
 		status_bar.setText("");
 		status_bar.setBackground(statusBarColor);
+	}
+
+	public String getRdfPath() {
+		return rdfPath;
+	}
+
+	public void setRdfPath(String rdfPath) {
+		this.rdfPath = rdfPath;
+	}
+
+	public String getNamespace() {
+		return namespace;
+	}
+
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
 	}
 }

@@ -26,7 +26,7 @@ public class Berater1 extends Berater {
 	private int found;
 
 	public Berater1(String rdfPath, String ns) {
-		super(rdfPath, ns);
+		super(rdfPath, ns, true);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class Berater1 extends Berater {
 			smartphoneMarke(string);
 			break;
 		default:
-			throw new IllegalStateException("Unknown context.");
+			throw new IllegalStateException("Berater zu bereits am Ende.");
 		}
 	}
 
@@ -344,7 +344,7 @@ public class Berater1 extends Berater {
 	}
 
 	@Override
-	public Question firstQuestion() {
+	public Question firstSpecificQuestion() {
 		context = 1;
 		OntClass zweckClass = model.getOntClass(ns + "Zweck");
 		List<Choice> choices = zweckClass.listSubClasses()
