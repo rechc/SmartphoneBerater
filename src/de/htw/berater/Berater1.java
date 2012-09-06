@@ -176,24 +176,26 @@ public class Berater1 extends Berater {
 	}
 
 	private void touchBedinung(boolean withKeyboard) {
-		if (withKeyboard) {
-			OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
-			ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
-			List<OntClass> properties = new LinkedList<OntClass>();
-			while (ri.hasNext()) {
-				OntClass subClass = ri.next();
+		List<OntClass> properties = new LinkedList<OntClass>();
+		OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
+		ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
+		while (ri.hasNext()) {
+			OntClass subClass = ri.next();
+			if (withKeyboard) {
 				List<OntClass> disjointClasses = getDisjointSmartphones(subClass);
 				for (OntClass disjointClass : disjointClasses) {
 					properties.addAll(getClassProperties(disjointClass));
 				}
+			} else {
+				properties.addAll(getClassProperties(subClass));
 			}
-			OntClass tmpClass = model.createClass("TmpSmartphone");
+		} 
+		OntClass tmpClass = model.createClass("TmpSmartphone");
 
-			RDFList inList = model.createList(properties.toArray(new RDFNode[0]));
-			OntClass unionClass = model.createUnionClass(null, inList);
-			tmpClass.addSuperClass(unionClass);
-			setCurrentProperties(tmpClass);
-		}
+		RDFList inList = model.createList(properties.toArray(new RDFNode[0]));
+		OntClass unionClass = model.createUnionClass(null, inList);
+		tmpClass.addSuperClass(unionClass);
+		setCurrentProperties(tmpClass);
 
 		context = 5;
 		nextQuestion = questionUsage();

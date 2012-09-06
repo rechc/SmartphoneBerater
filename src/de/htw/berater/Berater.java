@@ -540,7 +540,7 @@ public class Berater {
 				if (!isBooleanValue) {
 					String general = extractGeneralIdentifier(s);
 					
-					s = general + " like '" + extractActualIdentifier(s) + "'";
+					s = general + " like '" + extractActualIdentifier(s) + "%'";
 				} 
 				sqlConstraint.setValue(s, isBooleanValue);
 			}
