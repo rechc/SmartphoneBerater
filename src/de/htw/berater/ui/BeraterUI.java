@@ -29,4 +29,6 @@ public abstract class BeraterUI {
 		this.controller = controller;
 	}
 
+	public abstract void restart();
+
 }

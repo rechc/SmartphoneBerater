@@ -92,7 +92,7 @@ public class Berater1 extends Berater {
 			if (isCoveringAxiom(smphone)) {
 				abstractClassSomewhere = true;
 				classesCoveringAxiomsResolved = getCoveringAxiomClasses(smartphonesWithHatZweckOnZweckKeyword);
-				break;
+				setCurrentProperties(smphone);
 			}
 		}
 
@@ -112,7 +112,7 @@ public class Berater1 extends Berater {
 						cb.add("Ein " + smphone.getLocalName(), smphone.getLocalName(), ChoiceType.CHECK, group);
 					else
 						cb.add("Ein " + smphone.getLocalName(), smphone.getLocalName(), ChoiceType.RADIO, group);
-					setCurrentProperties(smphone);
+					
 				}
 				group++;
 			}
@@ -132,16 +132,12 @@ public class Berater1 extends Berater {
 
 	private void spieleSmartphone(List<String> list) throws DBException {
 		for (int i = 0; i < rememberList.size(); i++) {
-			boolean found = false;
 			for (String keyword : list) {
 				if (rememberList.get(i).getLocalName().toLowerCase()
 						.contains(keyword.toLowerCase())) {
-					found = true;
+					setCurrentProperties(rememberList.get(i));
 					break;
 				}
-			}
-			if (!found) {
-				removeSQLConstraints(rememberList.get(i));
 			}
 		}
 

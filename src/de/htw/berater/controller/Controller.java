@@ -92,6 +92,9 @@ public class Controller {
 		final List<Smartphone> resultData;
 		System.out.println(sql);
 		resultData = SQLClient.getInstance().getSmartphones(sql);
+		if (resultData.size() == 0) {
+			beraterUI.restart();
+		}
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override

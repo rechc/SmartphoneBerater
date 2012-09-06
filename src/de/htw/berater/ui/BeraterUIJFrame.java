@@ -363,4 +363,10 @@ public class BeraterUIJFrame extends BeraterUI{
 	public void setNamespace(String namespace) {
 		this.namespace = namespace;
 	}
+
+	@Override
+	public void restart() {
+		labelQuestion.setText("Wählen Sie bitte Start");
+		controller.start(rdfPath, namespace);
+	}
 }
