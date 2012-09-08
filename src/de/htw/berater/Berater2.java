@@ -20,7 +20,7 @@ public class Berater2 extends Berater {
 	private int found;
 
 	public Berater2(String rdfPath, String ns) {
-		super(rdfPath, ns);
+		super(rdfPath, ns, true);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class Berater2 extends Berater {
 			restrictPrice(answerList.get(0));
 			break;
 		default:
-			throw new IllegalStateException("Unknown context.");
+			throw new IllegalStateException("Weiter gehts nicht");
 		}
 	}
 
@@ -221,7 +221,7 @@ public class Berater2 extends Berater {
 	}
 
 	@Override
-	public Question firstQuestion() {
+	public Question firstSpecificQuestion() {
 		context = 1;
 		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
 				.add("Hallo! Ich will ein iPhone! Darf aber nicht mehr als 100 € kosten!",

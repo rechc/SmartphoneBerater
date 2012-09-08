@@ -1,6 +1,7 @@
 package de.htw.berater;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -26,45 +27,98 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.vocabulary.XSD;
 
 import de.htw.berater.controller.Answer;
+import de.htw.berater.controller.Choice;
+import de.htw.berater.controller.ChoiceType;
+import de.htw.berater.controller.ChoicesBuilder;
+import de.htw.berater.controller.Controller;
 import de.htw.berater.controller.Question;
 import de.htw.berater.db.DBException;
 import de.htw.berater.db.SQLClient;
 
-public abstract class Berater {
+public class Berater {
 
 	public static final int BERATER_1 = 0;
 	public static final int BERATER_2 = 1;
 
 	protected List<OntClass> rememberList = new LinkedList<OntClass>();
 	protected Question nextQuestion;
-	protected final String ns;
-	protected final Set<OntClass> properties = new LinkedHashSet<OntClass>();
+	protected String ns;
+	protected String rdfPath;
+	protected Set<OntClass> properties = new LinkedHashSet<OntClass>();
 	protected int context; // irgendwie den kontext beachten um sinnvoll die
 							// naechste frage zu stellen
 	protected Customer customer = new Customer();
-	protected final OntModel model;
+	protected OntModel model;
 	private String brand = "";
 
-	public Berater(String rdfPath, String ns) {
+	private Controller controller;
+	
+	public Berater(String rdfPath, String ns, boolean loadOntology) {
 		this.ns = ns;
+		this.rdfPath = rdfPath;
 		this.brand = "";
 
-		if (System.getProperty("log4j.configuration") == null) {
-			System.setProperty("log4j.configuration", "jena-log4j.properties");
+		if (loadOntology) {
+			if (System.getProperty("log4j.configuration") == null) {
+				System.setProperty("log4j.configuration", "jena-log4j.properties");
+			}
+	
+			model = ModelFactory.createOntologyModel();
+	
+			model.read("file:" + rdfPath);
 		}
-
-		model = ModelFactory.createOntologyModel();
-
-		model.read("file:" + rdfPath);
 	}
+	
 
+
+	
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+	
 	public void addCustomerInfo(int info) {
 		customer.addCustomerInfo(info);
 	}
 
-	public abstract void evaluateAnswer(Answer answer) throws Exception;
+	
+	public void evaluateAnswer(Answer answer) throws Exception {
+		switch (context) {
+		case 0:
+			Berater berater;
+			if (answer.getSingleValue().equals("noob")) {
+				berater = StaticFactory.getNewBerater1(rdfPath, ns);
+			} else {
+				berater = StaticFactory.getNewBerater2(rdfPath, ns);
+			}
+			controller.setBerater(berater);
+			berater.nextQuestion = berater.firstSpecificQuestion();
+			break;
+		default:
+			evaluateSpecific(answer);
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	protected void evaluateSpecific(Answer answer) {
+		//Override this
+		throw new UnsupportedOperationException();
+	}
+	
+	protected Question firstSpecificQuestion() {
+		//Override this
+		throw new UnsupportedOperationException();
+	}
 
-	public abstract Question firstQuestion();
+	public Question firstQuestion() {
+		//context = 0;
+		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
+		.add("Ich bin ein Leie.", "noob", ChoiceType.RADIO)
+		.add("Ich besitze grundlegendes Wissen.", "pro", ChoiceType.RADIO)
+		.build();
+		return new Question(
+				"Gut Tag, bevor wir beginnen, sagen Sie mir bitte, ob sie ein erfahrener Mensch auf dem Gebiet der Smartphones sind.",
+				choices);
+	}
 	
 	public final Question generateQuestion() {
 		switch (context) {
@@ -73,15 +127,6 @@ public abstract class Berater {
 		default:
 			return nextQuestion;
 		}
-	}
-
-	public final void reset() {
-		context = 0;
-		properties.clear();
-		customer = new Customer();
-		rememberList.clear();
-		brand = "";
-		nextQuestion = null;
 	}
 
 	public final Set<OntClass> getProperties() {
@@ -495,7 +540,7 @@ public abstract class Berater {
 				if (!isBooleanValue) {
 					String general = extractGeneralIdentifier(s);
 					
-					s = general + " like '" + extractActualIdentifier(s) + "'";
+					s = general + " like '" + extractActualIdentifier(s) + "%'";
 				} 
 				sqlConstraint.setValue(s, isBooleanValue);
 			}

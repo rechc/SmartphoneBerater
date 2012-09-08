@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 
 import de.htw.berater.Berater;
+import de.htw.berater.StaticFactory;
 import de.htw.berater.db.DBException;
 import de.htw.berater.db.Smartphone;
 import de.htw.berater.db.SQLClient;
@@ -17,28 +18,23 @@ import de.htw.berater.ui.BeraterUI;
  */
 public class Controller {
 	private Berater berater;
-	private Berater berater1;
-	private Berater berater2;
 	
 	private BeraterUI beraterUI;
 	
-	public Controller(BeraterUI beraterUI, Berater berater1, Berater berater2) {
+
+	
+	public Controller(BeraterUI beraterUI) {
 		this.beraterUI = beraterUI;
-		this.berater1 = berater1;
-		this.berater2 = berater2;
 	}
 	
 	
-	public void finish() {
-		berater.reset();
-	}
-	
-	public void getFirstQuestion(final boolean szenario1) {
+	public void start(final String rdfPath, final String nameSpace) {
 		new Thread() {
 			@Override
 			public void run() {
-				berater = szenario1 ? berater1 : berater2;
-				berater.reset();
+				berater = StaticFactory.getNewBerater(rdfPath, nameSpace);
+				berater.setController(Controller.this);
+				//berater.reset();
 				Question question = berater.generateQuestion();
 				try {
 					informUI(question);
@@ -96,6 +92,9 @@ public class Controller {
 		final List<Smartphone> resultData;
 		System.out.println(sql);
 		resultData = SQLClient.getInstance().getSmartphones(sql);
+		if (resultData.size() == 0) {
+			beraterUI.restart();
+		}
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
@@ -105,4 +104,12 @@ public class Controller {
 			}
 		});
 	}
+
+
+	public void setBerater(Berater berater) {
+		this.berater = berater;
+	}
+
+
+	
 }

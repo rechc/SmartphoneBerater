@@ -26,7 +26,7 @@ public class Berater1 extends Berater {
 	private int found;
 
 	public Berater1(String rdfPath, String ns) {
-		super(rdfPath, ns);
+		super(rdfPath, ns, true);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class Berater1 extends Berater {
 			smartphoneMarke(string);
 			break;
 		default:
-			throw new IllegalStateException("Unknown context.");
+			throw new IllegalStateException("Berater zu bereits am Ende.");
 		}
 	}
 
@@ -92,7 +92,7 @@ public class Berater1 extends Berater {
 			if (isCoveringAxiom(smphone)) {
 				abstractClassSomewhere = true;
 				classesCoveringAxiomsResolved = getCoveringAxiomClasses(smartphonesWithHatZweckOnZweckKeyword);
-				break;
+				setCurrentProperties(smphone);
 			}
 		}
 
@@ -112,7 +112,7 @@ public class Berater1 extends Berater {
 						cb.add("Ein " + smphone.getLocalName(), smphone.getLocalName(), ChoiceType.CHECK, group);
 					else
 						cb.add("Ein " + smphone.getLocalName(), smphone.getLocalName(), ChoiceType.RADIO, group);
-					setCurrentProperties(smphone);
+					
 				}
 				group++;
 			}
@@ -132,16 +132,12 @@ public class Berater1 extends Berater {
 
 	private void spieleSmartphone(List<String> list) throws DBException {
 		for (int i = 0; i < rememberList.size(); i++) {
-			boolean found = false;
 			for (String keyword : list) {
 				if (rememberList.get(i).getLocalName().toLowerCase()
 						.contains(keyword.toLowerCase())) {
-					found = true;
+					setCurrentProperties(rememberList.get(i));
 					break;
 				}
-			}
-			if (!found) {
-				removeSQLConstraints(rememberList.get(i));
 			}
 		}
 
@@ -180,24 +176,26 @@ public class Berater1 extends Berater {
 	}
 
 	private void touchBedinung(boolean withKeyboard) {
-		if (!withKeyboard) {
-			OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
-			ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
-			List<OntClass> properties = new LinkedList<OntClass>();
-			while (ri.hasNext()) {
-				OntClass subClass = ri.next();
+		List<OntClass> properties = new LinkedList<OntClass>();
+		OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
+		ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
+		while (ri.hasNext()) {
+			OntClass subClass = ri.next();
+			if (withKeyboard) {
 				List<OntClass> disjointClasses = getDisjointSmartphones(subClass);
 				for (OntClass disjointClass : disjointClasses) {
 					properties.addAll(getClassProperties(disjointClass));
 				}
+			} else {
+				properties.addAll(getClassProperties(subClass));
 			}
-			OntClass tmpClass = model.createClass("TmpSmartphone");
+		} 
+		OntClass tmpClass = model.createClass("TmpSmartphone");
 
-			RDFList inList = model.createList(properties.toArray(new RDFNode[0]));
-			OntClass unionClass = model.createUnionClass(null, inList);
-			tmpClass.addSuperClass(unionClass);
-			setCurrentProperties(tmpClass);
-		}
+		RDFList inList = model.createList(properties.toArray(new RDFNode[0]));
+		OntClass unionClass = model.createUnionClass(null, inList);
+		tmpClass.addSuperClass(unionClass);
+		setCurrentProperties(tmpClass);
 
 		context = 5;
 		nextQuestion = questionUsage();
@@ -344,7 +342,7 @@ public class Berater1 extends Berater {
 	}
 
 	@Override
-	public Question firstQuestion() {
+	public Question firstSpecificQuestion() {
 		context = 1;
 		OntClass zweckClass = model.getOntClass(ns + "Zweck");
 		List<Choice> choices = zweckClass.listSubClasses()
