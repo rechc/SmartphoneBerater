@@ -132,12 +132,16 @@ public class Berater1 extends Berater {
 
 	private void spieleSmartphone(List<String> list) throws DBException {
 		for (int i = 0; i < rememberList.size(); i++) {
+			boolean found = false;
 			for (String keyword : list) {
 				if (rememberList.get(i).getLocalName().toLowerCase()
 						.contains(keyword.toLowerCase())) {
 					setCurrentProperties(rememberList.get(i));
-					break;
+					found = true;
 				}
+			}
+			if (!found) {
+				removeSQLConstraints(rememberList.get(i));
 			}
 		}
 
