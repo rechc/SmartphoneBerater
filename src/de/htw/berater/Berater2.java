@@ -101,8 +101,8 @@ public class Berater2 extends Berater {
 		context = 4;
 		nextQuestion = new Question(
 				"Möchten Sie das Smartphone auch über eine Hardware-Tastatur bedienen können?",
-				new ChoicesBuilder().add("Tastatur", "Tastatur", ChoiceType.RADIO).
-				add("KeineTastatur", "KeineTastatue", ChoiceType.RADIO).build());
+				new ChoicesBuilder().add("Eine Tastatur ist mir wichtig", "TastaturSmartphone", ChoiceType.RADIO).
+				add("Ich möchte eins mit Touchscreen", "TouchOnlySmartphone", ChoiceType.RADIO).build());
 	}
 
 	private void noKeyboardSmartphone(String keyboard) {
@@ -112,8 +112,9 @@ public class Berater2 extends Berater {
 		context = 5;
 		nextQuestion = new Question(
 				"Soll das Smartphone Multimedia-Fähigkeiten haben?",
-				new ChoicesBuilder().add("Multimedia", "Multimedia", ChoiceType.RADIO).
-				add("LolFail", "LolFail", ChoiceType.RADIO).build());
+				new ChoicesBuilder()
+				.add("Ja, ich werde Multimedia-Fähigkeiten nutzen", "MultimediaSmartphone", ChoiceType.RADIO)
+				.add("Nein", "do nothing", ChoiceType.RADIO).build());
 	}
 
 	private void multimediaSmartphone(String media) {
@@ -160,9 +161,8 @@ public class Berater2 extends Berater {
 
 		context = 8;
 		nextQuestion = new Question(
-				"Möchten Sie das Smartphone auch als Navigationsgerät nutzen",
-				new ChoicesBuilder().add("Navi", "Navi", ChoiceType.RADIO).
-				add("OhnePeilung", "OhnePeilung", ChoiceType.RADIO).build());
+				"Möchten Sie das Smartphone auch als Navigationsgerät nutzen?",
+				ChoicesBuilder.yesNo("Ja, möchte ich machen", "Nein, das werde ich nicht nutzen"));
 	}
 
 	private void navigationSmartphone(String navigation) {
