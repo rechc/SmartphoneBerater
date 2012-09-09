@@ -16,45 +16,47 @@ import de.htw.berater.db.DBException;
 import de.htw.berater.db.SQLClient;
 
 public class Berater2 extends Berater {
+	
+	private int found;
 
 	public Berater2(String rdfPath, String ns) {
 		super(rdfPath, ns, true);
 	}
 
 	@Override
-	public void evaluateSpecific(Answer answer) {
-		String string = answer.getSingleValue();
+	public void evaluateAnswer(Answer answer) {
+		List<String> answerList = answer.getValues();
 
 		switch (context) {
 		case 1:
-			proSmartphone(string);
+			proSmartphone(answerList.get(0));
 			break;
 		case 2:
-			largeMemorySmartphone(string);
+			largeMemorySmartphone(answerList);
 			break;
 		case 3:
-			usabilityOs(string);
+			usabilityOs(answerList.get(0));
 			break;
 		case 4:
-			noKeyboardSmartphone(string);
+			noKeyboardSmartphone(answerList.get(0));
 			break;
 		case 5:
-			multimediaSmartphone(string);
+			multimediaSmartphone(answerList.get(0));
 			break;
 		case 6:
-			cameraSmartphone(string);
+			cameraSmartphone(answerList.get(0));
 			break;
 		case 7:
-			sameOsSmartphone(string);
+			sameOsSmartphone(answerList.get(0));
 			break;
 		case 8:
-			navigationSmartphone(string);
+			navigationSmartphone(answerList.get(0));
 			break;
 		case 9:
-			smartphoneBrand(string);
+			smartphoneBrand(answerList.get(0));
 			break;
 		case 10:
-			restrictPrice(string);
+			restrictPrice(answerList.get(0));
 			break;
 		default:
 			throw new IllegalStateException("Weiter gehts nicht");
@@ -70,24 +72,25 @@ public class Berater2 extends Berater {
 
 		context = 2;
 		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
-				.add("Es ist zu schwer zu bedienen", "Bedienbarkeit", ChoiceType.CHECK)
-				.add("Es hat zu wenig Speicherplatz", "Speicher", ChoiceType.CHECK)
-				.add("Das Display ist zu klein", "KleinesDisplay", ChoiceType.CHECK)
-				.add("Es ist zu groß", "", ChoiceType.CHECK)
+				.add("Es ist zu schwer zu bedienen und hat zu wenig Speicherplatz", "GrosserSpeicherSmartphone", ChoiceType.CHECK)
+				.add("Das Display ist zu klein", "hatGroßesDisplay", ChoiceType.CHECK)
+				.add("Es ist zu groß", "KleinesSmartphone", ChoiceType.CHECK)
 				.build();
 		nextQuestion = new Question(
 				"Sie besitzen also schon eines. Was stört sie an Ihrem alten Smartphone insbesondere?",
 				choices);
 	}
 
-	private void largeMemorySmartphone(String memory) {
-		OntClass subClassOfInterest = searchClassContaining(memory, "Smartphone");
-		setCurrentProperties(subClassOfInterest);
+	private void largeMemorySmartphone(List<String> answerList) {
+		for(String s : answerList){ //TODO not complete
+			OntClass subClassOfInterest = searchClassContaining(s, "Smartphone");
+			setCurrentProperties(subClassOfInterest);
+		}
 
 		context = 3;
 		nextQuestion = new Question(
 				"Liegt die schlechte Bedienbarkeit am Betriebssystem?",
-				ChoicesBuilder.yesNo());
+				ChoicesBuilder.yesNo("Ja, das stört mich total", "Nein, es liegt nicht daran"));
 	}
 
 	private void usabilityOs(String os) {
