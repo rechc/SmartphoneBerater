@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.hp.hpl.jena.ontology.ComplementClass;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.rdf.model.RDFList;
@@ -181,24 +182,38 @@ public class Berater1 extends Berater {
 
 	private void touchBedinung(boolean withKeyboard) {
 		List<OntClass> properties = new LinkedList<OntClass>();
+		List<OntClass> propertiesNOT = new LinkedList<OntClass>();
 		OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
 		ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
 		while (ri.hasNext()) {
 			OntClass subClass = ri.next();
 			if (withKeyboard) {
-				List<OntClass> disjointClasses = getDisjointSmartphones(subClass);
-				for (OntClass disjointClass : disjointClasses) {
-					properties.addAll(getClassProperties(disjointClass));
-				}
+//				List<OntClass> disjointClasses = getDisjointSmartphones(subClass);
+//				for (OntClass disjointClass : disjointClasses) {
+//					properties.addAll(getClassProperties(disjointClass));
+//				}
+				propertiesNOT.addAll(getClassProperties(subClass));
 			} else {
 				properties.addAll(getClassProperties(subClass));
 			}
 		} 
 		OntClass tmpClass = model.createClass("TmpSmartphone");
 
-		RDFList inList = model.createList(properties.toArray(new RDFNode[0]));
-		OntClass unionClass = model.createUnionClass(null, inList);
-		tmpClass.addSuperClass(unionClass);
+		if (withKeyboard) {
+			List<OntClass> complements = new LinkedList<OntClass>();
+			for (OntClass property : propertiesNOT) {
+				ComplementClass cc = model.createComplementClass(null, property);
+				complements.add(cc);
+			}
+			RDFList inList = model.createList(complements.toArray(new RDFNode[0]));
+			OntClass intersectionClass = model.createIntersectionClass(null, inList);
+			tmpClass.addSuperClass(intersectionClass);
+		} else {
+			RDFList inList = model.createList(properties.toArray(new RDFNode[0]));
+			OntClass unionClass = model.createUnionClass(null, inList);
+			tmpClass.addSuperClass(unionClass);
+		}
+		
 		setCurrentProperties(tmpClass);
 
 		context = 5;
