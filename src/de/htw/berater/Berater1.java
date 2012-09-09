@@ -337,7 +337,11 @@ public class Berater1 extends Berater {
 	}
 
 	private void smartphoneMarke(String marke) {
-		setBrand(marke);
+		if (marke.equals("nein")) {
+			setBrand("");
+		} else {
+			setBrand(marke);
+		}
 		context = 9;
 	}
 	
