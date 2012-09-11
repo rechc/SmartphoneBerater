@@ -184,7 +184,11 @@ public class Berater2 extends Berater {
 			throw new IllegalStateException("Im Szenario nicht vorgesehen");
 		OntClass subClassOfInterest = searchClassContaining(os, "Eigenschaften");
 		setCurrentProperties(subClassOfInterest);
-		askAboutHardwareKeyboard();
+		
+//		if (os.equals("Ios"))  //neues IPhone bekommt wohl größeres Display
+//			askAboutHardwareKeyboard();
+//		else
+			usabilityOs("Nein");
 	}
 
 	private void noKeyboardSmartphone(String keyboard) {
