@@ -18,8 +18,6 @@ import de.htw.berater.db.SQLClient;
 
 public class Berater2 extends Berater {
 
-	private int found;
-
 	public Berater2(String rdfPath, String ns) {
 		super(rdfPath, ns, true);
 	}
@@ -29,9 +27,6 @@ public class Berater2 extends Berater {
 		List<String> answerList = answer.getValues();
 
 		switch (context) {
-		case 1:
-			proSmartphone(answerList.get(0));
-			break;
 		case 2:
 			largeMemorySmartphone(answerList);
 			break;
@@ -68,26 +63,6 @@ public class Berater2 extends Berater {
 		default:
 			throw new IllegalStateException("Weiter gehts nicht");
 		}
-	}
-
-
-
-	private void proSmartphone(String proPhone) {
-		OntClass subClassOfInterest = searchClassContaining(proPhone, "Smartphone");
-		if (subClassOfInterest == null)
-			throw new RuntimeException(proPhone + " not in ontology");
-		setCurrentProperties(subClassOfInterest);
-
-		context = 2;
-		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
-				.add("Es ist zu schwer zu bedienen", "Bedienbarkeit", ChoiceType.CHECK)
-				.add("Es hat zu wenig Speicherplatz", "GrosserSpeicherSmartphone", ChoiceType.CHECK)
-				.add("Das Display ist zu klein", "lolfail", ChoiceType.CHECK)
-				.add("Es ist zu groß", "lolfail", ChoiceType.CHECK)
-				.build();
-		nextQuestion = new Question(
-				"Sie besitzen also schon eines. Was fehlt Ihnen an Ihrem alten Smartphone?",
-				choices);
 	}
 
 	private void largeMemorySmartphone(List<String> answerList) {
@@ -308,16 +283,22 @@ public class Berater2 extends Berater {
 
 	@Override
 	public Question firstSpecificQuestion() {
-		context = 1;
+		context = 2;
+		OntClass subClassOfInterest = searchClassContaining("ProfiSmartphone", "Smartphone");
+		if (subClassOfInterest == null)
+			throw new RuntimeException("ProfiSmartphone not in ontology");
+		setCurrentProperties(subClassOfInterest);
+
+		context = 2;
 		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
-				.add("Hallo! Ich will ein iPhone! Darf aber nicht mehr als 100 € kosten!",
-						"Loser", ChoiceType.RADIO)
-				.add("Ich möchte ein Dingsbums…handy. Mit Äpps, und so. Hilfe!",
-						"DAU", ChoiceType.RADIO)
-				.add("Ich benötige ein neues Smartphone, da mir mein altes nicht mehr genügt.",
-						"Profi", ChoiceType.RADIO)
+				.add("Es ist zu schwer zu bedienen", "Bedienbarkeit", ChoiceType.CHECK)
+				.add("Es hat zu wenig Speicherplatz", "GrosserSpeicherSmartphone", ChoiceType.CHECK)
+				.add("Das Display ist zu klein", "lolfail", ChoiceType.CHECK)
+				.add("Es ist zu groß", "lolfail", ChoiceType.CHECK)
 				.build();
-		return new Question("Guten Tag! Wie kann ich Ihnen helfen?", choices);
+		return new Question(
+				"Sie besitzen also schon eines. Was fehlt Ihnen an Ihrem alten Smartphone?",
+				choices);
 	}
 
 }
