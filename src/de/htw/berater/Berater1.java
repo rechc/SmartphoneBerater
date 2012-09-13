@@ -257,14 +257,19 @@ public class Berater1 extends Berater {
 			nextQuestion = new Question(
 					"Möchten Sie ein " + result.get(0).getLocalName() + "?",
 					ChoicesBuilder.yesNo("Ja", "Nein"));
-		}
-
-		if (context != 6) {
-			context = 6;
+		} else {
+			context = 7;
 			nextQuestion = new Question(
-					"Möchten Sie das Smartphone zur Navigation verwenden?",
+					"Nutzen Sie das Smartphone auch als Kamera?",
 					ChoicesBuilder.yesNo("Ja", "Nein"));
 		}
+
+//		if (context != 6) {
+//			context = 6;
+//			nextQuestion = new Question(
+//					"Möchten Sie das Smartphone zur Navigation verwenden?",
+//					ChoicesBuilder.yesNo("Ja", "Nein"));
+//		}
 	}
 
 	private void searchForCustomer(String customer, OntClass property) throws DBException {
