@@ -182,26 +182,13 @@ public class Berater1 extends Berater {
 
 	private void touchBedinung(boolean withKeyboard) {
 		List<OntClass> properties = new LinkedList<OntClass>();
-		List<OntClass> propertiesNOT = new LinkedList<OntClass>();
-		OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
-		ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
-		while (ri.hasNext()) {
-			OntClass subClass = ri.next();
-			if (withKeyboard) {
-//				List<OntClass> disjointClasses = getDisjointSmartphones(subClass);
-//				for (OntClass disjointClass : disjointClasses) {
-//					properties.addAll(getClassProperties(disjointClass));
-//				}
-				propertiesNOT.addAll(getClassProperties(subClass));
-			} else {
-				properties.addAll(getClassProperties(subClass));
-			}
-		} 
+		OntClass subClassOfInterest = searchClassContaining("Tastatur", "Smartphone");
+		properties.addAll(getClassProperties(subClassOfInterest));
 		OntClass tmpClass = model.createClass("TmpSmartphone");
 
-		if (withKeyboard) {
+		if (!withKeyboard) {
 			List<OntClass> complements = new LinkedList<OntClass>();
-			for (OntClass property : propertiesNOT) {
+			for (OntClass property : properties) {
 				ComplementClass cc = model.createComplementClass(null, property);
 				complements.add(cc);
 			}
