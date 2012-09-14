@@ -116,7 +116,7 @@ public class Berater {
 		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
 //				.add("Hallo! Ich will ein iPhone! Darf aber nicht mehr als 100 € kosten!",
 //						"Loser", ChoiceType.RADIO)
-				.add("Ich möchte ein Dingsbums…handy. Mit Äpps, und so. Hilfe!",
+				.add("Ich möchte ein Smartphone und habe keine Ahnung!",
 						"DAU", ChoiceType.RADIO)
 				.add("Ich benötige ein neues Smartphone, da mir mein altes nicht mehr genügt.",
 						"VollPro", ChoiceType.RADIO)

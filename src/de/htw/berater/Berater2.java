@@ -143,7 +143,7 @@ public class Berater2 extends Berater {
 		nextQuestion = new Question(
 				"Möchten Sie das Smartphone auch über eine Hardware-Tastatur bedienen können?",
 				new ChoicesBuilder().add("Eine Tastatur ist mir wichtig", "TastaturSmartphone", ChoiceType.RADIO).
-				add("Ich möchte eins mit Touchscreen", "TouchOnlySmartphone", ChoiceType.RADIO).build());
+				add("Ich möchte eins nur mit Touchscreen", "TouchOnlySmartphone", ChoiceType.RADIO).build());
 	}
 
 	private void smallDisplay(String answer) {

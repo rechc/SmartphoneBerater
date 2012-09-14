@@ -20,6 +20,7 @@ public class UIActions implements ActionListener {
 	public void actionPerformed(ActionEvent a) {
 		if (a.getActionCommand().equals("start")){
 			frame.getController().start(frame.getRdfPath(), frame.getNamespace());
+			frame.resetStatus();
 		}
 		if (a.getActionCommand().equals("weiter")){
 			try {
