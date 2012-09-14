@@ -49,7 +49,7 @@ public class Berater1 extends Berater {
 			if (answer.getValues().size() > 0)
 				displaySmartphone(answer.getValues().get(0));
 			else
-				throw new Exception("no display value selected");
+				throw new Exception("Keine Displaygroesse ausgewaehlt.");
 			break;
 		case 4:
 			touchBedinung(string.equals("Ja") ? true : false);
