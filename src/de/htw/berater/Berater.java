@@ -85,10 +85,12 @@ public class Berater {
 		switch (context) {
 		case 0:
 			Berater berater;
-			if (answer.getSingleValue().equals("noob")) {
+			if (answer.getSingleValue().equals("DAU")) {
 				berater = StaticFactory.getNewBerater1(rdfPath, ns);
-			} else {
+			} else if (answer.getSingleValue().equals("VollPro")) {
 				berater = StaticFactory.getNewBerater2(rdfPath, ns);
+			} else {
+				throw new IllegalStateException("Im Szenario nicht vorgesehen");
 			}
 			controller.setBerater(berater);
 			berater.nextQuestion = berater.firstSpecificQuestion();
@@ -112,12 +114,14 @@ public class Berater {
 	public Question firstQuestion() {
 		//context = 0;
 		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
-		.add("Ich bin ein Leie.", "noob", ChoiceType.RADIO)
-		.add("Ich besitze grundlegendes Wissen.", "pro", ChoiceType.RADIO)
-		.build();
-		return new Question(
-				"Gut Tag, bevor wir beginnen, sagen Sie mir bitte, ob sie ein erfahrener Mensch auf dem Gebiet der Smartphones sind.",
-				choices);
+//				.add("Hallo! Ich will ein iPhone! Darf aber nicht mehr als 100 € kosten!",
+//						"Loser", ChoiceType.RADIO)
+				.add("Ich möchte ein Smartphone und habe keine Ahnung!",
+						"DAU", ChoiceType.RADIO)
+				.add("Ich benötige ein neues Smartphone, da mir mein altes nicht mehr genügt.",
+						"VollPro", ChoiceType.RADIO)
+				.build();
+		return new Question("Guten Tag! Wie kann ich Ihnen helfen?", choices);
 	}
 	
 	public final Question generateQuestion() {

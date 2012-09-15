@@ -20,12 +20,15 @@ public class UIActions implements ActionListener {
 	public void actionPerformed(ActionEvent a) {
 		if (a.getActionCommand().equals("start")){
 			frame.getController().start(frame.getRdfPath(), frame.getNamespace());
+			frame.resetStatus();
 		}
 		if (a.getActionCommand().equals("weiter")){
 			try {
 				frame.getController().answer(frame.getAnswerPanel().getAnswer());
 			} catch (IllegalArgumentException e) {
 				frame.onNewStatus(e.getMessage(), Color.red, 0);
+			} catch (NullPointerException n ){
+				frame.onNewStatus("Klicken Sie bitte zuerst auf Start", Color.red, 5);
 			}
 			return;
 		}
