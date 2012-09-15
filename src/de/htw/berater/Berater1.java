@@ -61,7 +61,7 @@ public class Berater1 extends Berater {
 			navigationSmartphone(string.equals("Ja") ? true : false);
 			break;
 		case 7:
-			kameraSmartphone(string.equals("Ja") ? true : false);
+			kameraSmartphone(string);
 			break;
 		case 8:
 			smartphoneMarke(string);
@@ -301,14 +301,15 @@ public class Berater1 extends Berater {
 			setProperties(kamera);
 		}
 		context = 7;
-		nextQuestion = new Question(
-				"Nutzen Sie das Smartphone auch als Kamera?",
-				ChoicesBuilder.yesNo("Ja", "Nein"));
+		nextQuestion = questionCamera();
 	}
 
-	private void kameraSmartphone(boolean yes) {
-		if (yes) {
-			List<OntClass> kamera = findClass("kamera");
+	private void kameraSmartphone(String answer) {
+		if (answer.indexOf("GuteKamera") != -1) {
+			List<OntClass> kamera = findClass(answer.toLowerCase());
+			setProperties(kamera);
+		} else if (answer.indexOf("Kamera") != -1) {
+			List<OntClass> kamera = findClassEquals(answer.toLowerCase() + "smartphone");
 			setProperties(kamera);
 		}
 		context = 8;
@@ -344,6 +345,19 @@ public class Berater1 extends Berater {
 		while (ri.hasNext()) {
 			OntClass subClass = ri.next();
 			if (subClass.getLocalName().toLowerCase().contains(search)) {
+				result.add(subClass);
+			}
+		}
+		return result;
+	}
+	
+	private List<OntClass> findClassEquals(String search) {
+		OntClass smartphone = model.getOntClass(ns + "Smartphone");
+		ExtendedIterator<OntClass> ri = smartphone.listSubClasses();
+		List<OntClass> result = new ArrayList<OntClass>();
+		while (ri.hasNext()) {
+			OntClass subClass = ri.next();
+			if (subClass.getLocalName().toLowerCase().equals(search)) {
 				result.add(subClass);
 			}
 		}
@@ -395,6 +409,17 @@ public class Berater1 extends Berater {
 		.build();
 		return new Question(
 				"Nutzen Sie das Gerät eher für geschäftliche Zwecke oder in ihrer Freizeit?",
+				choices);
+	}
+	
+	private Question questionCamera() {
+		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
+		.add("Ja, eine Kamera wäre toll.", "Kamera", ChoiceType.RADIO)
+		.add("Ja, ich brauche eine gute Kamera.", "GuteKamera", ChoiceType.RADIO)
+		.add("Nein, eine Kamera brauch ich nicht.", "Nein", ChoiceType.RADIO)
+		.build();
+		return new Question(
+				"Nutzen Sie das Smartphone auch als Kamera?",
 				choices);
 	}
 
