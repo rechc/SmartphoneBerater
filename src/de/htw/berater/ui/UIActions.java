@@ -27,6 +27,8 @@ public class UIActions implements ActionListener {
 				frame.getController().answer(frame.getAnswerPanel().getAnswer());
 			} catch (IllegalArgumentException e) {
 				frame.onNewStatus(e.getMessage(), Color.red, 0);
+			} catch (NullPointerException n ){
+				frame.onNewStatus("Klicken Sie bitte zuerst auf Start", Color.red, 5);
 			}
 			return;
 		}
