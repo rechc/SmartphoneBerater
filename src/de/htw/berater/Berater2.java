@@ -2,9 +2,14 @@ package de.htw.berater;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
+import com.hp.hpl.jena.ontology.ComplementClass;
 import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.rdf.model.RDFList;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
 import com.hp.hpl.jena.util.iterator.Map1;
 
@@ -45,7 +50,8 @@ public class Berater2 extends Berater {
 			osChoice(answerList.get(0));
 			break;
 		case 4:
-			noKeyboardSmartphone(answerList.get(0));
+//			noKeyboardSmartphone(answerList.get(0));
+			noKeyboardSmartphone(answerList.get(0).equals("Ja") ? true : false);
 			break;
 		default:
 			throw new IllegalStateException("Weiter gehts nicht");
@@ -136,6 +142,15 @@ public class Berater2 extends Berater {
 							return new Choice(text, value, ChoiceType.RADIO);
 						}
 					}).toList();
+			
+			//Filter not wanted OS
+			for(Choice c : choices){
+//				String className = c.getValue().replace("BetriebssystemEigenschaft", "")  + "Smartphone";
+//				System.out.println("search class: " + className);
+				OntClass subClassOfInterest = searchClassContaining(c.getValue(), "Eigenschaften");
+				setCurrentProperties(subClassOfInterest);
+			}
+			
 			choices.add(new Choice("Egal.", "lolfail", ChoiceType.RADIO));
 			HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
 			choicesMap.put(0, choices);
@@ -147,10 +162,56 @@ public class Berater2 extends Berater {
 
 	private void askAboutHardwareKeyboard() {
 		context = 4;
+//		nextQuestion = new Question(
+//				"Möchten Sie das Smartphone auch über eine Hardware-Tastatur bedienen können?",
+//				new ChoicesBuilder().add("Eine Tastatur ist mir wichtig", "TastaturSmartphone", ChoiceType.RADIO).
+//				add("Ich möchte eins mit Touchscreen", "TouchOnlySmartphone", ChoiceType.RADIO).build());
+		
 		nextQuestion = new Question(
 				"Möchten Sie das Smartphone auch über eine Hardware-Tastatur bedienen können?",
-				new ChoicesBuilder().add("Eine Tastatur ist mir wichtig", "TastaturSmartphone", ChoiceType.RADIO).
-				add("Ich möchte eins mit Touchscreen", "TouchOnlySmartphone", ChoiceType.RADIO).build());
+				ChoicesBuilder.yesNo("Eine Tastatur ist mir wichtig", "Ich möchte eins mit Touchscreen"));
+	}
+	
+//	private void noKeyboardSmartphone(String keyboard) {
+//		OntClass subClassOfInterest = searchClassContaining(keyboard, "Smartphone");
+//		setCurrentProperties(subClassOfInterest);
+//	}
+	
+	private void noKeyboardSmartphone(boolean withKeyboard) {
+		List<OntClass> properties = new LinkedList<OntClass>();
+		List<OntClass> propertiesNOT = new LinkedList<OntClass>();
+		OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
+		ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
+		while (ri.hasNext()) {
+			OntClass subClass = ri.next();
+			if (withKeyboard) {
+//				List<OntClass> disjointClasses = getDisjointSmartphones(subClass);
+//				for (OntClass disjointClass : disjointClasses) {
+//					properties.addAll(getClassProperties(disjointClass));
+//				}
+				propertiesNOT.addAll(getClassProperties(subClass));
+			} else {
+				properties.addAll(getClassProperties(subClass));
+			}
+		} 
+		OntClass tmpClass = model.createClass("TmpSmartphone");
+
+		if (withKeyboard) {
+			List<OntClass> complements = new LinkedList<OntClass>();
+			for (OntClass property : propertiesNOT) {
+				ComplementClass cc = model.createComplementClass(null, property);
+				complements.add(cc);
+			}
+			RDFList inList = model.createList(complements.toArray(new RDFNode[0]));
+			OntClass intersectionClass = model.createIntersectionClass(null, inList);
+			tmpClass.addSuperClass(intersectionClass);
+		} else {
+			RDFList inList = model.createList(properties.toArray(new RDFNode[0]));
+			OntClass unionClass = model.createUnionClass(null, inList);
+			tmpClass.addSuperClass(unionClass);
+		}
+		
+		setCurrentProperties(tmpClass);
 	}
 
 	private void smallDisplay(String answer) {
@@ -167,23 +228,11 @@ public class Berater2 extends Berater {
 		OntClass subClassOfInterest = searchClassContaining(os, "Eigenschaften");
 		setCurrentProperties(subClassOfInterest);
 		
-//		if (os.equals("Ios"))  //neues IPhone bekommt wohl größeres Display
-//			askAboutHardwareKeyboard();
-//		else
-			usabilityOs("Nein");
+		
+//		askAboutHardwareKeyboard();
+			usabilityOs("Nein"); //nach auswahl der OS auch noch fragen ob die unzufriedenheit an der Hardware liegt.
 	}
 
-	private void noKeyboardSmartphone(String keyboard) {
-		OntClass subClassOfInterest = searchClassContaining(keyboard, "Smartphone");
-		setCurrentProperties(subClassOfInterest);
-
-		context = 5;
-		nextQuestion = new Question(
-				"Soll das Smartphone Multimedia-Fähigkeiten haben?",
-				new ChoicesBuilder()
-				.add("Ja, ich werde Multimedia-Fähigkeiten nutzen", "MultimediaSmartphone", ChoiceType.RADIO)
-				.add("Nein", "do nothing", ChoiceType.RADIO).build());
-	}
 
 	@Override
 	public Question firstSpecificQuestion() {
