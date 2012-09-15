@@ -47,24 +47,6 @@ public class Berater2 extends Berater {
 		case 4:
 			noKeyboardSmartphone(answerList.get(0));
 			break;
-//		case 5:
-//			multimediaSmartphone(answerList.get(0));
-//			break;
-//		case 6:
-//			cameraSmartphone(answerList.get(0));
-//			break;
-//		case 7:
-//			sameOsSmartphone(answerList.get(0));
-//			break;
-//		case 8:
-//			navigationSmartphone(answerList.get(0));
-//			break;
-//		case 9:
-//			smartphoneBrand(answerList.get(0));
-//			break;
-//		case 10:
-//			restrictPrice(answerList.get(0));
-//			break;
 		default:
 			throw new IllegalStateException("Weiter gehts nicht");
 		}
@@ -201,109 +183,6 @@ public class Berater2 extends Berater {
 				new ChoicesBuilder()
 				.add("Ja, ich werde Multimedia-Fähigkeiten nutzen", "MultimediaSmartphone", ChoiceType.RADIO)
 				.add("Nein", "do nothing", ChoiceType.RADIO).build());
-	}
-
-	private void multimediaSmartphone(String media) {
-		OntClass subClassOfInterest = searchClassContaining(media, "Smartphone");
-		setCurrentProperties(subClassOfInterest);
-		context = 6;
-		nextQuestion = new Question(
-				"Soll das Smartphone eine gute Kamera haben, damit Sie Bilder und Videos in hoher Qualität aufnehmen können?",
-				new ChoicesBuilder().add("Kamera", "Kamera", ChoiceType.RADIO).
-				add("Blindfish", "Blindfish", ChoiceType.RADIO).build());
-	}
-
-	private void cameraSmartphone(String camera) {
-		OntClass subClassOfInterest = searchClassContaining(camera, "Smartphone");
-		setCurrentProperties(subClassOfInterest);
-
-		context = 7;
-		OntClass osClass = model.getOntClass(ns + "BetriebsystemEigenschaft");
-		List<Choice> choices = osClass.listSubClasses()
-				.mapWith(new Map1<OntClass, Choice>() {
-					@Override
-					public Choice map1(OntClass o) {
-						String value = o.getLocalName();
-						String displayName = value
-								.replace("BetriebssystemEigenschaft", "")
-								.replace("Betriebssystemeigenschaft", "")
-								.replaceAll("([^A-Z])([A-Z])", "$1 $2");
-						String text = "Ja. Ich habe ein Gerät mit " + displayName;
-						return new Choice(text, value, ChoiceType.RADIO);
-					}
-				}).toList();
-		choices.add(new Choice("Nein, ich habe genug Geld.", "Nein", ChoiceType.RADIO));
-		choices.add(new Choice("Apps? Betriebssystem?", "Nein", ChoiceType.RADIO));
-		HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
-		choicesMap.put(0, choices);
-		nextQuestion = new Question(
-				"Wenn Sie schon ein Smartphone besitzen, haben sie wahrscheinlich schon Apps gekauft? Soll das neue Gerät das gleiche Betriebssystem haben, damit Sie ihre Anwendungen weiterverwenden können?",
-				choicesMap);
-	}
-
-	private void sameOsSmartphone(String os) {
-		OntClass subClassOfInterest = searchClassContaining(os, "Smartphone");
-		setCurrentProperties(subClassOfInterest);
-
-		context = 8;
-		nextQuestion = new Question(
-				"Möchten Sie das Smartphone auch als Navigationsgerät nutzen?",
-				ChoicesBuilder.yesNo("Ja, möchte ich machen", "Nein, das werde ich nicht nutzen"));
-	}
-
-	private void navigationSmartphone(String navigation) {
-		OntClass subClassOfInterest = searchClassContaining(navigation, "Smartphone");
-		setCurrentProperties(subClassOfInterest);
-
-		context = 9;
-		List<Choice> choices = new ArrayList<Choice>();
-		choices.add(new Choice("Nein", "nein", ChoiceType.RADIO));
-		try {
-			for (String brand : SQLClient.getInstance().getBrands())
-				choices.add(new Choice("Ja, " + brand, brand, ChoiceType.RADIO));
-		} catch (DBException ex) {
-			// Pech gehabt.
-		}
-		HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
-		choicesMap.put(0, choices);
-		nextQuestion = new Question(
-				"Bevorzugen Sie einen bestimmten Hersteller?",
-				choicesMap);
-	}
-
-	private void smartphoneBrand(String brand) {
-		// TODO Einschränkung bzgl. Marke.
-//		OntClass subClassOfInterest = searchPhoneClassContaining(brand);
-//		setCurrentProperties(subClassOfInterest);
-
-		context = 10;
-		nextQuestion = new Question(
-				"Welchen Preisrahmen haben Sie sich vorgestellt? (von-bis)",
-				null);
-	}
-
-	private void restrictPrice(String restriction) {
-		// TODO Einschränkung bzgl. Preis.
-		restriction = restriction.replaceAll("[^0-9,.-]", "").replace(',', '.');
-		String[] split = restriction.split("-");
-		@SuppressWarnings("unused")
-		double min = 0, max;
-		if (split.length == 1 || split.length == 2) {
-			try {
-				min = Double.valueOf(split[0]);
-			} catch (NumberFormatException ex) {
-				min = 0;
-			}
-			try {
-				if (split.length == 2)
-					max = Double.valueOf(split[1]);
-			} catch (NumberFormatException ex) {
-				max = 999999;
-			}
-		} else {
-			// Fail.
-		}
-		context = 11;
 	}
 
 	@Override
