@@ -252,9 +252,7 @@ public class Berater1 extends Berater {
 				}
 			}
 			context = 7;
-			nextQuestion = new Question(
-					"Nutzen Sie das Smartphone auch als Kamera?",
-					ChoicesBuilder.yesNo("Ja", "Nein"));
+			nextQuestion = questionCamera();
 		}
 
 //		if (context != 6) {
