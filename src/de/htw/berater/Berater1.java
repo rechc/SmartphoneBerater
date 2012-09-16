@@ -183,7 +183,7 @@ public class Berater1 extends Berater {
 				customer.removeCustomerInfo(Customer.SEHBEHINDERT);
 				nextQuestion = questionDisplaySize();
 				context = 3;
-				throw new Exception("Sie können kein kleines sm holen, wenn Sie sehbehindert sind. OMG! Daher wiederhole ich die letzte Frage nochmal");
+				throw new Exception("Sie können kein kleines Smartphone wählen, wenn Sie sehbehindert sind. Daher wiederhole ich die letzte Frage nochmal");
 			}
 		}
 		context = 4;
