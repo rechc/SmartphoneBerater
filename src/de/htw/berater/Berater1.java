@@ -245,6 +245,12 @@ public class Berater1 extends Berater {
 					"Möchten Sie ein " + result.get(0).getLocalName() + "?",
 					ChoicesBuilder.yesNo("Ja", "Nein"));
 		} else {
+			if (outdoor.equals("Business")) {
+				OntClass smartphone = searchClassContaining("Business", "Smartphone");
+				if (smartphone != null) {
+					setCurrentProperties(smartphone);
+				}
+			}
 			context = 7;
 			nextQuestion = new Question(
 					"Nutzen Sie das Smartphone auch als Kamera?",
