@@ -1,6 +1,5 @@
 package de.htw.berater;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,8 +17,7 @@ import de.htw.berater.controller.Choice;
 import de.htw.berater.controller.ChoiceType;
 import de.htw.berater.controller.ChoicesBuilder;
 import de.htw.berater.controller.Question;
-import de.htw.berater.db.DBException;
-import de.htw.berater.db.SQLClient;
+
 
 public class Berater2 extends Berater {
 
@@ -82,7 +80,7 @@ public class Berater2 extends Berater {
 		HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
 		choicesMap.put(0, choices);
 		nextQuestion = new Question(
-				"Liegt die schlechte Bedienbarkeit am Betriebssystem?",
+				"Liegt das Problem am Betriebssystem?",
 				choicesMap);
 	}
 
