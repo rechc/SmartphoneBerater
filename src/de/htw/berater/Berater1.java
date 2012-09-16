@@ -67,7 +67,7 @@ public class Berater1 extends Berater {
 			smartphoneMarke(string);
 			break;
 		default:
-			throw new IllegalStateException("Berater zu bereits am Ende.");
+			throw new IllegalStateException("Berater ist bereits am Ende.");
 		}
 	}
 
