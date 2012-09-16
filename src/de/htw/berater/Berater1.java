@@ -161,6 +161,18 @@ public class Berater1 extends Berater {
 			if (isSmartphoneOkForCustumer(displaySmartphone, Customer.SEHBEHINDERT)) {
 				OntClass tastaturSmartphone = searchClassContaining("Tastatur", "Smartphone");
 				if (!isSmartphoneOkForCustumer(tastaturSmartphone, Customer.SEHBEHINDERT)) {
+					OntClass tmpClass = model.createClass("TmpSmartphone");
+
+					List<OntClass> complements = new LinkedList<OntClass>();
+					for (OntClass property : getClassProperties(tastaturSmartphone)) {
+						ComplementClass cc = model.createComplementClass(null, property);
+						complements.add(cc);
+					}
+					RDFList inList = model.createList(complements.toArray(new RDFNode[0]));
+					OntClass intersectionClass = model.createIntersectionClass(null, inList);
+					tmpClass.addSuperClass(intersectionClass);
+					setCurrentProperties(tmpClass);
+					
 					System.out.println("es wird eine Frage übersprungen: Möchten Sie ein reines Touchdisplay oder eine zusätzliche Hardwaretastatur?");
 					context = 5;
 					nextQuestion = questionUsage();
