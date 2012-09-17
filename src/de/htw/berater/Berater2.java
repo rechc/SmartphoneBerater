@@ -91,7 +91,6 @@ public class Berater2 extends Berater {
 					new ChoicesBuilder()
 						.add("Ich möchte ein großes Display", "GroßesSmartphone", ChoiceType.RADIO)
 						.add("Ich möchte ein kleines Display", "KleinesSmartphone", ChoiceType.RADIO)
-						.add("Mir doch egal!", "lolfail", ChoiceType.RADIO)
 						.build());
 		} else {
 			context = 32;
@@ -124,7 +123,6 @@ public class Berater2 extends Berater {
 				setCurrentProperties(subClassOfInterest);
 			}
 			
-			choices.add(new Choice("Egal.", "lolfail", ChoiceType.RADIO));
 			HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
 			choicesMap.put(0, choices);
 			nextQuestion = new Question(
@@ -220,8 +218,6 @@ public class Berater2 extends Berater {
 		HashMap<Integer, List<Choice>> choices = new ChoicesBuilder()
 				.add("Es ist zu schwer zu bedienen", "Bedienbarkeit", ChoiceType.CHECK)
 				.add("Es hat zu wenig Speicherplatz", "GrosserSpeicherSmartphone", ChoiceType.CHECK)
-				.add("Das Display ist zu klein", "lolfail", ChoiceType.CHECK)
-				.add("Es ist zu groß", "lolfail", ChoiceType.CHECK)
 				.build();
 		return new Question(
 				"Sie besitzen also schon eines. Was fehlt Ihnen an Ihrem alten Smartphone?",
