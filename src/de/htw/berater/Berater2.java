@@ -44,7 +44,7 @@ public class Berater2 extends Berater {
 			break;
 		case 4:
 //			noKeyboardSmartphone(answerList.get(0));
-			noKeyboardSmartphone(answerList.get(0).equals("Ja") ? true : false);
+			touchBedinung(answerList.get(0).equals("Ja") ? true : false);
 			break;
 		default:
 			throw new IllegalStateException("Weiter gehts nicht");
@@ -93,6 +93,14 @@ public class Berater2 extends Berater {
 						.add("Ich möchte ein kleines Display", "KleinesSmartphone", ChoiceType.RADIO)
 						.build());
 		} else {
+//			OntClass subClassOfInterest = searchClassContaining(os, "Eigenschaften");
+//			setCurrentProperties(subClassOfInterest);
+			
+			//muss verNEINt werden
+			String className = os.replace("BetriebssystemEigenschaft", "")  + "Smartphone";
+			OntClass subClassOfInterest = searchClassContaining(className, "Smartphone");
+			setCurrentProperties(subClassOfInterest);
+			
 			context = 32;
 			OntClass osClass = model.getOntClass(ns + "BetriebsystemEigenschaft");
 			List<Choice> choices = osClass.listSubClasses()
@@ -115,13 +123,14 @@ public class Berater2 extends Berater {
 						}
 					}).toList();
 			
-			//Filter not wanted OS
-			for(Choice c : choices){
+//			//Filter not wanted OS
+//			for(Choice c : choices){
 //				String className = c.getValue().replace("BetriebssystemEigenschaft", "")  + "Smartphone";
-//				System.out.println("search class: " + className);
-				OntClass subClassOfInterest = searchClassContaining(c.getValue(), "Eigenschaften");
-				setCurrentProperties(subClassOfInterest);
-			}
+////				System.out.println("search class: " + className);
+//				OntClass subClassOfInterest = searchClassContaining(className, "Smartphone");
+////				OntClass subClassOfInterest = searchClassContaining(c.getValue(), "Eigenschaften");
+//				setCurrentProperties(subClassOfInterest);
+//			}
 			
 			HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
 			choicesMap.put(0, choices);
@@ -148,28 +157,15 @@ public class Berater2 extends Berater {
 //		setCurrentProperties(subClassOfInterest);
 //	}
 	
-	private void noKeyboardSmartphone(boolean withKeyboard) {
+	private void touchBedinung(boolean withKeyboard) {
 		List<OntClass> properties = new LinkedList<OntClass>();
-		List<OntClass> propertiesNOT = new LinkedList<OntClass>();
-		OntClass subClassOfInterest = searchClassContaining("TouchOnly", "Smartphone");
-		ExtendedIterator<OntClass> ri = subClassOfInterest.listSubClasses();
-		while (ri.hasNext()) {
-			OntClass subClass = ri.next();
-			if (withKeyboard) {
-//				List<OntClass> disjointClasses = getDisjointSmartphones(subClass);
-//				for (OntClass disjointClass : disjointClasses) {
-//					properties.addAll(getClassProperties(disjointClass));
-//				}
-				propertiesNOT.addAll(getClassProperties(subClass));
-			} else {
-				properties.addAll(getClassProperties(subClass));
-			}
-		} 
+		OntClass subClassOfInterest = searchClassContaining("Tastatur", "Smartphone");
+		properties.addAll(getClassProperties(subClassOfInterest));
 		OntClass tmpClass = model.createClass("TmpSmartphone");
 
-		if (withKeyboard) {
+		if (!withKeyboard) {
 			List<OntClass> complements = new LinkedList<OntClass>();
-			for (OntClass property : propertiesNOT) {
+			for (OntClass property : properties) {
 				ComplementClass cc = model.createComplementClass(null, property);
 				complements.add(cc);
 			}
@@ -182,8 +178,7 @@ public class Berater2 extends Berater {
 			tmpClass.addSuperClass(unionClass);
 		}
 		
-//		new ChoicesBuilder().add("Eine Tastatur ist mir wichtig", "TastaturSmartphone", ChoiceType.RADIO).
-//		add("Ich möchte eins nur mit Touchscreen", "TouchOnlySmartphone", ChoiceType.RADIO).build());
+		setCurrentProperties(tmpClass);
 	}
 
 	private void smallDisplay(String answer) {
