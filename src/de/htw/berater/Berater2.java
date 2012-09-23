@@ -93,13 +93,8 @@ public class Berater2 extends Berater {
 						.add("Ich möchte ein kleines Display", "KleinesSmartphone", ChoiceType.RADIO)
 						.build());
 		} else {
-//			OntClass subClassOfInterest = searchClassContaining(os, "Eigenschaften");
-//			setCurrentProperties(subClassOfInterest);
-			
-			//muss verNEINt werden
 			String className = os.replace("BetriebssystemEigenschaft", "")  + "Smartphone";
-			OntClass subClassOfInterest = searchClassContaining(className, "Smartphone");
-			setCurrentProperties(subClassOfInterest);
+			filterNotLikedOS(className);
 			
 			context = 32;
 			OntClass osClass = model.getOntClass(ns + "BetriebsystemEigenschaft");
@@ -123,21 +118,29 @@ public class Berater2 extends Berater {
 						}
 					}).toList();
 			
-//			//Filter not wanted OS
-//			for(Choice c : choices){
-//				String className = c.getValue().replace("BetriebssystemEigenschaft", "")  + "Smartphone";
-////				System.out.println("search class: " + className);
-//				OntClass subClassOfInterest = searchClassContaining(className, "Smartphone");
-////				OntClass subClassOfInterest = searchClassContaining(c.getValue(), "Eigenschaften");
-//				setCurrentProperties(subClassOfInterest);
-//			}
-			
 			HashMap<Integer, List<Choice>> choicesMap = new HashMap<Integer, List<Choice>>();
 			choicesMap.put(0, choices);
 			nextQuestion = new Question(
 					"Welches Betriebssystem hätten Sie denn gerne?",
 					choicesMap);
 		}
+	}
+	
+	private void filterNotLikedOS(String os) {
+		List<OntClass> properties = new LinkedList<OntClass>();
+		OntClass subClassOfInterest = searchClassContaining(os, "Smartphone");
+		properties.addAll(getClassProperties(subClassOfInterest));
+		OntClass tmpClass = model.createClass("TmpSmartphone");
+
+		List<OntClass> complements = new LinkedList<OntClass>();
+		for (OntClass property : properties) {
+			ComplementClass cc = model.createComplementClass(null, property);
+			complements.add(cc);
+		}
+		RDFList inList = model.createList(complements.toArray(new RDFNode[0]));
+		OntClass intersectionClass = model.createIntersectionClass(null, inList);
+		tmpClass.addSuperClass(intersectionClass);
+		setCurrentProperties(tmpClass);
 	}
 
 	private void askAboutHardwareKeyboard() {
@@ -151,11 +154,6 @@ public class Berater2 extends Berater {
 				"Möchten Sie das Smartphone auch über eine Hardware-Tastatur bedienen können?",
 				ChoicesBuilder.yesNo("Eine Tastatur ist mir wichtig", "Ich möchte eins mit Touchscreen"));
 	}
-	
-//	private void noKeyboardSmartphone(String keyboard) {
-//		OntClass subClassOfInterest = searchClassContaining(keyboard, "Smartphone");
-//		setCurrentProperties(subClassOfInterest);
-//	}
 	
 	private void touchBedinung(boolean withKeyboard) {
 		List<OntClass> properties = new LinkedList<OntClass>();
@@ -192,9 +190,10 @@ public class Berater2 extends Berater {
 	private void osChoice(String os) {
 		if (os.equals("lolfail"))
 			throw new IllegalStateException("Im Szenario nicht vorgesehen");
-		OntClass subClassOfInterest = searchClassContaining(os, "Eigenschaften");
+//		OntClass subClassOfInterest = searchClassContaining(os, "Eigenschaften");
+		String className = os.replace("BetriebssystemEigenschaft", "")  + "Smartphone";
+		OntClass subClassOfInterest = searchClassContaining(className, "Smartphone");
 		setCurrentProperties(subClassOfInterest);
-		
 		
 //		askAboutHardwareKeyboard();
 			usabilityOs("Nein"); //nach auswahl der OS auch noch fragen ob die unzufriedenheit an der Hardware liegt.
