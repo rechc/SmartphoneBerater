@@ -177,6 +177,7 @@ public class Berater2 extends Berater {
 		}
 		
 		setCurrentProperties(tmpClass);
+		context = 1337;
 	}
 
 	private void smallDisplay(String answer) {
