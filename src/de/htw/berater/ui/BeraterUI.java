@@ -31,4 +31,6 @@ public abstract class BeraterUI {
 
 	public abstract void restart();
 
+	public abstract void finishSzenario();
+
 }

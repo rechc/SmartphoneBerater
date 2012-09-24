@@ -376,7 +376,7 @@ public class Berater1 extends Berater {
 			setBrand(marke);
 		}
 		context = -1;
-		nextQuestion = new Question("Der Berater hat folgendes Ergebnis erzielt:", null);
+		nextQuestion = null;
 	}
 
 	private List<OntClass> findClass(String search) {

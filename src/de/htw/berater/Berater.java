@@ -69,8 +69,6 @@ public class Berater {
 		}
 	}
 	
-
-
 	
 	public void setController(Controller controller) {
 		this.controller = controller;
@@ -79,7 +77,7 @@ public class Berater {
 	public void addCustomerInfo(int info) {
 		customer.addCustomerInfo(info);
 	}
-
+	
 	
 	public void evaluateAnswer(Answer answer) throws Exception {
 		switch (context) {
@@ -93,6 +91,7 @@ public class Berater {
 				throw new IllegalStateException("Im Szenario nicht vorgesehen");
 			}
 			controller.setBerater(berater);
+			berater.setController(controller);
 			berater.nextQuestion = berater.firstSpecificQuestion();
 			break;
 		default:

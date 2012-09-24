@@ -61,6 +61,8 @@ public class BeraterUIJFrame extends BeraterUI{
 	private AnswerPanel answerPanel;
 	
 	private JTextField status_bar;
+	
+	private JButton buttonGo;
 
 	/** Konstruktor mit Werte, initialisiert die UI
 	 * 
@@ -144,7 +146,7 @@ public class BeraterUIJFrame extends BeraterUI{
 		south_Panel.add(status_bar);
 		mainPanel.add(south_Panel, BorderLayout.SOUTH);
 		
-		JButton buttonGo = new JButton("Weiter");
+		buttonGo = new JButton("Weiter");
 		buttonGo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonGo.setActionCommand("weiter");
 		buttonGo.addActionListener(uiActions);
@@ -345,6 +347,7 @@ public class BeraterUIJFrame extends BeraterUI{
 	public void resetStatus() {
 		status_bar.setText("");
 		status_bar.setBackground(statusBarColor);
+		buttonGo.setEnabled(true);
 	}
 
 	public String getRdfPath() {
@@ -367,5 +370,14 @@ public class BeraterUIJFrame extends BeraterUI{
 	public void restart() {
 		labelQuestion.setText("Wählen Sie bitte Start");
 		controller.start(rdfPath, namespace);
+	}
+
+	@Override
+	public void finishSzenario() {
+		buttonGo.setEnabled(false);
+		answer_type2.removeAll();
+		answer_type2.revalidate();
+		answer_type2.repaint();
+		labelQuestion.setText("Der Berater hat folgendes Ergebnis erzielt:");
 	}
 }

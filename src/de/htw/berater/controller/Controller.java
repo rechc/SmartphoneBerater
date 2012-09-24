@@ -88,6 +88,7 @@ public class Controller {
 	}
 	
 	private void informUI(final Question question) throws DBException {
+
 		String sql = berater.getSQLString();
 		final List<Smartphone> resultData;
 		System.out.println(sql);
@@ -100,16 +101,19 @@ public class Controller {
 			@Override
 			public void run() {
 				beraterUI.onNewData(resultData);
-				beraterUI.onNewQuestion(question);
+				if (question == null) {
+					beraterUI.finishSzenario();
+				} else {
+					beraterUI.onNewQuestion(question);
+				}
 			}
 		});
+		
 	}
 
 
 	public void setBerater(Berater berater) {
 		this.berater = berater;
 	}
-
-
 	
 }
