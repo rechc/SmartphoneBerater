@@ -33,37 +33,38 @@ public class AnswerPanel extends JPanel {
 	private void initialize() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-
-		for (int group : question.getChoices().keySet()) {
-			ButtonGroup buttonGroup = new ButtonGroup();
-			List<Choice> choices = question.getChoices().get(group);
-			for (final Choice choice : choices) {
-				JComponent component = null;
-				if (choice.getChoiceType() == ChoiceType.INPUT) { //wegen preis = 500 z.b
-					component = new JTextField();
-				} else {
-					JToggleButton tbtn;
-					if (choice.getChoiceType() == ChoiceType.RADIO) {
-						tbtn = new JRadioButton(choice.getText());
-						buttonGroup.add(tbtn);
+		if (question.getChoices() != null) {
+			for (int group : question.getChoices().keySet()) {
+				ButtonGroup buttonGroup = new ButtonGroup();
+				List<Choice> choices = question.getChoices().get(group);
+				for (final Choice choice : choices) {
+					JComponent component = null;
+					if (choice.getChoiceType() == ChoiceType.INPUT) { //wegen preis = 500 z.b
+						component = new JTextField();
 					} else {
-						tbtn = new JCheckBox(choice.getText());
-					}
-					tbtn.addItemListener(new ItemListener() {
-						@Override
-						public void itemStateChanged(ItemEvent e) {
-							if (e.getStateChange() == ItemEvent.SELECTED)
-								answer.add(choice.getValue());
-							else
-								answer.remove(choice.getValue());
+						JToggleButton tbtn;
+						if (choice.getChoiceType() == ChoiceType.RADIO) {
+							tbtn = new JRadioButton(choice.getText());
+							buttonGroup.add(tbtn);
+						} else {
+							tbtn = new JCheckBox(choice.getText());
 						}
-					});
-					component = tbtn;
+						tbtn.addItemListener(new ItemListener() {
+							@Override
+							public void itemStateChanged(ItemEvent e) {
+								if (e.getStateChange() == ItemEvent.SELECTED)
+									answer.add(choice.getValue());
+								else
+									answer.remove(choice.getValue());
+							}
+						});
+						component = tbtn;
+					}
+					add(component);
 				}
-				add(component);
 			}
 		}
-		
+
 	}
 
 	public Answer getAnswer() {

@@ -177,7 +177,8 @@ public class Berater2 extends Berater {
 		}
 		
 		setCurrentProperties(tmpClass);
-		context = 1337;
+		context = -1;
+		nextQuestion = new Question("Der Berater hat folgendes Ergebnis erzielt:", null);
 	}
 
 	private void smallDisplay(String answer) {

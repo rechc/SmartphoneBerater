@@ -289,7 +289,6 @@ public class BeraterUIJFrame extends BeraterUI{
 		}
 		status_bar.setText(text);
 		status_bar.setBackground(farbe);
-		
 	}
 	
 	/** Funktion zum setzen des Controllers
