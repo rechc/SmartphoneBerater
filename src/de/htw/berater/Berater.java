@@ -42,14 +42,18 @@ public class Berater {
 
 	protected List<OntClass> rememberList = new LinkedList<OntClass>();
 	protected Question nextQuestion;
+	private Question oldQuestion;
 	protected String ns;
-	protected String rdfPath;
-	protected Set<OntClass> properties = new LinkedHashSet<OntClass>();
+	private String rdfPath;
+	private Set<OntClass> properties = new LinkedHashSet<OntClass>();
+	private Set<OntClass> oldproperties = new LinkedHashSet<OntClass>();
 	protected int context; // irgendwie den kontext beachten um sinnvoll die
 							// naechste frage zu stellen
+	private int oldContext;
 	protected Customer customer = new Customer();
 	protected OntModel model;
 	private String brand = "";
+	private String oldBrand = "";
 
 	private Controller controller;
 	
@@ -69,6 +73,14 @@ public class Berater {
 		}
 	}
 	
+	public void goBack() {
+		context = oldContext;
+		properties.clear();
+		properties.addAll(oldproperties);
+		nextQuestion = oldQuestion;
+		brand = oldBrand;
+	}
+	
 	
 	public void setController(Controller controller) {
 		this.controller = controller;
@@ -80,6 +92,10 @@ public class Berater {
 	
 	
 	public void evaluateAnswer(Answer answer) throws Exception {
+		oldContext = context;
+		oldproperties.addAll(properties);
+		oldQuestion = nextQuestion;
+		oldBrand = brand;
 		switch (context) {
 		case 0:
 			Berater berater;
@@ -94,16 +110,9 @@ public class Berater {
 			berater.setController(controller);
 			berater.nextQuestion = berater.firstSpecificQuestion();
 			break;
-		default:
-			evaluateSpecific(answer);
 		}
 	}
 	
-	@SuppressWarnings("unused")
-	protected void evaluateSpecific(Answer answer) {
-		//Override this
-		throw new UnsupportedOperationException();
-	}
 	
 	protected Question firstSpecificQuestion() {
 		//Override this

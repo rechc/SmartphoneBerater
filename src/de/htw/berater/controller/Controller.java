@@ -87,15 +87,32 @@ public class Controller {
 		}.start();
 	}
 	
-	private void informUI(final Question question) throws DBException {
-
+	private void informUI(Question question) throws DBException {
 		String sql = berater.getSQLString();
-		final List<Smartphone> resultData;
 		System.out.println(sql);
-		resultData = SQLClient.getInstance().getSmartphones(sql);
+		List<Smartphone> resultData = SQLClient.getInstance().getSmartphones(sql);
 		if (resultData.size() == 0) {
-			beraterUI.restart();
+			berater.goBack();
+			sql = berater.getSQLString();
+			resultData = SQLClient.getInstance().getSmartphones(sql);
+			question = berater.generateQuestion();
+			SwingUtilities.invokeLater(new Runnable () {
+
+				@Override
+				public void run() {
+					beraterUI.onNewStatus("Keine Smartphones bei der letzten Auswahl mehr. Die Frage wird wiederholt.", Color.YELLOW, 0);		
+				}
+				
+			});
+			
 		}
+		
+		printResults(resultData, question);
+		
+	}
+
+
+	private void printResults(final List<Smartphone> resultData, final Question question) {
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
@@ -108,7 +125,6 @@ public class Controller {
 				}
 			}
 		});
-		
 	}
 
 

@@ -26,7 +26,8 @@ public class Berater2 extends Berater {
 	}
 
 	@Override
-	public void evaluateAnswer(Answer answer) {
+	public void evaluateAnswer(Answer answer) throws Exception {
+		super.evaluateAnswer(answer);
 		List<String> answerList = answer.getValues();
 
 		switch (context) {

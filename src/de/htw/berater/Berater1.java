@@ -32,12 +32,14 @@ public class Berater1 extends Berater {
 
 	@Override
 	public void evaluateAnswer(Answer answer) throws Exception {
+		super.evaluateAnswer(answer);
 		String string = answer.getSingleValue();
 
 		if (answer.getValues().contains(Customer.SEHBEHINDERT + "")) {
 			customer.addCustomerInfo(Customer.SEHBEHINDERT);
 			answer.getValues().remove(Customer.SEHBEHINDERT + "");
 		}
+		
 		switch (context) {
 			case 1:
 				smartphoneZweck(string);
@@ -234,6 +236,7 @@ public class Berater1 extends Berater {
 
 		setCurrentProperties(tmpClass);
 
+		tmpClass.remove();
 		context = 5;
 		nextQuestion = questionUsage();
 	}
