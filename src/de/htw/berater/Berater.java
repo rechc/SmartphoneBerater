@@ -95,6 +95,7 @@ public class Berater {
 	
 	public void evaluateAnswer(Answer answer) throws Exception {
 		oldContext = context;
+		oldproperties.clear();
 		oldproperties.addAll(properties);
 		oldQuestion = nextQuestion;
 		oldBrand = brand;
