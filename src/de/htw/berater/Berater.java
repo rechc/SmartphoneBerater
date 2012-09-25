@@ -51,6 +51,7 @@ public class Berater {
 							// naechste frage zu stellen
 	private int oldContext;
 	protected Customer customer = new Customer();
+	private Customer oldCustmer = new Customer();
 	protected OntModel model;
 	private String brand = "";
 	private String oldBrand = "";
@@ -79,6 +80,7 @@ public class Berater {
 		properties.addAll(oldproperties);
 		nextQuestion = oldQuestion;
 		brand = oldBrand;
+		customer = oldCustmer;
 	}
 	
 	
@@ -96,6 +98,7 @@ public class Berater {
 		oldproperties.addAll(properties);
 		oldQuestion = nextQuestion;
 		oldBrand = brand;
+		oldCustmer = customer;
 		switch (context) {
 		case 0:
 			Berater berater;
