@@ -142,6 +142,7 @@ public class Berater2 extends Berater {
 		OntClass intersectionClass = model.createIntersectionClass(null, inList);
 		tmpClass.addSuperClass(intersectionClass);
 		setCurrentProperties(tmpClass);
+		tmpClass.remove();
 	}
 
 	private void askAboutHardwareKeyboard() {
@@ -178,6 +179,7 @@ public class Berater2 extends Berater {
 		}
 		
 		setCurrentProperties(tmpClass);
+		tmpClass.remove();
 		context = -1;
 		nextQuestion = null;
 	}
