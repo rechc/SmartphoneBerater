@@ -41,6 +41,7 @@ public class Berater {
 	public static final int BERATER_2 = 1;
 
 	protected List<OntClass> rememberList = new LinkedList<OntClass>();
+	private List<OntClass> oldRememberList = new LinkedList<OntClass>();
 	protected Question nextQuestion;
 	private Question oldQuestion;
 	protected String ns;
@@ -78,6 +79,7 @@ public class Berater {
 		context = oldContext;
 		properties.clear();
 		properties.addAll(oldproperties);
+		rememberList.clear();
 		nextQuestion = oldQuestion;
 		brand = oldBrand;
 		customer = oldCustmer;
@@ -97,6 +99,8 @@ public class Berater {
 		oldContext = context;
 		oldproperties.clear();
 		oldproperties.addAll(properties);
+		oldRememberList.clear();
+		oldRememberList.addAll(rememberList);
 		oldQuestion = nextQuestion;
 		oldBrand = brand;
 		oldCustmer = customer;
