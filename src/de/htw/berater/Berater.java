@@ -80,6 +80,7 @@ public class Berater {
 		properties.clear();
 		properties.addAll(oldproperties);
 		rememberList.clear();
+		rememberList.addAll(oldRememberList);
 		nextQuestion = oldQuestion;
 		brand = oldBrand;
 		customer = oldCustmer;
